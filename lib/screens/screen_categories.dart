@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ScreenCategories extends StatelessWidget {
   const ScreenCategories({super.key}) ;
 
-    @override
+     @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -49,35 +49,80 @@ class ScreenCategories extends StatelessWidget {
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
                 children: [
-                  ElevatedButton(
+                  CustomButton(
+                    icon: Icons.image,
+                    text: 'Botón 1',
                     onPressed: () {
                       // Acción al presionar el botón
                     },
-                    child: Text('Botón 1'),
                   ),
-                  ElevatedButton(
+                  CustomButton(
+                    icon: Icons.image,
+                    text: 'Botón 2',
                     onPressed: () {
                       // Acción al presionar el botón
                     },
-                    child: Text('Botón 2'),
                   ),
-                  ElevatedButton(
+                  CustomButton(
+                    icon: Icons.image,
+                    text: 'Botón 3',
                     onPressed: () {
                       // Acción al presionar el botón
                     },
-                    child: Text('Botón 3'),
                   ),
-                  ElevatedButton(
+                  CustomButton(
+                    icon: Icons.image,
+                    text: 'Botón 4',
                     onPressed: () {
                       // Acción al presionar el botón
                     },
-                    child: Text('Botón 4'),
                   ),
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final IconData icon;
+  final String text;
+  final VoidCallback onPressed;
+
+  const CustomButton({
+    required this.icon,
+    required this.text,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      borderRadius: BorderRadius.circular(10.0),
+      color: Colors.black,
+      child: InkWell(
+        onTap: onPressed,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 40,
+              color: Colors.white,
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              text,
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
