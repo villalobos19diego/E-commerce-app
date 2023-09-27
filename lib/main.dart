@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color.fromARGB(255, 181, 182, 182),
+          backgroundColor: Color.fromARGB(216, 107, 45, 117),
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: TextStyle(
             fontSize: 15,
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
           unselectedLabelStyle: TextStyle(
             fontSize: 15,
           ),
-          selectedItemColor: Colors.black,
-            unselectedItemColor: Colors.grey
+          selectedItemColor: Colors.white,
+            unselectedItemColor: Color.fromARGB(255, 225,190, 231),
         ),
       ),
       home: const Tabbar(),
