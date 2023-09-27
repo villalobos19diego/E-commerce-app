@@ -1,4 +1,4 @@
-import 'package:e_commerce/screens/screen_categories.dart';
+import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,12 +13,23 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Categorias Screen',
-      debugShowCheckedModeBanner: false,
+       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(255, 181, 182, 182),
+          type: BottomNavigationBarType.fixed,
+          selectedLabelStyle: TextStyle(
+            fontSize: 15,
+          ),
+          unselectedLabelStyle: TextStyle(
+            fontSize: 15,
+          ),
+          selectedItemColor: Colors.black,
+            unselectedItemColor: Colors.grey
+        ),
       ),
-      home: const ScreenCategories(),
+      home: const Tabbar(),
     );
   }
 }
