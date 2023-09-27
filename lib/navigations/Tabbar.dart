@@ -1,5 +1,6 @@
 
 import 'package:e_commerce/screens/login/login.dart';
+import 'package:e_commerce/screens/profile/Screen_Profile_Login.dart';
 import 'package:e_commerce/screens/screen_categories.dart';
 import 'package:flutter/material.dart';
 
@@ -54,7 +55,7 @@ class _TabbarState extends State<Tabbar> {
             const ScreenCategories(),),
           renderView(
             3,
-            const ScreenLogin(),),
+            const ScreenProfileLogin(),),
         ],
       ),
     );
