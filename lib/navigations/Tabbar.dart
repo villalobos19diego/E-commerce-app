@@ -1,6 +1,7 @@
 
 import 'package:e_commerce/screens/login/login.dart';
 import 'package:e_commerce/screens/screen_categories.dart';
+import 'package:e_commerce/widgets/screenhomewidgets.dart';
 import 'package:flutter/material.dart';
 
 class Tabbar extends StatefulWidget {
@@ -45,7 +46,7 @@ class _TabbarState extends State<Tabbar> {
         children: [
          renderView(
            0,
-           const ScreenLogin(),),
+           const ScreenHome(),),
           renderView(
             1,
             const ScreenCategories(),),
