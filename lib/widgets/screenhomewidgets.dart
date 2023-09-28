@@ -23,6 +23,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           centerTitle: true,
           title: const Text('Lingerie App',style: TextStyle(color: Color.fromARGB(255, 225,190, 231)),),
           backgroundColor: const Color.fromARGB(216, 107, 45, 117),
+          iconTheme: IconThemeData(color: Color.fromARGB(255, 225,190, 231)), // Cambio del color del icono del Drawer aquí
           actions: <Widget>[
             IconButton(
               icon: const Icon(
