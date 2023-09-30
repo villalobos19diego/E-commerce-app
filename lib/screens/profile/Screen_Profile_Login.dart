@@ -1,7 +1,9 @@
+
+import 'package:e_commerce/screens/login/Screen_Login.dart';
+import 'package:e_commerce/screens/signUp/Sign_Up.dart';
 import 'package:flutter/material.dart';
 
 class ScreenProfileLogin extends StatelessWidget {
- 
   const ScreenProfileLogin({super.key});
   @override
   Widget build(BuildContext context) {
@@ -13,12 +15,14 @@ class ScreenProfileLogin extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center, // Alinea a la izquierda
-          
-          children:[
+          crossAxisAlignment:
+              CrossAxisAlignment.center, // Alinea a la izquierda
+
+          children: [
             // Icono de persona en color gris
             Row(
-              mainAxisAlignment: MainAxisAlignment.start, // Alinea a la izquierda
+              mainAxisAlignment:
+                  MainAxisAlignment.start, // Alinea a la izquierda
               children: [
                 const Icon(
                   Icons.person,
@@ -34,7 +38,8 @@ class ScreenProfileLogin extends StatelessWidget {
               ],
             ),
 
-            SizedBox(height: screenHeight * 0.10), // Espacio en la parte superior
+            SizedBox(
+                height: screenHeight * 0.10), // Espacio en la parte superior
 
             // Cuadro de imagen con esquinas semi circulares
             ClipRRect(
@@ -59,6 +64,9 @@ class ScreenProfileLogin extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 // Lógica para iniciar sesión
+                 Navigator.push(
+                  context,MaterialPageRoute(builder: (context) => const ScreenLogin())
+                  );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.black,
@@ -82,6 +90,9 @@ class ScreenProfileLogin extends StatelessWidget {
             TextButton(
               onPressed: () {
                 // Navegar a la página de registro
+                Navigator.push(
+                  context,MaterialPageRoute(builder: (context) => const ScreenSignUp())
+                  );
               },
               child: Text(
                 'Sign Up',
