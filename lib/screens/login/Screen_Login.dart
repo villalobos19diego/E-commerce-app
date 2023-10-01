@@ -1,6 +1,6 @@
-import 'package:e_commerce/screens/signUp/Sign_Up.dart';
+import 'package:e_commerce/navigations/Tabbar.dart';
+import 'package:e_commerce/screens/signUp/Screen_Sign_Up.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({super.key});
@@ -55,6 +55,20 @@ class _ScreenLoginState extends State<ScreenLogin> {
         ),
         backgroundColor: const Color.fromARGB(216, 107, 45, 117),
       ),
+      floatingActionButton: Padding(
+          padding: const EdgeInsets.only(top: 100), 
+          child: IconButton(
+            onPressed: () {
+             Navigator.pop(
+                  context,MaterialPageRoute(
+                    builder: (context) => const Tabbar()
+                    )
+                  );
+            },
+            icon: const Icon(Icons.arrow_back, color:Color.fromARGB(216, 107, 45, 117),size: 40),
+          ),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       body: Padding(
         padding: const EdgeInsets.only(
             top: 80.0, bottom: 0.0, right: 50.0, left: 50.0),
