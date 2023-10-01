@@ -1,6 +1,6 @@
 
 import 'package:e_commerce/screens/login/Screen_Login.dart';
-import 'package:e_commerce/screens/signUp/Sign_Up.dart';
+import 'package:e_commerce/screens/signUp/Screen_Sign_Up.dart';
 import 'package:flutter/material.dart';
 
 class ScreenProfileLogin extends StatelessWidget {
