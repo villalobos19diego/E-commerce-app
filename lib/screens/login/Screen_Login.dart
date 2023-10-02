@@ -69,92 +69,109 @@ class _ScreenLoginState extends State<ScreenLogin> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
-      body: Padding(
-        padding: const EdgeInsets.only(
-            top: 80.0, bottom: 0.0, right: 50.0, left: 50.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              textForm("Username", const Color.fromARGB(255, 148, 131, 131), 16.0,
-                  "Ingrese su Username", Colors.grey, context,
-                  icon: const Icon(Icons.person, color: Color.fromARGB(216, 107, 45, 117)),
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8.0),
-                  filled: true,
-                   colorsFill:const Color.fromARGB(255, 248, 237, 250), validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "No puede dejar este campo vacio";
-                }
-                return null;
-              },
-                  focusNode: fieldUsername,
-                  onfieldSubmitted: (value) {
-                    FocusScope.of(context).requestFocus(fieldPassword);
-                  },
-                  textEditingController: _usernamefieldController),
-              const SizedBox(
-                height: 16.0,
-              ),
-              textForm("Password", const Color.fromARGB(255, 148, 131, 131), 16.0,
-                  "Ingrese su Password", Colors.grey, context,
-                  icon: const Icon(Icons.lock, color: Color.fromARGB(216, 107, 45, 117)),
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8.0),
-                  filled: true,
-                  colorsFill:const Color.fromARGB(255, 248, 237, 250), validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "No puede dejar este campo vacio";
-                }
-                if (value.length < 8) {
-                  return "Contraseña debe ser mayor a 8 digitos";
-                }
-
-                return null;
-              },
-                  suffixInkwell: InkWell(
+      body: Wrap(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 80.0, bottom: 0.0, right: 50.0, left: 50.0),
+              child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  textForm(
+                    "Username", 
+                    const Color.fromARGB(255, 148, 131, 131),
+                     16.0,
+                     "Ingrese su Username", 
+                     Colors.grey, context,
+                     icon: const Icon(Icons.person, color: Color.fromARGB(216, 107, 45, 117)),
+                     borderSide: BorderSide.none,
+                     borderRadius: BorderRadius.circular(8.0),
+                     filled: true,
+                     colorsFill:const Color.fromARGB(255, 248, 237, 250),
+                     validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "No puede dejar este campo vacio";
+                        }
+                        return null;
+                        },
+                     focusNode: fieldUsername,
+                     onfieldSubmitted: (value) {
+                      FocusScope.of(context).requestFocus(fieldPassword);
+                      },
+                     textEditingController: _usernamefieldController),
+                  const SizedBox(
+                    height: 16.0,
+                    ),
+                  textForm(
+                    "Password",
+                    const Color.fromARGB(255, 148, 131, 131),
+                    16.0,
+                    "Ingrese su Password",
+                    Colors.grey, context,
+                    icon: const Icon(Icons.lock,
+                    color: Color.fromARGB(216, 107, 45, 117)),
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(8.0),
+                    filled: true,
+                    colorsFill:const Color.fromARGB(255, 248, 237, 250),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "No puede dejar este campo vacio";
+                        }
+                        if (value.length < 8) {
+                          return "Contraseña debe ser mayor a 8 digitos";
+                          }
+                          return null;
+                          },
+                    suffixInkwell: InkWell(
                     onTap: () {
                       setState(() {
                         passToggle = !passToggle;
-                      });
-                    },
-                    child: Icon(
+                        });
+                      },
+                      child: Icon(
                         passToggle ? Icons.visibility : Icons.visibility_off),
-                  ),
-                  isPassword: passToggle,
-                  focusNode: fieldPassword,
-                  onfieldSubmitted: (value) {
-                    _submit();
-                  },
-                  textEditingController: _passwordfieldController),
-              const SizedBox(height: 40.0),
-                ElevatedButton(
-                  focusNode: buttonFocus,
-                  style: ElevatedButton.styleFrom(
+                        ),
+                        isPassword: passToggle,
+                        focusNode: fieldPassword,
+                        onfieldSubmitted: (value) {
+                          _submit();
+                          },
+                    textEditingController: _passwordfieldController),
+                  const SizedBox(
+                    height: 40.0
+                    ),
+                  ElevatedButton(
+                    focusNode: buttonFocus,
+                    style: ElevatedButton.styleFrom(
                       minimumSize: const Size(280.0, 50.0),
                       shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0))),
-                  onPressed: () {
-                    _submit();
-                  },
-                  child: const Text("Log In")),
-              const SizedBox(
-                height: 16.0,
-              ),
-              const Text(" You do not have an account?"),
-              TextButton(
-                onPressed: () {
-                   Navigator.push(
-                  context,MaterialPageRoute(builder: (context) => const ScreenSignUp())
-                  );
-                },
-                child: const Text("Sign Up"),
-              ),
-            ],
+                        borderRadius: BorderRadius.circular(8.0))),
+                        onPressed: () {
+                          _submit();
+                          },
+                          child: const Text("Log In")),
+                          const SizedBox(
+                            height: 16.0,
+                            ),
+                            const Text(" You do not have an account?"),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,MaterialPageRoute(
+                            builder: (context) => const ScreenSignUp())
+                            );
+                            },
+                            child: const Text("Sign Up"),
+                    ),
+              ],
+             ),
+           ),
           ),
-        ),
-      ),
+        ],
+      ) 
     );
   }
 }
