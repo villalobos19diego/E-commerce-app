@@ -73,7 +73,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              top: 80.0, bottom: 0.0, right: 50.0, left: 50.0),
+              top: 250.0, bottom: 0.0, right: 50.0, left: 50.0),
               child: Form(
               key: _formKey,
               child: Column(
