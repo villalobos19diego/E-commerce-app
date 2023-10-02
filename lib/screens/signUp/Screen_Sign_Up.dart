@@ -1,3 +1,4 @@
+import 'package:e_commerce/config/utils.dart';
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/login/Screen_Login.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class ScreenSignUp extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenSignUp> {
+  Utils utils = Utils();
   final _formKey = GlobalKey<FormState>();
   bool passToggle = true;
   FocusNode fieldUsername = FocusNode();
@@ -96,7 +98,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                     if (value == null || value.isEmpty) {
                       return "No puede dejar este campo vacio";
                     }
-                    return null;
+                    return utils.validateUsername(value);
                   },
                   focusNode: fieldUsername,
                   textEditingController: _usernamefieldController,
@@ -123,7 +125,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                     if (value == null || value.isEmpty) {
                       return "No puede dejar este campo vacio";
                     }
-                    return null;
+                    return utils.validateEmail(value);
                   },
                   focusNode: fieldEmail,
                   textEditingController: _emailfieldController,
@@ -145,11 +147,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                     if (value == null || value.isEmpty) {
                       return "No puede dejar este campo vacio";
                     }
-                    if (value.length < 8) {
-                      return "Contraseña debe ser mayor a 8 digitos";
-                    }
-
-                    return null;
+                    return utils.validatePassword(value);
                   },
                   suffixInkwell: InkWell(
                     onTap: () {
