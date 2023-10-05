@@ -8,6 +8,7 @@ class DrawerWidget extends StatelessWidget {
     return Drawer(
     child:Container(
       color: Colors.purple.shade100,
+      padding: EdgeInsets.only(top:60),
       child:  Column(children: [
         //EMPEZAR A CREAR CONTENIDO EN EL DRAWER      
         SizedBox(          
