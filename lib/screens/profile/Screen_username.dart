@@ -16,7 +16,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
   @override
   Widget build(BuildContext context) {
     AuthService authService = AuthService();
-    String username = authService.getUsername() ?? "Username";
+    String username = authService.getEmail() ?? "Email";
 
     PreferredSizeWidget appBar = AppBar(
       backgroundColor: Colors.purple,
@@ -90,7 +90,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
             ),
           ),
           useMaterial3: true),
-      title: 'Uasername',
+      title: 'Username',
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: appBar,
