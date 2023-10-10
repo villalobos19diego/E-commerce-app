@@ -26,9 +26,9 @@ class _ScreenLoginState extends State<ScreenSignUp> {
       TextEditingController();
   final TextEditingController _emailfieldController = TextEditingController();
 
-  void _submit() {
+  void _submit() async {
     if (_formKey.currentState!.validate()) {
-      _authService.signInHandlerEmail(
+      await _authService.signInHandlerEmail(
           _emailfieldController.text, _passwordfieldController.text);
       if (mounted) {
         _emailfieldController.clear();
