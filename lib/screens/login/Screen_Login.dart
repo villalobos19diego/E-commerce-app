@@ -1,4 +1,5 @@
 import 'package:e_commerce/config/services/auth_service.dart';
+import 'package:e_commerce/config/utils.dart';
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/signUp/Screen_Sign_Up.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
+  Utils utils = Utils();
   AuthService service = AuthService();
   final _formKey = GlobalKey<FormState>();
   bool passToggle = true;
@@ -92,10 +94,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         filled: true,
                         colorsFill: const Color.fromARGB(255, 248, 237, 250),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "No puede dejar este campo vacio";
-                          }
-                          return null;
+                         if (value == null || value.isEmpty) {
+                        return "No puede dejar este campo vacio";
+                        }
+                        return utils.validateUsername(value);
                         },
                         focusNode: fieldUsername,
                         onfieldSubmitted: (value) {
@@ -119,13 +121,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         filled: true,
                         colorsFill: const Color.fromARGB(255, 248, 237, 250),
                         validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return "No puede dejar este campo vacio";
-                          }
-                          if (value.length < 8) {
-                            return "Contraseña debe ser mayor a 8 digitos";
-                          }
-                          return null;
+                            if (value == null || value.isEmpty) {
+                        return "No puede dejar este campo vacio";
+                        }
+                        return utils.validatePassword(value);
                         },
                         suffixInkwell: InkWell(
                           onTap: () {
