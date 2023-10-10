@@ -7,6 +7,22 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool isSigned = FirebaseAuth.instance.currentUser != null;
 
+  Future<void> login(String email, String password) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> signInHandlerEmail(String email, String password) async {
+     try {
+      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      print(e.toString());
+    }
+  }
+
   Future<void> signInHandler() async {
     try {
       GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
