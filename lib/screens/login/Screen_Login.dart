@@ -12,7 +12,6 @@ class ScreenLogin extends StatefulWidget {
 }
 
 class _ScreenLoginState extends State<ScreenLogin> {
-  final AuthService _authService = AuthService();
   Utils utils = Utils();
   AuthService service = AuthService();
   final _formKey = GlobalKey<FormState>();
@@ -24,9 +23,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
   final TextEditingController _passwordfieldController =
       TextEditingController();
 
-  void _submit() {
+  void _submit() async{
     if (_formKey.currentState!.validate()) {
-      _authService.login(
+      await service.login(
           _emailfieldController.text, _passwordfieldController.text);
       if (mounted) {
         _emailfieldController.clear();
