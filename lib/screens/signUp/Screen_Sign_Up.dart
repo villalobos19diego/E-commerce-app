@@ -20,7 +20,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
   FocusNode fieldEmail = FocusNode();
   FocusNode fieldPassword = FocusNode();
   FocusNode buttonFocus = FocusNode();
-  final TextEditingController _usernamefieldController =
+  final TextEditingController _repeatPasswordfieldController =
       TextEditingController();
   final TextEditingController _passwordfieldController =
       TextEditingController();
@@ -31,7 +31,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
       await _authService.signInHandlerEmail(
           _emailfieldController.text, _passwordfieldController.text);
       if (mounted) {
-        _emailfieldController.clear();
+        _repeatPasswordfieldController.clear();
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
@@ -114,7 +114,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       "Ingrese Contraseña",
                       const Color.fromARGB(255, 141, 140, 140),
                       16.0,
-                      "Ingrese su Password",
+                      "Ingrese su Contraseña",
                       Colors.grey,
                       context,
                       icon: const Icon(Icons.lock,
@@ -186,7 +186,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       ),
                       isPassword: passToggle,
                       focusNode: fieldRepeatPassword,
-                      textEditingController: _usernamefieldController,
+                      textEditingController: _repeatPasswordfieldController,
                       onfieldSubmitted: (value) {
                         _submit();
                       }),
