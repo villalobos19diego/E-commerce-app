@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:e_commerce/widgets/searchbar.dart';
 import 'package:e_commerce/widgets/gridcategories.dart';
-import 'package:e_commerce/widgets/carouselPopulars.dart';
-import 'package:e_commerce/widgets/carouselTops.dart';
+import 'package:e_commerce/widgets/carouselpopulars.dart';
+import 'package:e_commerce/widgets/carouseltops.dart';
 import 'package:e_commerce/widgets/drawer.dart';
 
 class ScreenHome extends StatefulWidget {
@@ -52,7 +52,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           ),
 
           //EMPIEZAN LOS CARRUSELES POPULARES
-          const CarruselViewPops(),
+          const CarouselViewPops(),
           
 
           //TEXTO DEL CARRUSEL
@@ -64,7 +64,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             ),
           ),
           //EMPIEZA CARRUSEL 2
-          const CarruselViewTops(),
+          const CarouselViewTops(),
           Container(
             padding: const EdgeInsets.fromLTRB(10, 40, 10, 40),
           ),
