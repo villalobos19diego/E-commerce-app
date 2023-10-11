@@ -1,5 +1,5 @@
+import 'package:e_commerce/screens/categories/categories_screen.dart';
 import 'package:e_commerce/screens/profile/Screen_Profile.dart';
-import 'package:e_commerce/screens/screen_categories.dart';
 import 'package:e_commerce/screens/home/screenhomewidgets.dart';
 import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
