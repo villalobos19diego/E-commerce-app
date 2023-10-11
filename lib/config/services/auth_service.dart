@@ -7,20 +7,64 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool isSigned = FirebaseAuth.instance.currentUser != null;
 
-  Future<void> login(String email, String password) async {
+  Future<bool> loginHandlerEmail(
+      BuildContext context, String email, String password) async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return true;
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
+      print(e.code);
+      if (e.code == "INVALID_LOGIN_CREDENTIALS") {
+        dialogError(context, "Contraseña o Email No son correctas");
+      } 
+      if (e.code == "user-not-found") {
+        dialogError(context, "Usuario no encontrado");
+      }
+      if (e.code == "wrong-password") {
+        dialogError(context, "La contraseña no es correcto");
+      }
+      if (e.code == "operation-not-allowed") {
+        dialogError(context, "El tipo de autenticación proporcionado no está permitido.");
+      }
+      if (e.code == "invalid-email") {
+        dialogError(context, "El correo electrónico proporcionado no es válido.");
+      }      
+      if (e.code == "too-many-requests") {
+        dialogError(context, "Se han realizado demasiados intentos de inicio de sesión.");
+      }
+      if (e.code == "network-request-failed") {
+        dialogError(context, "Se ha producido un error de red durante la solicitud de inicio de sesión.");
+      }
     }
+    return false;
   }
 
-  Future<void> signInHandlerEmail(String email, String password) async {
-     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: password);
+  Future<bool> signUpHandlerEmail(
+      BuildContext context, String email, String password) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      return true;
     } on FirebaseAuthException catch (e) {
       print(e.toString());
+      print(e.code);
+      if (e.code == "email-already-in-use") {
+        dialogError(context, "${email} \n El correo electrónico proporcionado ya está en uso por otro usuario");
+      }
+      if (e.code == "operation-not-allowed") {
+        dialogError(context, "El tipo de autenticación proporcionado no está permitido.");
+      }
+      if (e.code == "invalid-email") {
+        dialogError(context, "El correo electrónico proporcionado no es válido.");
+      }      
+      if (e.code == "too-many-requests") {
+        dialogError(context, "Se han realizado demasiados intentos de inicio de sesión.");
+      }
+      if (e.code == "network-request-failed") {
+        dialogError(context, "Se ha producido un error de red durante la solicitud de inicio de sesión.");
+      }      
     }
+    return false;
   }
 
   Future<void> signInHandler() async {
@@ -60,5 +104,25 @@ class AuthService {
       return widgetTrue;
     }
     return widgetFalse;
+  }
+
+  Future<dynamic> dialogError(BuildContext context, String e) {
+    return showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Error'),
+          content: Text(e),
+          actions: [
+            TextButton(
+              child: const Text('Aceptar'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }
