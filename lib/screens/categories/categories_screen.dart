@@ -11,20 +11,23 @@ class ScreenCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            Icon(
-              Icons.apps,
-              size: 40,
+            leading: IconButton(
+              icon: const Icon(
+                Icons.apps,
+                size: 50,
+                color: Color.fromARGB(255, 225, 190, 231),
+              ),
+              onPressed: () {},
             ),
-            SizedBox(width: 10.0),
-            Text(
-              'Category',
-              style: TextStyle(fontSize: 40),
+            title: const Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                "Category",
+                style: TextStyle(color: Color.fromARGB(255, 225, 190, 231)),
+              ),
             ),
-          ],
-        ),
-      ),
+            backgroundColor: const Color.fromARGB(216, 107, 45, 117),
+          ),
       body: Column(
         children: [
           Container(
@@ -55,7 +58,7 @@ class ScreenCategories extends StatelessWidget {
                 children: [
                   CustomButton(
                     imagePath: 'assets/images/20.jpeg',
-                    text: 'Botón 1',
+                    text: 'Lenceria',
                     onPressed: () {
                       // Acción al presionar el botón
                       Navigator.push(
@@ -66,7 +69,7 @@ class ScreenCategories extends StatelessWidget {
                   ),
                   CustomButton(
                     imagePath: 'assets/images/28.jpeg',
-                    text: 'Botón 2',
+                    text: 'belleza',
                     onPressed: () {
                       // Acción al presionar el botón
                       Navigator.push(
@@ -77,7 +80,7 @@ class ScreenCategories extends StatelessWidget {
                   ),
                   CustomButton(
                     imagePath: 'assets/images/18.jpeg',
-                    text: 'Botón 3',
+                    text: 'Ropa Interior',
                     onPressed: () {
                       // Acción al presionar el botón
                       Navigator.push(
@@ -88,7 +91,7 @@ class ScreenCategories extends StatelessWidget {
                   ),
                   CustomButton(
                     imagePath: 'assets/images/34.jpeg',
-                    text: 'Botón 4',
+                    text: 'Casual',
                     onPressed: () {
                       // Acción al presionar el botón
                       Navigator.push(
@@ -97,6 +100,11 @@ class ScreenCategories extends StatelessWidget {
                                 builder: (context) => const CategoriesScreenFour()));
                     },
                   ),
+                  CustomButton(
+                    imagePath: 'assets/images/1.jpeg',
+                    text: 'Servicios de belleza',
+                    onPressed: (){}
+                    )
                 ],
               ),
             ),
