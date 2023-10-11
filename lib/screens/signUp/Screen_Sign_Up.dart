@@ -16,7 +16,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
   Utils utils = Utils();
   final _formKey = GlobalKey<FormState>();
   bool passToggle = true;
-  FocusNode fieldUsername = FocusNode();
+  FocusNode fieldRepeatPassword = FocusNode();
   FocusNode fieldEmail = FocusNode();
   FocusNode fieldPassword = FocusNode();
   FocusNode buttonFocus = FocusNode();
@@ -84,30 +84,6 @@ class _ScreenLoginState extends State<ScreenSignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  textForm(
-                      "Username",
-                      const Color.fromARGB(255, 141, 140, 140),
-                      16.0,
-                      "Ingrese su Username",
-                      const Color.fromARGB(255, 121, 120, 120),
-                      context,
-                      icon: const Icon(Icons.person,
-                          color: Color.fromARGB(216, 107, 45, 117)),
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8.0),
-                      filled: true,
-                      colorsFill: const Color.fromARGB(255, 248, 237, 250),
-                      validator: (value) {
-                        if (value == null || value.isEmpty) {
-                          return "No puede dejar este campo vacio";
-                        }
-                        return utils.validateUsername(value);
-                      },
-                      focusNode: fieldUsername,
-                      textEditingController: _usernamefieldController,
-                      onfieldSubmitted: (value) {
-                        FocusScope.of(context).requestFocus(fieldEmail);
-                      }),
                   const SizedBox(
                     height: 16.0,
                   ),
@@ -169,6 +145,34 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       textAction: TextInputAction.done,
                       textEditingController: _passwordfieldController,
                       onfieldSubmitted: (value) {
+                        FocusScope.of(context).requestFocus(fieldRepeatPassword);
+                      }),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  textForm(
+                      "Repeat Password",
+                      const Color.fromARGB(255, 141, 140, 140),
+                      16.0,
+                      "Ingrese su Password",
+                      const Color.fromARGB(255, 121, 120, 120),
+                      context,
+                      icon: const Icon(Icons.person,
+                          color: Color.fromARGB(216, 107, 45, 117)),
+                      borderSide: BorderSide.none,
+                      borderRadius: BorderRadius.circular(8.0),
+                      filled: true,
+                      colorsFill: const Color.fromARGB(255, 248, 237, 250),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "No puede dejar este campo vacio";
+                        } 
+                        return utils.validatePasswordWithPassword(
+                            _passwordfieldController.text, value);                                           
+                      },
+                      focusNode: fieldRepeatPassword,
+                      textEditingController: _usernamefieldController,
+                      onfieldSubmitted: (value) {
                         _submit();
                       }),
                   const SizedBox(height: 30.0),
@@ -182,6 +186,27 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                         _submit();
                       },
                       child: const Text("Sign Up")),
+                  const SizedBox(
+                    height: 16.0,
+                  ),
+                  ElevatedButton.icon(
+                      icon: Image.asset('assets/images/google-icon.png',
+                          width: 20),
+                      focusNode: buttonFocus,
+                      style: ElevatedButton.styleFrom(
+                          minimumSize: const Size(280.0, 50.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0))),
+                      onPressed: () async {
+                        await _authService.signInHandler();
+                        if (mounted) {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (_) => const Tabbar()));
+                        }
+                      },
+                      label: const Text("Sign In With Google")),
                   const SizedBox(
                     height: 16.0,
                   ),
