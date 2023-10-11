@@ -62,8 +62,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
             padding: const EdgeInsets.only(top: 100),
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context,
-                    MaterialPageRoute(builder: (context) => const Tabbar()));
+                Navigator.of(context).pop();
               },
               icon: const Icon(Icons.arrow_back,
                   color: Color.fromARGB(216, 107, 45, 117), size: 40),
@@ -81,10 +80,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       textForm(
-                          "Email",
+                          "Ingrese Email",
                           const Color.fromARGB(255, 148, 131, 131),
                           16.0,
-                          "Ingrese su Username",
+                          "Ingrese su Email",
                           Colors.grey,
                           context,
                           icon: const Icon(Icons.person,
@@ -108,7 +107,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                         height: 16.0,
                       ),
                       textForm(
-                          "Password",
+                          "Ingrese Contraseña",
                           const Color.fromARGB(255, 148, 131, 131),
                           16.0,
                           "Ingrese su Password",
