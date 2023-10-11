@@ -4,8 +4,8 @@ import 'package:e_commerce/data/data_carousel_top.dart';
 import 'package:e_commerce/models/carouseltop_model.dart';
 import 'package:e_commerce/widgets/show_carousel_top.dart';
 
-class CarruselViewTops extends StatelessWidget {
-  const CarruselViewTops({super.key});
+class CarouselViewTops extends StatelessWidget {
+  const CarouselViewTops({super.key});
 
   @override
   Widget build(BuildContext context) {

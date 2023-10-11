@@ -4,8 +4,8 @@ import 'package:e_commerce/data/data_carousel_pop.dart';
 import 'package:e_commerce/models/carouselpop_model.dart';
 import 'package:e_commerce/widgets/show_carousel_pop.dart';
 
-class CarruselViewPops extends StatelessWidget {
-  const CarruselViewPops({super.key});
+class CarouselViewPops extends StatelessWidget {
+  const CarouselViewPops({super.key});
 
   @override
   Widget build(BuildContext context) {
