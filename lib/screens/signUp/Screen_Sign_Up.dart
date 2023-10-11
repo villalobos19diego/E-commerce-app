@@ -28,18 +28,18 @@ class _ScreenLoginState extends State<ScreenSignUp> {
 
   void _submit() async {
     if (_formKey.currentState!.validate()) {
-      await _authService.signInHandlerEmail(
+          final response = await _authService.signUpHandlerEmail(context,
           _emailfieldController.text, _passwordfieldController.text);
-      if (mounted) {
+      if (response) {
         _repeatPasswordfieldController.clear();
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const Tabbar()));
       }
     }
-  }
+  }  
 
   @override
   Widget build(BuildContext context) {
