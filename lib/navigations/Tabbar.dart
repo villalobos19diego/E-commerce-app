@@ -1,3 +1,4 @@
+import 'package:e_commerce/screens/cart/cart_screen.dart';
 import 'package:e_commerce/screens/categories/categories_screen.dart';
 import 'package:e_commerce/screens/profile/Screen_Profile.dart';
 import 'package:e_commerce/screens/home/screenhomewidgets.dart';
@@ -65,7 +66,7 @@ class _TabbarState extends State<Tabbar> {
           _child = const ScreenCategories();
           break;
         case 2:
-          _child = const ScreenCategories();
+          _child = const CartScreen();
           break;
         case 3:
           _child = const ScreenProfile();
