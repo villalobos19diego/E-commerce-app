@@ -15,7 +15,9 @@ dependencies:
   fluid_bottom_nav_bar: ^1.4.0
   flutter:
     sdk: flutter
+  font_awesome_flutter: ^10.5.0
   google_sign_in: ^6.1.5
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_test:
