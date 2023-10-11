@@ -25,10 +25,10 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   void _submit() async{
     if (_formKey.currentState!.validate()) {
-      await service.login(
+       await service.login(
           _emailfieldController.text, _passwordfieldController.text);
-      if (mounted) {
-        _emailfieldController.clear();
+          
+      if (mounted) {        
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
