@@ -25,14 +25,13 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
   void _submit() async{
     if (_formKey.currentState!.validate()) {
-       await service.login(
-          _emailfieldController.text, _passwordfieldController.text);
-          
-      if (mounted) {        
+       final reponse = await service.loginHandlerEmail( context,
+          _emailfieldController.text, _passwordfieldController.text);                    
+      if (reponse) {        
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
-        Navigator.push(
+        Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const Tabbar()));
       }
     }
