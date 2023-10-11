@@ -66,8 +66,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
         padding: const EdgeInsets.only(top: 100),
         child: IconButton(
           onPressed: () {
-            Navigator.pop(context,
-                MaterialPageRoute(builder: (context) => const Tabbar()));
+            Navigator.of(context).pop();
           },
           icon: const Icon(Icons.arrow_back,
               color: Color.fromARGB(216, 107, 45, 117), size: 40),
@@ -84,11 +83,8 @@ class _ScreenLoginState extends State<ScreenSignUp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    height: 16.0,
-                  ),
                   textForm(
-                      "Email",
+                      "Ingrese Email",
                       const Color.fromARGB(255, 148, 131, 131),
                       16.0,
                       "Ingrese su Email",
@@ -114,8 +110,13 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                   const SizedBox(
                     height: 16.0,
                   ),
-                  textForm("Password", const Color.fromARGB(255, 141, 140, 140),
-                      16.0, "Ingrese su Password", Colors.grey, context,
+                  textForm(
+                      "Ingrese Contraseña",
+                      const Color.fromARGB(255, 141, 140, 140),
+                      16.0,
+                      "Ingrese su Password",
+                      Colors.grey,
+                      context,
                       icon: const Icon(Icons.lock,
                           color: Color.fromARGB(216, 107, 45, 117)),
                       borderSide: BorderSide.none,
@@ -145,19 +146,20 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       textAction: TextInputAction.done,
                       textEditingController: _passwordfieldController,
                       onfieldSubmitted: (value) {
-                        FocusScope.of(context).requestFocus(fieldRepeatPassword);
+                        FocusScope.of(context)
+                            .requestFocus(fieldRepeatPassword);
                       }),
                   const SizedBox(
                     height: 16.0,
                   ),
                   textForm(
-                      "Repeat Password",
+                      "Repita Contraseña",
                       const Color.fromARGB(255, 141, 140, 140),
                       16.0,
-                      "Ingrese su Password",
+                      "Repita su Contraseña",
                       const Color.fromARGB(255, 121, 120, 120),
                       context,
-                      icon: const Icon(Icons.person,
+                      icon: const Icon(Icons.lock,
                           color: Color.fromARGB(216, 107, 45, 117)),
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(8.0),
@@ -166,10 +168,23 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "No puede dejar este campo vacio";
-                        } 
+                        }
                         return utils.validatePasswordWithPassword(
-                            _passwordfieldController.text, value);                                           
+                            _passwordfieldController.text, value);
                       },
+                      suffixInkwell: InkWell(
+                        onTap: () {
+                          setState(() {
+                            passToggle = !passToggle;
+                          });
+                        },
+                        child: Icon(
+                            passToggle
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                            color: const Color.fromARGB(216, 107, 45, 117)),
+                      ),
+                      isPassword: passToggle,
                       focusNode: fieldRepeatPassword,
                       textEditingController: _usernamefieldController,
                       onfieldSubmitted: (value) {
