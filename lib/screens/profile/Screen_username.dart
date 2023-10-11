@@ -19,7 +19,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
     String username = authService.getEmail() ?? "Email";
 
     PreferredSizeWidget appBar = AppBar(
-      backgroundColor: Colors.purple,
+      backgroundColor:const Color.fromARGB(216, 107, 45, 117),
       title: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
