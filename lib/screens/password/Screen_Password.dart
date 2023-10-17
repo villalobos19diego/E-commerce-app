@@ -1,4 +1,8 @@
- // Importa un archivo de utilidades
+import 'package:e_commerce/config/services/auth_service.dart';
+import 'package:e_commerce/config/utils.dart';
+import 'package:e_commerce/navigations/Tabbar.dart';
+import 'package:e_commerce/screens/login/Screen_Login.dart';
+import 'package:e_commerce/screens/profile/Screen_username.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Importa Firebase Auth
 import 'package:flutter/material.dart';
 
@@ -10,14 +14,13 @@ class ScreenChangePassword extends StatefulWidget {
 }
 
 class _ScreenChangePaswordState extends State<ScreenChangePassword> {
-  final Utils = utils; // Instancia de utilidades (No se utiliza en este código)
-  final AuthService = authService; // Instancia de servicios de autenticación (No se utiliza en este código)
+  final AuthService _authService = AuthService();
+ final Utils utils = Utils();
 
   final _formKey = GlobalKey<FormState>(); // Clave global para el formulario
   bool _isPasswordVisible = false; // Estado para mostrar/ocultar contraseña actual
   bool _isPasswordVisible2 = false; // Estado para mostrar/ocultar nueva contraseña
   bool _isPasswordVisible3 = false; // Estado para mostrar/ocultar repetición de contraseña
-  bool passToggle = true; // Variable no utilizada
   FocusNode fieldPassword = FocusNode(); // Nodo de enfoque para campo de contraseña actual
   FocusNode fieldNewPassword = FocusNode(); // Nodo de enfoque para campo de nueva contraseña
   FocusNode fieldRepeatPassword = FocusNode(); // Nodo de enfoque para campo de repetición de contraseña
@@ -25,48 +28,60 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
   final TextEditingController _newPasswordfieldController = TextEditingController(); // Controlador para campo de nueva contraseña
   final TextEditingController _repeatPasswordfieldController = TextEditingController(); // Controlador para campo de repetición de contraseña
 
-  static get authService => null; // Getter no utilizado
-  static get utils => null; // Getter no utilizado
+  
 
-  void _submit() {
-    if (_formKey.currentState!.validate()) {
-      // Validar que las contraseñas nuevas coincidan
-      if (_newPasswordfieldController.text !=
-          _repeatPasswordfieldController.text) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Las contraseñas nuevas no coinciden"),
-          ),
-        );
-        return;
-      }
-
-      // Validar contraseña
-      String? passwordError = Utils.validatePassword(_passwordfieldController.text); // Validar la contraseña actual usando la función de utilidad
-      if (passwordError != null) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(passwordError),
-          ),
-        );
-        return;
-      }
-
-      // Actualizar la contraseña en el servidor
-      FirebaseAuth.instance.currentUser!.updatePassword(
-        _newPasswordfieldController.text,
-      );
-
+ 
+void _submit() async {
+  if (_formKey.currentState!.validate()) {
+    // Validar que las contraseñas nuevas coincidan
+    if (_newPasswordfieldController.text !=
+        _repeatPasswordfieldController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text("La contraseña se ha cambiado"),
+          content: Text('Las contraseñas nuevas no coinciden'),
         ),
       );
-
-      // Cerrar la pantalla
-      Navigator.pop(context);
+      return;
     }
+
+    // Validar contraseña
+    String? passwordError = utils.validatePassword(_passwordfieldController.text);
+
+    if (passwordError != null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(passwordError),
+        ),
+      );
+      return;
+    }
+
+    // Mostrar la pantalla de carga morada
+     // Mostrar la pantalla de carga morada
+    showDialog(
+      context: context,
+      builder: (_) => Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+          ),
+        ),
+      ),
+    );
+    // Esperar a que la pantalla de carga se cierre
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Cerrar la pantalla de carga
+    Navigator.pop(context);
+
+    // Cerrar la pantalla actual
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (_) => const ScreenProfileUsername()),
+    );
   }
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +95,9 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
             size: 50,
             color: Color.fromARGB(255, 225, 190, 231),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         title: const Align(
           alignment: Alignment.bottomLeft,
@@ -93,16 +110,14 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
       ),
       body: Wrap(
         children: [
-          IconButton(
-            onPressed: () {
-              /* Navigator.pop(
-                  context,MaterialPageRoute(
-                    builder: (context) => const Tabbar()
-                    )
-                  ); */
-            },
-            icon: const Icon(Icons.arrow_back, color: Color.fromARGB(216, 107, 45, 117), size: 40),
-          ),
+           IconButton(
+          onPressed: () {
+           Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (_) => const ScreenProfileUsername()));
+          },
+          icon: const Icon(Icons.arrow_back,
+              color: Color.fromARGB(216, 107, 45, 117), size: 40),
+        ),
           Padding(
             padding: const EdgeInsets.only(
                 top: 200.0, bottom: 0.0, right: 50.0, left: 50.0),
@@ -131,7 +146,7 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
                       if (value == null || value.isEmpty) {
                         return "No puede dejar este campo vacío";
                       }
-                      return Utils.validatePassword(value);
+                      return utils.validatePassword(value);
                     },
                     suffixInkwell: InkWell(
                       onTap: () {
@@ -169,7 +184,7 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
                       if (value == null || value.isEmpty) {
                         return "No puede dejar este campo vacío";
                       }
-                      return Utils.validatePassword(value);
+                      return utils.validatePassword(value);
                     },
                     suffixInkwell: InkWell(
                       onTap: () {
@@ -255,53 +270,4 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
       ),
     );
   }
-}
-
-// Función que crea un TextFormField personalizado
-TextFormField textForm(
-  String labelText,
-  Color colorsLabel,
-  double fontSize,
-  String hint,
-  Color colorsHint,
-  BuildContext context, {
-  Icon? icon,
-  FontStyle fontStyle = FontStyle.normal,
-  BorderSide borderSide = const BorderSide(color: Colors.black),
-  BorderRadius borderRadius = BorderRadius.zero,
-  bool filled = false,
-  Color colorsFill = Colors.white,
-  bool isPassword = false,
-  TextInputType textInputType = TextInputType.text,
-  String? Function(String?)? validator,
-  void Function(String)? onfieldSubmitted,
-  TextInputAction? textAction,
-  InkWell? suffixInkwell,
-  FocusNode? focusNode,
-  TextEditingController? textEditingController,
-}) {
-  return TextFormField(
-    obscureText: isPassword,
-    validator: validator,
-    keyboardType: textInputType,
-    focusNode: focusNode,
-    controller: textEditingController,
-    textInputAction: textAction,
-    onFieldSubmitted: onfieldSubmitted,
-    decoration: InputDecoration(
-      suffix: suffixInkwell,
-      prefixIcon: icon,
-      labelText: labelText,
-      labelStyle: TextStyle(
-        color: colorsLabel,
-        fontSize: fontSize,
-      ),
-      enabledBorder: UnderlineInputBorder(
-        borderSide: borderSide,
-        borderRadius: borderRadius,
-      ),
-      filled: filled,
-      fillColor: colorsFill,
-    ),
-  );
 }
