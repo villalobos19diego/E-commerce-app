@@ -1,3 +1,4 @@
+import 'package:e_commerce/screens/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/widgets/searchbar.dart';
 import 'package:e_commerce/widgets/gridcategories.dart';
@@ -31,7 +32,11 @@ class _ScreenHomeState extends State<ScreenHome> {
               color: Color.fromARGB(255, 225, 190, 231),
             ),
             onPressed: () {
-              // hara algo
+              // al presionar  la accion manda al carrito de compra
+              Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CartScreen()));
             },
           )
         ],
