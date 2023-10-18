@@ -12,11 +12,13 @@ dependencies:
   cupertino_icons: ^1.0.6
   firebase_auth: ^4.10.1
   firebase_core: ^2.17.0
+  firebase_storage: ^11.3.0
   fluid_bottom_nav_bar: ^1.4.0
   flutter:
     sdk: flutter
   font_awesome_flutter: ^10.5.0
   google_sign_in: ^6.1.5
+  image_picker: ^1.0.4
   url_launcher: ^6.1.14
 
 dev_dependencies:
