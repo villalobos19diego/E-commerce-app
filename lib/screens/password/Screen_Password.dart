@@ -31,7 +31,7 @@ class _ScreenChangePaswordState extends State<ScreenChangePassword> {
   
 
  
-void _submit() async {
+Future<void> _submit() async {
   if (_formKey.currentState!.validate()) {
     // Validar que las contraseñas nuevas coincidan
     if (_newPasswordfieldController.text !=
@@ -73,6 +73,20 @@ void _submit() async {
 
     // Cerrar la pantalla de carga
     Navigator.pop(context);
+
+    // Actualizar la contraseña en Firebase
+    try {
+      await FirebaseAuth.instance.currentUser!.updatePassword(_newPasswordfieldController.text);
+    } on FirebaseAuthException catch (e) {
+      // Mostrar un mensaje de error al usuario
+    // Mostrar un mensaje de error al usuario
+ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(
+    content: Text(e.message ?? 'Ocurrió un error'),
+  ),
+);
+      return;
+    }
 
     // Cerrar la pantalla actual
     Navigator.pushReplacement(
