@@ -16,7 +16,7 @@ class AuthService {
       print(e.code);
       if (e.code == "INVALID_LOGIN_CREDENTIALS") {
         dialogError(context, "Contraseña o Email No son correctas");
-      } 
+      }
       if (e.code == "user-not-found") {
         dialogError(context, "Usuario no encontrado");
       }
@@ -24,16 +24,20 @@ class AuthService {
         dialogError(context, "La contraseña no es correcto");
       }
       if (e.code == "operation-not-allowed") {
-        dialogError(context, "El tipo de autenticación proporcionado no está permitido.");
+        dialogError(context,
+            "El tipo de autenticación proporcionado no está permitido.");
       }
       if (e.code == "invalid-email") {
-        dialogError(context, "El correo electrónico proporcionado no es válido.");
-      }      
+        dialogError(
+            context, "El correo electrónico proporcionado no es válido.");
+      }
       if (e.code == "too-many-requests") {
-        dialogError(context, "Se han realizado demasiados intentos de inicio de sesión.");
+        dialogError(context,
+            "Se han realizado demasiados intentos de inicio de sesión.");
       }
       if (e.code == "network-request-failed") {
-        dialogError(context, "Se ha producido un error de red durante la solicitud de inicio de sesión.");
+        dialogError(context,
+            "Se ha producido un error de red durante la solicitud de inicio de sesión.");
       }
     }
     return false;
@@ -49,20 +53,25 @@ class AuthService {
       print(e.toString());
       print(e.code);
       if (e.code == "email-already-in-use") {
-        dialogError(context, "${email} \n El correo electrónico proporcionado ya está en uso por otro usuario");
+        dialogError(context,
+            "${email} \n El correo electrónico proporcionado ya está en uso por otro usuario");
       }
       if (e.code == "operation-not-allowed") {
-        dialogError(context, "El tipo de autenticación proporcionado no está permitido.");
+        dialogError(context,
+            "El tipo de autenticación proporcionado no está permitido.");
       }
       if (e.code == "invalid-email") {
-        dialogError(context, "El correo electrónico proporcionado no es válido.");
-      }      
+        dialogError(
+            context, "El correo electrónico proporcionado no es válido.");
+      }
       if (e.code == "too-many-requests") {
-        dialogError(context, "Se han realizado demasiados intentos de inicio de sesión.");
+        dialogError(context,
+            "Se han realizado demasiados intentos de inicio de sesión.");
       }
       if (e.code == "network-request-failed") {
-        dialogError(context, "Se ha producido un error de red durante la solicitud de inicio de sesión.");
-      }      
+        dialogError(context,
+            "Se ha producido un error de red durante la solicitud de inicio de sesión.");
+      }
     }
     return false;
   }
@@ -89,6 +98,17 @@ class AuthService {
       await FirebaseAuth.instance.signOut();
       await _googleSignIn.signOut();
     }
+  }
+
+  Future<void> photoUser(String imageURL) async {
+    if (isSigned) {
+      await _auth.currentUser!.updatePhotoURL(imageURL);
+      print(_auth.currentUser!.photoURL.toString());
+    }
+  }
+
+  String? getPhoto() {
+    return FirebaseAuth.instance.currentUser!.photoURL;
   }
 
   String? getEmail() {
