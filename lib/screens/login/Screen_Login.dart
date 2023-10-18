@@ -31,6 +31,22 @@ class _ScreenLoginState extends State<ScreenLogin> {
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
+
+          showDialog(
+      context: context,
+      builder: (_) => Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+          ),
+        ),
+      ),
+    );
+    // Esperar a que la pantalla de carga se cierre
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Cerrar la pantalla de carga
+    Navigator.pop(context);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const Tabbar()));
       }
