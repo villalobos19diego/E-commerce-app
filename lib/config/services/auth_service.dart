@@ -108,7 +108,13 @@ class AuthService {
   }
 
   String? getPhoto() {
-    return FirebaseAuth.instance.currentUser!.photoURL;
+    final photo = FirebaseAuth.instance.currentUser?.photoURL;
+    if (photo != null) {
+      return photo;
+    }else{
+      return null;
+    }
+    
   }
 
   String? getEmail() {
