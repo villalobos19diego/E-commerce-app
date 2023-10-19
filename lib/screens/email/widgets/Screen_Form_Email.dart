@@ -12,7 +12,7 @@ class ScreenFormEmail extends StatefulWidget {
 class _ScreenFormEmail extends State<ScreenFormEmail> {
   int _currentIndex = 0;
   bool _isRegisterScreenVisible = false;
-  final RegisterScreen _registerScreen = const RegisterScreen();
+  //final RegisterScreen _registerScreen = const RegisterScreen();
 
   void _toggleRegistration() {
     setState(() {
@@ -30,17 +30,19 @@ class _ScreenFormEmail extends State<ScreenFormEmail> {
 
 
 
-      _isRegisterScreenVisible ? _registerScreen : buildMainContent(),
-      bottomNavigationBar: MyBottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTabTapped: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-          if (index == 3) {
-            _toggleRegistration();
-          }
-        },
+      //_isRegisterScreenVisible ? _registerScreen :
+      buildMainContent(),
+      bottomNavigationBar: ScreenChangeEmail
+       (
+      //  currentIndex: _currentIndex,
+      //  onTabTapped: (index) {
+        //  setState(() {
+          //  _currentIndex = index;
+        //)});
+          //if (index == 3) {
+           // _toggleRegistration();
+         // }
+        //},
       ),
 
 

@@ -113,7 +113,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
               const SizedBox(
                 height: 125,
               ),
-              elevatedButtonFun("LOG OUT"),
+              elevatedButtonFun( "LOG OUT"),
             ],
           ),
         ),
