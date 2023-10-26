@@ -1,3 +1,4 @@
+/*import 'package:e_commerce/screens/profile/Screen_username.dart';
 import 'package:flutter/material.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -47,8 +48,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Icons.arrow_back_ios,
                         color: Colors.pinkAccent,
                       ),
-                      onPressed: () {
-                        // Add logic for navigating back
+                      onPressed: ( ) {
+                          Navigator.pop(
+                              context,MaterialPageRoute(builder: (context) => const ScreenProfileUsername(),
+                          )
+                                           ); //Add logic for navigating back
                       },
                     ),
                   ],
@@ -175,13 +179,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (_formKey.currentState!.validate()) {
       final email = emailController.text;
       final password = passwordController.text;
-      print('Email: $email');
-      print('Password: $password');
+     // print('Email: $email');
+      //print('Password: $password');
       // You can perform registration logic here
     }
   }
 }
-
+*/
 
 
 

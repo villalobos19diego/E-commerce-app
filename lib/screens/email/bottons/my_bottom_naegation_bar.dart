@@ -1,34 +1,72 @@
-import 'package:fluid_bottom_nav_bar/fluid_bottom_nav_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class MyBottomNavigationBar extends StatelessWidget {
-  final int currentIndex;
-  final Function(int) onTabTapped;
+class UpdateEmailScreen extends StatefulWidget {
+  const UpdateEmailScreen({super.key});
 
-   const MyBottomNavigationBar({super.key, required this.currentIndex, required this.onTabTapped});
+  @override
+  State<UpdateEmailScreen> createState() => _UpdateEmailScreenState();
+}
+
+class _UpdateEmailScreenState extends State<UpdateEmailScreen> {
+  // Obtén la instancia de la autenticación de Firebase
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+  // Crea un campo de entrada para el nuevo correo electrónico
+  final TextEditingController newEmailController = TextEditingController();
+  final String confirmationMassage =
+      'Se ha enviado un correo electronico a tu nuevo correo electronico';
 
   @override
   Widget build(BuildContext context) {
-    return FluidNavBar(
-    
-      icons: [
-        FluidNavBarIcon(icon: Icons.home, backgroundColor: Colors.pink, extras: {'label': 'Inicio'}),
-      
-        FluidNavBarIcon(icon: Icons.apps_sharp, backgroundColor: Colors.pink, extras: {'label': 'Otra Página'}),
-        FluidNavBarIcon(icon: Icons.shopping_cart_rounded, backgroundColor: Colors.pink, extras: {'label': 'Perfil'}),
-        
-        FluidNavBarIcon(icon: Icons.person, backgroundColor: Colors.pink, extras: {'label': 'Carrito'}),
-      ],
-      style: const FluidNavBarStyle(
-        iconSelectedForegroundColor: Color.fromARGB(161, 255, 64, 128),
-        iconUnselectedForegroundColor: Color.fromARGB(99, 255, 255, 255),
-        barBackgroundColor: Color.fromARGB(180, 255, 0, 153),
-        iconBackgroundColor: Colors.amber,
+    // Crea un botón para actualizar el correo electrónico
+    final ElevatedButton updateEmailButton = ElevatedButton(
+      onPressed: () async {
+        // Obtén el nuevo correo electrónico del campo de entrada
+        final String newEmail = newEmailController.text;
+        if (!Validator.isEmail(newEmail)) {
+          return;
+        }
 
-      ),
-      scaleFactor: 1.5,
-      defaultIndex: currentIndex,
-      onChange: onTabTapped,
+        // Llama al método updateEmailWithConfirmation
+        await auth.currentUser!.verifyBeforeUpdateEmail(newEmail);
+
+        // Muestra un mensaje al usuario
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content:
+            Text('Se ha enviado un correo electrónico de confirmación'),
+          ),
+        );
+      },
+      child: const Text('Actualizar correo electrónico'),
     );
+
+    // Crea una pantalla con el campo de entrada y el botón
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('Actualiza tu correo electrónico'),
+            TextField(
+              controller: newEmailController,
+              decoration: const InputDecoration(
+                hintText: 'Nuevo correo electrónico',
+              ),
+            ),
+            updateEmailButton,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Validator {
+  static bool isEmail(String email) {
+    return RegExp(
+        r'^[a-zA-Z0-9.!#$%&+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)$')
+        .hasMatch(email);
   }
 }
