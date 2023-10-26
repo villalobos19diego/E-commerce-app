@@ -2,6 +2,7 @@ import 'package:e_commerce/config/services/auth_service.dart';
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/email/widgets/Screen_Email.dart';
 import 'package:e_commerce/screens/password/Screen_Password.dart';
+import 'package:e_commerce/screens/photo/photo_user.dart';
 import 'package:flutter/material.dart';
 
 class ScreenProfileUsername extends StatefulWidget {
@@ -109,7 +110,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
               const SizedBox(
                 height: 30,
               ),
-              filledButtonFun("Change Photo",const Tabbar()),
+              filledButtonFun("Change Photo",const PhotoUser()),
               const SizedBox(
                 height: 125,
               ),

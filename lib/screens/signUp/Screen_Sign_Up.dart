@@ -35,6 +35,21 @@ class _ScreenLoginState extends State<ScreenSignUp> {
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
+          showDialog(
+      context: context,
+      builder: (_) => Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+          ),
+        ),
+      ),
+    );
+    // Esperar a que la pantalla de carga se cierre
+    await Future.delayed(const Duration(seconds: 2));
+
+    // Cerrar la pantalla de carga
+    Navigator.pop(context);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (_) => const Tabbar()));
       }
@@ -215,10 +230,21 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       onPressed: () async {
                         await _authService.signInHandler();
                         if (mounted) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (_) => const Tabbar()));
+                           showDialog(
+                            context: context,
+                            builder: (_) => Scaffold(
+                              body: Center(
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
+                                  ),),
+                                  ),
+                                  );
+                                  // Esperar a que la pantalla de carga se cierre
+                                  await Future.delayed(const Duration(seconds: 2));
+                                     // Cerrar la pantalla de carga
+                                  Navigator.pop(context);
+                                  Navigator.pushReplacement(
+                                    context, MaterialPageRoute(builder: (_) => const Tabbar()));                               
                         }
                       },
                       label: const Text("Sign In With Google")),

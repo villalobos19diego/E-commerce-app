@@ -1,4 +1,4 @@
-class Utils {
+  class Utils {
   String? validateUsername(String username) {
     final RegExp regex = RegExp(r'^[a-zA-Z0-9_]{3,}$');
     if (username.length < 3) {

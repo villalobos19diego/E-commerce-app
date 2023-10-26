@@ -56,7 +56,7 @@ class ScreenCategories extends StatelessWidget {
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
                 children: [
-                  CustomButton(
+                  _CustomButton(
                     imagePath: 'assets/images/20.jpeg',
                     text: 'Lenceria',
                     onPressed: () {
@@ -67,7 +67,7 @@ class ScreenCategories extends StatelessWidget {
                                 builder: (context) => const CategoriesScreenOne()));
                     },
                   ),
-                  CustomButton(
+                  _CustomButton(
                     imagePath: 'assets/images/28.jpeg',
                     text: 'belleza',
                     onPressed: () {
@@ -78,7 +78,7 @@ class ScreenCategories extends StatelessWidget {
                                 builder: (context) => const CategoriesScreenTwo()));
                     },
                   ),
-                  CustomButton(
+                  _CustomButton(
                     imagePath: 'assets/images/18.jpeg',
                     text: 'Ropa Interior',
                     onPressed: () {
@@ -89,7 +89,7 @@ class ScreenCategories extends StatelessWidget {
                                 builder: (context) => const CategoriesScreenThree()));
                     },
                   ),
-                  CustomButton(
+                  _CustomButton(
                     imagePath: 'assets/images/34.jpeg',
                     text: 'Casual',
                     onPressed: () {
@@ -100,7 +100,7 @@ class ScreenCategories extends StatelessWidget {
                                 builder: (context) => const CategoriesScreenFour()));
                     },
                   ),
-                  CustomButton(
+                  _CustomButton(
                     imagePath: 'assets/images/1.jpeg',
                     text: 'Servicios de belleza',
                     onPressed: (){}
@@ -115,42 +115,55 @@ class ScreenCategories extends StatelessWidget {
   }
 }
 
-class CustomButton extends StatelessWidget {
+class _CustomButton extends StatelessWidget {
   final String imagePath;
   final String text;
   final VoidCallback onPressed;
+  final double borderRadius; // Nueva propiedad
 
-  const CustomButton({
+  const _CustomButton({
     required this.imagePath,
     required this.text,
     required this.onPressed,
+    this.borderRadius = 5.0, // Valor predeterminado de 5.0
   });
-
-  @override
+ @override
   Widget build(BuildContext context) {
-    return Material(
-      borderRadius: BorderRadius.circular(5.0),
+     return Material(
+      borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
       color: Colors.white,
       child: InkWell(
+        borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
         onTap: onPressed,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Flexible(
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.contain,
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
+                  border: Border.all(color: Colors.black, width: 1.0), // Agrega un borde
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
+                  child: Image.asset(
+                    imagePath,
+                    fit: BoxFit.cover,
+                    width: 150, // Ajusta el tamaño de la imagen según tus necesidades
+                    height: 250, // Ajusta el tamaño de la imagen según tus necesidades
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 1),
-            Text(
+             Text(
               text,
               style: TextStyle(
                 fontSize: 16,
                 color: Colors.black,
-              ),
-            ),
-          ],
+              )
+             )
+             ]
         ),
       ),
     );
