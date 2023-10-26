@@ -32,7 +32,7 @@ class _ScreenFormEmail extends State<ScreenFormEmail> {
 
       //_isRegisterScreenVisible ? _registerScreen :
       buildMainContent(),
-      bottomNavigationBar: ScreenChangeEmail
+      bottomNavigationBar: UpdateEmailScreen
        (
       //  currentIndex: _currentIndex,
       //  onTabTapped: (index) {
