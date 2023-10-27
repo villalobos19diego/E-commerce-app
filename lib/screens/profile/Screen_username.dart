@@ -49,10 +49,12 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
                 MaterialPageRoute(builder: (context) => widget));
         },
         style: ButtonStyle(
+             backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 241, 241)),
+            foregroundColor: MaterialStateProperty.all(Color.fromARGB(213, 167, 102, 177)),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5.0))),
+                borderRadius: BorderRadius.circular(8.0))),
             textStyle:
-                const MaterialStatePropertyAll(TextStyle(fontSize: 20.0))),
+                const MaterialStatePropertyAll(TextStyle(fontSize: 23.0))),
         child: Text(value),
       );
     }
@@ -67,10 +69,10 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
           }
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.black),
-            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(Color.fromARGB(216, 107, 45, 117)),
+            foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 241, 241)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(8.0),
             )),
             textStyle:
                 const MaterialStatePropertyAll(TextStyle(fontSize: 20.0)),
@@ -114,7 +116,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
               const SizedBox(
                 height: 125,
               ),
-              elevatedButtonFun( "LOG OUT"),
+              elevatedButtonFun("LOG OUT"),
             ],
           ),
         ),
