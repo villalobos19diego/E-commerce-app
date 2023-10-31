@@ -35,7 +35,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
 
           showDialog(
       context: context,
-      builder: (_) => Scaffold(
+      builder: (_) => const Scaffold(
         body: Center(
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
@@ -185,7 +185,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                             if (mounted) {
                                 showDialog(
                             context: context,
-                            builder: (_) => Scaffold(
+                            builder: (_) => const Scaffold(
                               body: Center(
                                 child: CircularProgressIndicator(
                                   valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),

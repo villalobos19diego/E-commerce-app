@@ -15,7 +15,7 @@ class CategoriesScreenLenceria extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: GridView.builder(
                 itemCount: lenceria.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -26,12 +26,12 @@ class CategoriesScreenLenceria extends StatelessWidget {
                 ),
                 itemBuilder: (context, index) {
                   return Container(
-                    margin: EdgeInsets.all(4),
-                    padding: EdgeInsets.all(4),
+                    margin: const EdgeInsets.all(4),
+                    padding: const EdgeInsets.all(4),
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 225, 172, 255),
+                      color: const Color.fromARGB(255, 225, 172, 255),
                       borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
+                      boxShadow: const [
                          BoxShadow(
                           color: Colors.transparent,
                           blurRadius: 30,
@@ -42,10 +42,10 @@ class CategoriesScreenLenceria extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         Image.asset(lenceria[index].image),
-                        Text(lenceria[index].title, style: TextStyle(fontWeight: FontWeight.bold)),
+                        Text(lenceria[index].title, style: const TextStyle(fontWeight: FontWeight.bold)),
                         Padding(
-                          padding: EdgeInsets.only(top: 10),
-                          child: Text("S/.${lenceria[index].price}", style: TextStyle(fontSize: 16),),
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Text("S/.${lenceria[index].price}", style: const TextStyle(fontSize: 16),),
                         )
 
                       ],

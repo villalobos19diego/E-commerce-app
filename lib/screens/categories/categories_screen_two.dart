@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 class CategoriesScreenTwo extends StatelessWidget {
   const CategoriesScreenTwo({super.key});
 
-   Widget build(BuildContext context) {
+   @override
+     Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      leading: Icon(
+      leading: const Icon(
         Icons.apps,
         size: 40,
       ),
-      title: Text(
+      title: const Text(
         'Nombre',
         style: TextStyle(
           fontSize: 40,
@@ -28,7 +29,7 @@ class CategoriesScreenTwo extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const Tabbar()),
             );
           }, 
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Color.fromARGB(216, 107, 45, 117),
             size: 40,

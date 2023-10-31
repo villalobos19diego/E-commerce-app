@@ -1,5 +1,4 @@
 import 'package:e_commerce/screens/email/bottons/my_bottom_naegation_bar.dart';
-import 'package:e_commerce/screens/email/screens/EmailRegisterScreen.dart';
 import 'package:flutter/material.dart';
 
 class ScreenFormEmail extends StatefulWidget {
@@ -31,19 +30,10 @@ class _ScreenFormEmail extends State<ScreenFormEmail> {
 
 
       //_isRegisterScreenVisible ? _registerScreen :
+     
+     //metodo para llamar la pantalla de Cambio de correo electronico
       buildMainContent(),
-      bottomNavigationBar: UpdateEmailScreen
-       (
-      //  currentIndex: _currentIndex,
-      //  onTabTapped: (index) {
-        //  setState(() {
-          //  _currentIndex = index;
-        //)});
-          //if (index == 3) {
-           // _toggleRegistration();
-         // }
-        //},
-      ),
+      bottomNavigationBar: const UpdateEmailScreen(),
 
 
 

@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -13,7 +14,11 @@ class AuthService {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
-      print(e.code);
+      if (kDebugMode) {
+        if (kDebugMode) {
+          print(e.code);
+        }
+      }
       if (e.code == "INVALID_LOGIN_CREDENTIALS") {
         dialogError(context, "Contraseña o Email No son correctas");
       }
@@ -50,8 +55,12 @@ class AuthService {
           email: email, password: password);
       return true;
     } on FirebaseAuthException catch (e) {
-      print(e.toString());
-      print(e.code);
+      if (kDebugMode) {
+        print(e.toString());
+      }
+      if (kDebugMode) {
+        print(e.code);
+      }
       if (e.code == "email-already-in-use") {
         dialogError(context,
             "${email} \n El correo electrónico proporcionado ya está en uso por otro usuario");
