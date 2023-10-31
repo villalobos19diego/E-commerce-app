@@ -22,6 +22,7 @@ dependencies:
   image_picker: ^1.0.4
   material_text_fields: ^1.0.3
   url_launcher: ^6.1.14
+  user_profile_avatar: ^0.1.2
   very_good_analysis: ^5.1.0
 
 dev_dependencies:

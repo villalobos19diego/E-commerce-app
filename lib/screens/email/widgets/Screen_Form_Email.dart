@@ -30,19 +30,10 @@ class _ScreenFormEmail extends State<ScreenFormEmail> {
 
 
       //_isRegisterScreenVisible ? _registerScreen :
+     
+     //metodo para llamar la pantalla de Cambio de correo electronico
       buildMainContent(),
-      bottomNavigationBar: const UpdateEmailScreen
-       (
-      //  currentIndex: _currentIndex,
-      //  onTabTapped: (index) {
-        //  setState(() {
-          //  _currentIndex = index;
-        //)});
-          //if (index == 3) {
-           // _toggleRegistration();
-         // }
-        //},
-      ),
+      bottomNavigationBar: const UpdateEmailScreen(),
 
 
 

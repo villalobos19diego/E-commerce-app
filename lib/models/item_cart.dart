@@ -26,7 +26,7 @@ class ItemCart{
   }*/
 
   Map<String, dynamic> toMap(){
-    var map = new Map<String, dynamic>();
+    var map = <String, dynamic>{};
     map["id"] = id;
     map["nombre"] = nombre;
     map["precio"] = precio;
@@ -37,13 +37,13 @@ class ItemCart{
   }
 
   Map<String,dynamic> toJson(){
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data["id"] = this. id;
-    data["nombre"] = this.nombre;
-    data["precio"] = this.precio;
-    data["unidad"] = this.imagen;
-    data["imagen"] = this.imagen;
-    data["cantidad"] = this.cantidad;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["id"] =  id;
+    data["nombre"] = nombre;
+    data["precio"] = precio;
+    data["unidad"] = imagen;
+    data["imagen"] = imagen;
+    data["cantidad"] = cantidad;
 
     return data;
   }
