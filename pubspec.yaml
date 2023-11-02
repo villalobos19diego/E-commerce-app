@@ -21,10 +21,10 @@ dependencies:
   google_sign_in: ^6.1.5
   image_picker: ^1.0.4
   material_text_fields: ^1.0.3
+  provider: ^6.0.5
   url_launcher: ^6.1.14
   user_profile_avatar: ^0.1.2
   very_good_analysis: ^5.1.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

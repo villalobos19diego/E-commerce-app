@@ -7,7 +7,7 @@ class ScreenCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
+        title: const Row(
           children: [
             Icon(
               Icons.apps,
@@ -24,13 +24,13 @@ class ScreenCategories extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
               color: Colors.grey[300],
             ),
             child: TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Buscar',
                 prefixIcon: Icon(Icons.search),
                 border: InputBorder.none,
@@ -44,7 +44,7 @@ class ScreenCategories extends StatelessWidget {
             child: Center(
               child: GridView.count(
                 crossAxisCount: 2,
-                padding: EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(20.0),
                 childAspectRatio: 1.0,
                 mainAxisSpacing: 10.0,
                 crossAxisSpacing: 10.0,
