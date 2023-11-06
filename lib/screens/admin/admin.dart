@@ -1,5 +1,7 @@
 import 'package:e_commerce/config/services/auth_service.dart';
 import 'package:e_commerce/main.dart';
+import 'package:e_commerce/screens/admin/producto/crear_producto.dart';
+import 'package:e_commerce/screens/admin/producto/lista_productos.dart';
 import 'package:flutter/material.dart';
 
 class AdminProfile extends StatefulWidget {
@@ -60,6 +62,32 @@ class _AdminProfileState extends State<AdminProfile> {
                       logout();
                     },
                     child: const Text("Log out")),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                 ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(280.0, 50.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0))),
+                    onPressed: () {
+                       Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) =>  const ListaProductosPage()));
+                    },
+                    child: const Text("Listar productos")),
+                const SizedBox(
+                  height: 16.0,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        minimumSize: const Size(280.0, 50.0),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0))),
+                    onPressed: () {
+                       Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) =>  const CrearProductoPage()));
+                    },
+                    child: const Text("Crear productos")),
                 const SizedBox(
                   height: 16.0,
                 ),
