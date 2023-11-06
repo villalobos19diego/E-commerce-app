@@ -35,8 +35,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const MyApp()));
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
       }
     }
   }  
@@ -227,10 +226,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                   const Text(" Already have an account?"),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ScreenLogin()));
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
                     },
                     child: const Text("Log In"),
                   ),

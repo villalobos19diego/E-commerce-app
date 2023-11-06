@@ -16,8 +16,10 @@ class _AdminProfileState extends State<AdminProfile> {
     logout() async {
       await authService.logout();
       if (mounted) {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => const MyApp()));
+        Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) =>  const MyApp()),
+          (Route<dynamic> route) => false,
+        );
       }
     }
 

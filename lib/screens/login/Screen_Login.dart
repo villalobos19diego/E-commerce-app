@@ -33,8 +33,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
         
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const MyApp()));
+        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
       }
     }
   }
@@ -168,8 +167,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                           onPressed: () async {
                             await service.signInHandler();
                             if (mounted) {                               
-                                  Navigator.pushReplacement(
-                                    context, MaterialPageRoute(builder: (_) => const MyApp()));  
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
                             }
                           },
                           label: const Text("Sign In With Google")),
