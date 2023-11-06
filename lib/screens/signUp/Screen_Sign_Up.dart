@@ -191,7 +191,8 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                         _submit();
                       }),
                   const SizedBox(height: 30.0),
-                  ElevatedButton(
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.login),
                       focusNode: buttonFocus,
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(280.0, 50.0),
@@ -200,7 +201,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       onPressed: () {
                         _submit();
                       },
-                      child: const Text("Sign Up")),
+                      label: const Text("Sign Up")),
                   const SizedBox(
                     height: 16.0,
                   ),
