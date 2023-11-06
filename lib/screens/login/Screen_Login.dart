@@ -1,6 +1,6 @@
 import 'package:e_commerce/config/services/auth_service.dart';
 import 'package:e_commerce/config/utils.dart';
-import 'package:e_commerce/navigations/Tabbar.dart';
+import 'package:e_commerce/main.dart';
 import 'package:e_commerce/screens/signUp/Screen_Sign_Up.dart';
 import 'package:flutter/material.dart';
 
@@ -32,24 +32,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
-
-          showDialog(
-      context: context,
-      builder: (_) => const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-          ),
-        ),
-      ),
-    );
-    // Esperar a que la pantalla de carga se cierre
-    await Future.delayed(const Duration(seconds: 2));
-
-    // Cerrar la pantalla de carga
-    Navigator.pop(context);
+        
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const Tabbar()));
+            context, MaterialPageRoute(builder: (_) => const MyApp()));
       }
     }
   }
@@ -182,22 +167,9 @@ class _ScreenLoginState extends State<ScreenLogin> {
                                   borderRadius: BorderRadius.circular(8.0))),
                           onPressed: () async {
                             await service.signInHandler();
-                            if (mounted) {
-                                showDialog(
-                            context: context,
-                            builder: (_) => const Scaffold(
-                              body: Center(
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-                                  ),),
-                                  ),
-                                  );
-                                  // Esperar a que la pantalla de carga se cierre
-                                  await Future.delayed(const Duration(seconds: 2));
-                                     // Cerrar la pantalla de carga
-                                  Navigator.pop(context);
+                            if (mounted) {                               
                                   Navigator.pushReplacement(
-                                    context, MaterialPageRoute(builder: (_) => const Tabbar()));  
+                                    context, MaterialPageRoute(builder: (_) => const MyApp()));  
                             }
                           },
                           label: const Text("Sign In With Google")),
