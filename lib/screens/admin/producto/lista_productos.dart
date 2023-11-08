@@ -51,8 +51,8 @@ class _ListaProductosPageState extends State<ListaProductosPage> {
             trailing: Text(productos[index].precio.toString()),
             leading:  Image.network(
               productos[index].foto,
-              height: 10,
-              width: 10,              
+              height: 500,
+              width: 100,              
             ),
             onTap: () {
               // Navegamos a la pantalla de detalle
