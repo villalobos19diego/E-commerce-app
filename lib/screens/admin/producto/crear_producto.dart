@@ -33,6 +33,7 @@ class _CrearProductoPageState extends State<CrearProductoPage> {
       body: Form(
         key: _formKey,
         child: ListView(
+          padding: const  EdgeInsets.all(10),
           children: [
             // Foto
             imagenToUpload != null
@@ -65,41 +66,61 @@ class _CrearProductoPageState extends State<CrearProductoPage> {
               },
             ),
             // Título
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Título',
-              ),
-              onChanged: (value) {
-                _titulo = value;
-              },
-            ),
-            // Descripción
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Descripción',
-              ),
-              onChanged: (value) {
-                _descripcion = value;
-              },
-            ),
-            // Precio
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Precio',
-              ),
-              keyboardType: TextInputType.number,
-              onChanged: (value) {
-                _precio = double.parse(value);
-              },
-            ),
-            TextFormField(
-              decoration: const InputDecoration(
-                labelText: 'Categoria',
-              ),
-              onChanged: (value) {
-                _categoria = value;
-              },
-            ),
+           // Título
+TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Título',
+    icon: const Icon(Icons.title),
+    fillColor: Colors.white,
+    filled: true,
+  ),
+  onChanged: (value) {
+    _titulo = value;
+  },
+),
+
+// Descripción
+TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Descripción',
+    icon: const Icon(Icons.description),
+    fillColor: Colors.white,
+    filled: true,
+  ),
+  onChanged: (value) {
+    _descripcion = value;
+  },
+),
+
+// Precio
+TextFormField(
+  
+  decoration: InputDecoration(
+    labelText: 'Precio',
+    icon: const Icon(Icons.monetization_on),
+    fillColor: Colors.white,
+    filled: true,
+    
+  ),
+  keyboardType: TextInputType.number,
+  onChanged: (value) {
+    _precio = double.parse(value);
+  },
+),
+
+// Categoría
+TextFormField(
+  decoration: InputDecoration(
+    labelText: 'Categoria',
+    icon: const Icon(Icons.category),
+    fillColor: Colors.white,
+    filled: true,
+  ),
+  onChanged: (value) {
+    _categoria = value;
+  },
+),
+
             // Botón de crear
             ButtonBar(
               children: [
@@ -109,7 +130,7 @@ class _CrearProductoPageState extends State<CrearProductoPage> {
                     // Validamos el formulario
                     if (_formKey.currentState!.validate()) {
                       // Creamos el producto
-                       _categoria = await uploadImageProducto(imagenToUpload!);
+                       _foto = await uploadImageProducto(imagenToUpload!);
                       Producto producto = Producto(
                         foto: _foto,
                         titulo: _titulo,
