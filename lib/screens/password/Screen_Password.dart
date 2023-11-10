@@ -1,287 +1,152 @@
-import 'package:e_commerce/config/services/auth_service.dart';
-import 'package:e_commerce/config/utils.dart';
-import 'package:e_commerce/navigations/Tabbar.dart';
-import 'package:e_commerce/screens/login/Screen_Login.dart';
-import 'package:e_commerce/screens/profile/Screen_username.dart';
-import 'package:firebase_auth/firebase_auth.dart'; // Importa Firebase Auth
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class ScreenChangePassword extends StatefulWidget {
-  const ScreenChangePassword({super.key});
+import '../profile/Screen_username.dart';
+
+class ForgotPasswordScreen extends StatefulWidget {
+  const ForgotPasswordScreen({super.key});
 
   @override
-  State<ScreenChangePassword> createState() => _ScreenChangePaswordState(); // Crea el estado de ScreenChangePassword
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
-class _ScreenChangePaswordState extends State<ScreenChangePassword> {
-  final AuthService _authService = AuthService();
- final Utils utils = Utils();
+class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final _authService = AuthService();
+  bool _showPassword = false;
 
-  final _formKey = GlobalKey<FormState>(); // Clave global para el formulario
-  bool _isPasswordVisible = false; // Estado para mostrar/ocultar contraseña actual
-  bool _isPasswordVisible2 = false; // Estado para mostrar/ocultar nueva contraseña
-  bool _isPasswordVisible3 = false; // Estado para mostrar/ocultar repetición de contraseña
-  FocusNode fieldPassword = FocusNode(); // Nodo de enfoque para campo de contraseña actual
-  FocusNode fieldNewPassword = FocusNode(); // Nodo de enfoque para campo de nueva contraseña
-  FocusNode fieldRepeatPassword = FocusNode(); // Nodo de enfoque para campo de repetición de contraseña
-  final TextEditingController _passwordfieldController = TextEditingController(); // Controlador para campo de contraseña actual
-  final TextEditingController _newPasswordfieldController = TextEditingController(); // Controlador para campo de nueva contraseña
-  final TextEditingController _repeatPasswordfieldController = TextEditingController(); // Controlador para campo de repetición de contraseña
-
-  
-
- 
-Future<void> _submit() async {
-  if (_formKey.currentState!.validate()) {
-    // Validar que las contraseñas nuevas coincidan
-    if (_newPasswordfieldController.text !=
-        _repeatPasswordfieldController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Las contraseñas nuevas no coinciden'),
-        ),
-      );
-      return;
-    }
-
-    // Validar contraseña
-    String? passwordError = utils.validatePassword(_passwordfieldController.text);
-
-    if (passwordError != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(passwordError),
-        ),
-      );
-      return;
-    }
-
-    // Mostrar la pantalla de carga morada
-     // Mostrar la pantalla de carga morada
-    showDialog(
-      context: context,
-      builder: (_) => Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-          ),
-        ),
-      ),
-    );
-    // Esperar a que la pantalla de carga se cierre
-    await Future.delayed(const Duration(seconds: 2));
-
-    // Cerrar la pantalla de carga
-    Navigator.pop(context);
-
-    // Actualizar la contraseña en Firebase
-    try {
-      await FirebaseAuth.instance.currentUser!.updatePassword(_newPasswordfieldController.text);
-    } on FirebaseAuthException catch (e) {
-      // Mostrar un mensaje de error al usuario
-    // Mostrar un mensaje de error al usuario
-ScaffoldMessenger.of(context).showSnackBar(
-  SnackBar(
-    content: Text(e.message ?? 'Ocurrió un error'),
-  ),
-);
-      return;
-    }
-
-    // Cerrar la pantalla actual
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (_) => const ScreenProfileUsername()),
-    );
+  @override
+  void initState() {
+    super.initState();
+    _emailController.text = '';
   }
-}
-
 
   @override
   Widget build(BuildContext context) {
-    final FocusNode buttonFocus = FocusNode();
-
+    final Size size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.person,
-            size: 50,
-            color: Color.fromARGB(255, 225, 190, 231),
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: const Align(
-          alignment: Alignment.bottomLeft,
-          child: Text(
-            "Change Password",
-            style: TextStyle(color: Color.fromARGB(255, 225, 190, 231)),
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(216, 107, 45, 117),
-      ),
-      body: Wrap(
+      body: Stack(
         children: [
-           IconButton(
-          onPressed: () {
-           Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const ScreenProfileUsername()));
-          },
-          icon: const Icon(Icons.arrow_back,
-              color: Color.fromARGB(216, 107, 45, 117), size: 40),
-        ),
-          Padding(
-            padding: const EdgeInsets.only(
-                top: 200.0, bottom: 0.0, right: 50.0, left: 50.0),
-            child: Form(
-              key: _formKey,
+          Center(
+            child: Container(
+              width: 450,
+              padding: const EdgeInsets.all(20.0),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.white.withOpacity(0.5),
+                    spreadRadius: 5,
+                    blurRadius: 7,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
+              ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // Campo para la contraseña actual
-                  textForm(
-                    "Current Password",
-                    const Color.fromARGB(255, 141, 140, 140),
-                    16.0,
-                    "Ingrese su contraseña actual",
-                    Colors.grey,
-                    context,
-                    icon: const Icon(
-                      Icons.lock,
-                      color: Color.fromARGB(216, 107, 45, 117),
-                    ),
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.0),
-                    filled: true,
-                    colorsFill: const Color.fromARGB(255, 248, 237, 250),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "No puede dejar este campo vacío";
-                      }
-                      return utils.validatePassword(value);
-                    },
-                    suffixInkwell: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isPasswordVisible = !_isPasswordVisible;
-                        });
-                      },
-                      child: Icon(
-                        _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
-                        color: const Color.fromARGB(216, 107, 45, 117),
+                  SizedBox(
+                    height: size.height * 0.10,
+                    width: double.infinity,
+                    child: TextField(
+                      obscureText: !_showPassword,
+                      controller: _emailController,
+                      cursorColor: const Color.fromARGB(216, 107, 45, 117),
+                      decoration: InputDecoration(
+                        isDense: true,
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Color.fromARGB(216, 107, 45, 117),
+                          ),
+                        ),
+                        floatingLabelStyle:
+                        TextField.materialMisspelledTextStyle,
+                        labelText: 'Ingresa Tu Correo',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        prefixIcon: const Icon(
+                          Icons.email,
+                          color: Color.fromARGB(216, 107, 45, 117),
+                        ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _showPassword = !_showPassword;
+                            });
+                          },
+                          icon: Icon(
+                            _showPassword
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 20,
+                          horizontal: 20,
+                        ),
                       ),
                     ),
-                    isPassword: _isPasswordVisible,
-                    focusNode: fieldPassword,
-                    textEditingController: _passwordfieldController,
                   ),
-                  const SizedBox(height: 30.0),
-                  // Campo para la nueva contraseña
-                  textForm(
-                    "New Password",
-                    const Color.fromARGB(255, 141, 140, 140),
-                    16.0,
-                    "Ingrese su nueva contraseña",
-                    Colors.grey,
-                    context,
-                    icon: const Icon(
-                      Icons.lock,
-                      color: Color.fromARGB(216, 107, 45, 117),
-                    ),
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.0),
-                    filled: true,
-                    colorsFill: const Color.fromARGB(255, 248, 237, 250),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "No puede dejar este campo vacío";
-                      }
-                      return utils.validatePassword(value);
+                  const SizedBox(height: 16.0),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                          const ForgotPasswordScreen()));
                     },
-                    suffixInkwell: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isPasswordVisible2 = !_isPasswordVisible2;
-                        });
-                      },
-                      child: Icon(
-                        _isPasswordVisible2 ? Icons.visibility : Icons.visibility_off,
-                        color: const Color.fromARGB(216, 107, 45, 117),
+                    child: const Text(
+                      '',
+                      style: TextStyle(
+                        color: Colors.black54,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 13,
                       ),
                     ),
-                    isPassword: _isPasswordVisible2,
-                    focusNode: fieldNewPassword,
-                    textEditingController: _newPasswordfieldController,
                   ),
-                  const SizedBox(height: 30.0),
-                  // Campo para la repetición de la nueva contraseña
-                  textForm(
-                    "Repeat Password",
-                    const Color.fromARGB(255, 141, 140, 140),
-                    16.0,
-                    "Ingrese la repetición de su nueva contraseña",
-                    Colors.grey,
-                    context,
-                    icon: const Icon(
-                      Icons.lock,
-                      color: Color.fromARGB(216, 107, 45, 117),
-                    ),
-                    borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.0),
-                    filled: true,
-                    colorsFill: const Color.fromARGB(255, 248, 237, 250),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return "No puede dejar este campo vacío";
-                      }
-                      if (value != _newPasswordfieldController.text) {
-                        return "Las contraseñas no coinciden";
-                      }
-                      return null;
-                    },
-                    suffixInkwell: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isPasswordVisible3 = !_isPasswordVisible3;
-                        });
-                      },
-                      child: Icon(
-                        _isPasswordVisible3 ? Icons.visibility : Icons.visibility_off,
-                        color: const Color.fromARGB(216, 107, 45, 117),
-                      ),
-                    ),
-                    isPassword: _isPasswordVisible3,
-                    focusNode: fieldRepeatPassword,
-                    textEditingController: _repeatPasswordfieldController,
-                  ),
-                  const SizedBox(height: 30.0),
-                  // Botón para cambiar la contraseña
                   ElevatedButton(
-                    focusNode: buttonFocus,
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Color.fromARGB(216, 107, 45, 117),
-                      backgroundColor: Color.fromARGB(255, 243, 241, 241),
-                      minimumSize: const Size(280.0, 50.0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                      ),
-                    ),
                     onPressed: () {
-                      _submit(); // Llama a la función _submit al hacer clic en el botón
+                      _authService
+                          .sendVerificationEmail(_emailController.text);
                     },
-                    child: const Text("Change Password"),
-                  ),
-                  const SizedBox(
-                    height: 16.0,
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size(double.infinity, 25),
+                      padding: const EdgeInsets.all(23),
+                      backgroundColor:
+                      const Color.fromARGB(216, 107, 45, 117),
+                    ),
+                    child: const Text('Enviar Mensaje'),
                   ),
                 ],
               ),
             ),
-          )
+          ),
+          Positioned(
+            top: 16,
+            left: 16,
+            child: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pushReplacement(
+                    context, MaterialPageRoute(builder: (_) => const ScreenProfileUsername()));
+              },
+            ),
+          ),
         ],
       ),
     );
+  }
+}
+
+class AuthService {
+  Future<void> sendVerificationEmail(String emailAddress) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 }
