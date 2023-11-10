@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '856680776236',
     projectId: 'e-commerce-622df',
     authDomain: 'e-commerce-622df.firebaseapp.com',
+    databaseURL: 'https://e-commerce-622df-default-rtdb.firebaseio.com',
     storageBucket: 'e-commerce-622df.appspot.com',
   );
 
@@ -57,6 +58,7 @@ class DefaultFirebaseOptions {
     appId: '1:856680776236:android:9d07a16711b091d0c20789',
     messagingSenderId: '856680776236',
     projectId: 'e-commerce-622df',
+    databaseURL: 'https://e-commerce-622df-default-rtdb.firebaseio.com',
     storageBucket: 'e-commerce-622df.appspot.com',
   );
 
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     appId: '1:856680776236:ios:9542d6d518510e7dc20789',
     messagingSenderId: '856680776236',
     projectId: 'e-commerce-622df',
+    databaseURL: 'https://e-commerce-622df-default-rtdb.firebaseio.com',
     storageBucket: 'e-commerce-622df.appspot.com',
     androidClientId: '856680776236-6ul4g1um1tedj2dcq7mpngk9ksgh52n4.apps.googleusercontent.com',
     iosClientId: '856680776236-gln6ktlu8mnr09flo0p94rfif5mvl73n.apps.googleusercontent.com',
@@ -76,6 +79,7 @@ class DefaultFirebaseOptions {
     appId: '1:856680776236:ios:fc5cb25533490fa1c20789',
     messagingSenderId: '856680776236',
     projectId: 'e-commerce-622df',
+    databaseURL: 'https://e-commerce-622df-default-rtdb.firebaseio.com',
     storageBucket: 'e-commerce-622df.appspot.com',
     androidClientId: '856680776236-6ul4g1um1tedj2dcq7mpngk9ksgh52n4.apps.googleusercontent.com',
     iosClientId: '856680776236-fm029qtn3ln6n48prspoupbfp87fa7q2.apps.googleusercontent.com',

@@ -1,5 +1,5 @@
 import 'package:e_commerce/screens/categories/categories_screen_four.dart';
-import 'package:e_commerce/screens/categories/categories_screen_one.dart';
+import 'package:e_commerce/screens/categories/categories_screen_lenceria.dart';
 import 'package:e_commerce/screens/categories/categories_screen_three.dart';
 import 'package:e_commerce/screens/categories/categories_screen_two.dart';
 import 'package:flutter/material.dart';
@@ -64,7 +64,7 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CategoriesScreenOne()));
+                                builder: (context) => const CategoriesScreenLenceria()));
                     },
                   ),
                   _CustomButton(

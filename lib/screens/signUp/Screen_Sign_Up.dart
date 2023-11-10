@@ -1,6 +1,6 @@
 import 'package:e_commerce/config/services/auth_service.dart';
 import 'package:e_commerce/config/utils.dart';
-import 'package:e_commerce/navigations/Tabbar.dart';
+import 'package:e_commerce/main.dart';
 import 'package:e_commerce/screens/login/Screen_Login.dart';
 import 'package:flutter/material.dart';
 
@@ -35,23 +35,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
         _passwordfieldController.clear();
         _emailfieldController.clear();
         _formKey.currentState!.deactivate();
-          showDialog(
-      context: context,
-      builder: (_) => Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-          ),
-        ),
-      ),
-    );
-    // Esperar a que la pantalla de carga se cierre
-    await Future.delayed(const Duration(seconds: 2));
-
-    // Cerrar la pantalla de carga
-    Navigator.pop(context);
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => const Tabbar()));
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
       }
     }
   }  
@@ -206,7 +190,8 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                         _submit();
                       }),
                   const SizedBox(height: 30.0),
-                  ElevatedButton(
+                  ElevatedButton.icon(
+                    icon: const Icon(Icons.login),
                       focusNode: buttonFocus,
                       style: ElevatedButton.styleFrom(
                           minimumSize: const Size(280.0, 50.0),
@@ -215,7 +200,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                       onPressed: () {
                         _submit();
                       },
-                      child: const Text("Sign Up")),
+                      label: const Text("Sign Up")),
                   const SizedBox(
                     height: 16.0,
                   ),
@@ -229,22 +214,9 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                               borderRadius: BorderRadius.circular(8.0))),
                       onPressed: () async {
                         await _authService.signInHandler();
-                        if (mounted) {
-                           showDialog(
-                            context: context,
-                            builder: (_) => Scaffold(
-                              body: Center(
-                                child: CircularProgressIndicator(
-                                  valueColor: AlwaysStoppedAnimation<Color>(Colors.purple),
-                                  ),),
-                                  ),
-                                  );
-                                  // Esperar a que la pantalla de carga se cierre
-                                  await Future.delayed(const Duration(seconds: 2));
-                                     // Cerrar la pantalla de carga
-                                  Navigator.pop(context);
+                        if (mounted) {                        
                                   Navigator.pushReplacement(
-                                    context, MaterialPageRoute(builder: (_) => const Tabbar()));                               
+                                    context, MaterialPageRoute(builder: (_) => const MyApp()));                               
                         }
                       },
                       label: const Text("Sign In With Google")),
@@ -254,10 +226,7 @@ class _ScreenLoginState extends State<ScreenSignUp> {
                   const Text(" Already have an account?"),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const ScreenLogin()));
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const MyApp()),(Route<dynamic> route) => false,);
                     },
                     child: const Text("Log In"),
                   ),

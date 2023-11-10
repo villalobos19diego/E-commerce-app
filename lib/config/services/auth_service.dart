@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class AuthService {
         }
       }
       if (e.code == "INVALID_LOGIN_CREDENTIALS") {
-        dialogError(context, "Contraseña o Email No son correctas");
+        dialogError(context, "Contraseña o email no son correctas");
       }
       if (e.code == "user-not-found") {
         dialogError(context, "Usuario no encontrado");
@@ -51,8 +52,9 @@ class AuthService {
   Future<bool> signUpHandlerEmail(
       BuildContext context, String email, String password) async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => {postDetailsToFirestore(email)});
       return true;
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
@@ -95,7 +97,9 @@ class AuthService {
           accessToken: googleAuth.accessToken,
           idToken: googleAuth.idToken,
         );
-        await _auth.signInWithCredential(credential);
+        await _auth
+            .signInWithCredential(credential)
+            .then((value) async => postDetailsToFirestore(googleUser.email));
       }
     } catch (e) {
       print(e.toString());
@@ -120,10 +124,9 @@ class AuthService {
     final photo = FirebaseAuth.instance.currentUser?.photoURL;
     if (photo != null) {
       return photo;
-    }else{
+    } else {
       return null;
     }
-    
   }
 
   String? getEmail() {
@@ -139,6 +142,29 @@ class AuthService {
       return widgetTrue;
     }
     return widgetFalse;
+  }
+
+  postDetailsToFirestore(String email) async {
+    String rool = "usuario";
+    var user = _auth.currentUser;
+    final docRef =
+        FirebaseFirestore.instance.collection('users').doc(user!.uid);
+    final documentSnapshot = await docRef.get();
+    if (!documentSnapshot.exists) {
+      CollectionReference ref = FirebaseFirestore.instance.collection('users');
+      ref.doc(user.uid).set({'email': email, 'rool': rool});
+    }
+  }
+
+  Future<bool> rolUser() async {
+    var user = _auth.currentUser;
+    final docRef =
+        FirebaseFirestore.instance.collection('users').doc(user!.uid);
+    final documentSnapshot = await docRef.get();
+    if (documentSnapshot.get('rool') == "admin") {
+      return true;
+    }
+    return false;
   }
 
   Future<dynamic> dialogError(BuildContext context, String e) {
