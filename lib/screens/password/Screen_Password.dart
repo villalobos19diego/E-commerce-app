@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../profile/Screen_username.dart';
+import 'image/UserProfileImage.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -22,12 +23,28 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
     _emailController.text = '';
   }
 
+
+  Widget _buildTopSection() {
+    return const Align(
+      alignment: Alignment.topRight,
+      child: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: UserProfileImage(
+          profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iscIvwOLGIff33hveao7z3fexyWW_zfGcg&usqp=CAU',
+        ),
+      ),
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Stack(
         children: [
+
+          _buildTopSection(),
           Center(
             child: Container(
               width: 450,

@@ -1,9 +1,10 @@
-import 'package:e_commerce/config/services/auth_service.dart';
+
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/email/widgets/Screen_Email.dart';
 import 'package:e_commerce/screens/password/Screen_Password.dart';
 import 'package:e_commerce/screens/photo/photo_user.dart';
 import 'package:flutter/material.dart';
+
 
 class ScreenProfileUsername extends StatefulWidget {
   const ScreenProfileUsername({super.key});
@@ -16,25 +17,25 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
 
   @override
   Widget build(BuildContext context) {
-    AuthService authService = AuthService();
-    String username = authService.getEmail() ?? "Email";
+    // AuthService authService = AuthService();
+    // String username = authService.getEmail() ?? "Email";
 
     PreferredSizeWidget appBar = AppBar(
       backgroundColor:const Color.fromARGB(216, 107, 45, 117),
-      title: Row(
+      title:   const Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-         const Icon(
+          Icon(
             Icons.person_rounded,
             color: Color.fromARGB(199, 255, 255, 255),
             size: 50.0,
           ),
-          const SizedBox(
+          SizedBox(
             width: 40,
           ),
           Text(
-           username,
-            style: const TextStyle(color: Colors.white, fontSize: 18),
+            'username',
+            style: TextStyle(color: Colors.white, fontSize: 18),
           ),
         ],
       ),
@@ -45,16 +46,16 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
     Widget filledButtonFun(String value,Widget widget) {
       return FilledButton.tonal(
         onPressed: () {
-           Navigator.pushReplacement(context,
-                MaterialPageRoute(builder: (context) => widget));
+          Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => widget));
         },
         style: ButtonStyle(
-             backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 241, 241)),
-            foregroundColor: MaterialStateProperty.all(Color.fromARGB(213, 167, 102, 177)),
+            backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 243, 241, 241)),
+            foregroundColor: MaterialStateProperty.all(const Color.fromARGB(213, 167, 102, 177)),
             shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8.0))),
             textStyle:
-                const MaterialStatePropertyAll(TextStyle(fontSize: 23.0))),
+            const MaterialStatePropertyAll(TextStyle(fontSize: 23.0))),
         child: Text(value),
       );
     }
@@ -62,20 +63,20 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
     Widget elevatedButtonFun(String value) {
       return ElevatedButton(
         onPressed: () async {
-          await authService.logout();
+          //await authService.logout();
           if (mounted) {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const Tabbar()));
           }
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Color.fromARGB(216, 107, 45, 117)),
-            foregroundColor: MaterialStateProperty.all(Color.fromARGB(255, 243, 241, 241)),
+            backgroundColor: MaterialStateProperty.all(const Color.fromARGB(216, 107, 45, 117)),
+            foregroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 243, 241, 241)),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
             )),
             textStyle:
-                const MaterialStatePropertyAll(TextStyle(fontSize: 20.0)),
+            const MaterialStatePropertyAll(TextStyle(fontSize: 20.0)),
             fixedSize: const MaterialStatePropertyAll(Size(300, 50))),
         child: Text(value),
       );
@@ -87,7 +88,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
           filledButtonTheme: const FilledButtonThemeData(
             style: ButtonStyle(
               backgroundColor:
-                  MaterialStatePropertyAll(Color.fromARGB(206, 230, 230, 230)),
+              MaterialStatePropertyAll(Color.fromARGB(206, 230, 230, 230)),
               fixedSize: MaterialStatePropertyAll(Size(300, 100)),
               elevation: MaterialStatePropertyAll(2),
             ),
@@ -108,7 +109,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
               const SizedBox(
                 height: 30,
               ),
-              filledButtonFun("Change Password",const ScreenChangePassword()),
+              filledButtonFun("Change Password",const ForgotPasswordScreen()),
               const SizedBox(
                 height: 30,
               ),
@@ -122,6 +123,6 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
         ),
       ),
     );
-    
+
   }
 }
