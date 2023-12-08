@@ -1,7 +1,8 @@
-import 'package:e_commerce/screens/categories/categories_screen_four.dart';
-import 'package:e_commerce/screens/categories/categories_screen_lenceria.dart';
-import 'package:e_commerce/screens/categories/categories_screen_three.dart';
-import 'package:e_commerce/screens/categories/categories_screen_two.dart';
+import 'package:e_commerce/config/shop/shop_screen_belleza.dart';
+import 'package:e_commerce/config/shop/shop_screen_casual.dart';
+import 'package:e_commerce/config/shop/shop_screen_interior.dart';
+import 'package:e_commerce/config/shop/shop_screen_lenceria.dart';
+import 'package:e_commerce/config/shop/shop_screen_servicios_belleza.dart';
 import 'package:flutter/material.dart';
 
 class ScreenCategories extends StatelessWidget {
@@ -11,18 +12,18 @@ class ScreenCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(
-                Icons.apps,
-                size: 50,
-                color: Color.fromARGB(255, 225, 190, 231),
-              ),
-              onPressed: () {},
-            ),
+            // leading: IconButton(
+            //   icon: const Icon(
+            //     Icons.apps,
+            //     size: 50,
+            //     color: Color.fromARGB(255, 225, 190, 231),
+            //   ),
+            //   onPressed: () {},
+            // ),
             title: const Align(
               alignment: Alignment.bottomLeft,
               child: Text(
-                "Category",
+                "Categorias",
                 style: TextStyle(color: Color.fromARGB(255, 225, 190, 231)),
               ),
             ),
@@ -64,7 +65,7 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CategoriesScreenLenceria()));
+                                builder: (context) => const ShopScreenLanceria()));
                     },
                   ),
                   _CustomButton(
@@ -75,7 +76,7 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CategoriesScreenTwo()));
+                                builder: (context) => const ShopScreen()));
                     },
                   ),
                   _CustomButton(
@@ -86,7 +87,7 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CategoriesScreenThree()));
+                                builder: (context) => const ShopScreenInterior()));
                     },
                   ),
                   _CustomButton(
@@ -97,13 +98,20 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CategoriesScreenFour()));
+                                builder: (context) => const ShopScreenCasual()));
                     },
                   ),
                   _CustomButton(
                     imagePath: 'assets/images/1.jpeg',
                     text: 'Servicios de belleza',
-                    onPressed: (){}
+                    onPressed: (){
+                            Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ShopScreenServiciosBelleza()));
+
+
+                    }
                     )
                 ],
               ),
