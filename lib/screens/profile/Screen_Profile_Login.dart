@@ -45,7 +45,7 @@ class ScreenProfileLogin extends StatelessWidget {
               width: screenWidth * 0.7, // Usa un ancho relativo a la pantalla
               height: screenWidth * 0.7, // Hace que sea cuadrada
               color: Colors.white, // Color gris de fondo
-              child: Center(
+              child: const Center(
                 child: Icon(
                   Icons.person,
                   size: 275.0,
