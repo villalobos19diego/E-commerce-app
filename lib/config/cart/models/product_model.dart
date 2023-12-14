@@ -9,14 +9,20 @@ var uuid = const Uuid();
   final double price;
   final String image;
   final bool isAvailable;
+  final List<String> sizes;
+   late final  String selectedSize;
+
  
 
 
   ProductModel({
+    this.selectedSize = '',
     required this.name,
     required this.price,
     required this.image,
     required this.isAvailable,
+    required this.sizes,
+
     
   }) : id = uuid.v4();
  }
