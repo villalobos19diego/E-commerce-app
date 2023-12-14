@@ -9,13 +9,14 @@ final List<ProductModel> _lenceria = [
       image:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm8J3mQnyPV5m-iD60dZfCAZm7r37gtMIAlg&usqp=CAU',
       isAvailable: true,
+      sizes: ["M", "L", "XL","S"],
     ),
     ProductModel(
       name: "lenceria estilo esclava ",
       price: 29.99,
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJDNvvhZoyUM4fH1ignBTIftTzcxT7KpfsXV5X1hQ8OvMJgnTZkXmbIpLHIDhzBOz3gJQ&usqp=CAU",
-      isAvailable: true,
+      isAvailable: true, sizes: ["M", "L", "XL","S"],
     ),
 
 
@@ -24,7 +25,7 @@ final List<ProductModel> _lenceria = [
       price: 29.99,
       image:
           "assets/images/4.jpeg",
-      isAvailable: true,
+      isAvailable: true, sizes: ["M", "L", "XL","S"],
     ),
   ];
   List<ProductModel> get lencerias => _lenceria;
