@@ -12,13 +12,17 @@ class ProductProvider extends ChangeNotifier {
       image:
           "https://i5.walmartimages.com/seo/Avidlove-Womens-Lingerie-Sets-with-Garters-Wedding-Lingerie-for-Bride-Ropa-Interior-Femenina-WhiteL_8a40a45f-8b4b-4f95-a1f2-31a828b1cb5e.b0f02a7cd3471d79f28226c9d5ade85d.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
       isAvailable: true,
+      sizes: ["M", "L", "XL","S"],
     ),
     ProductModel(
       name: "lenceria casual",
       price:  34.00,
       image: "https://ae01.alicdn.com/kf/Sdf9761d17ca544249b92c698b47fbefcy/Sexy-Clothes-for-Woman-Mini-Lingerie-Mesh-Comfortable-Breathable-Slim-Fit-Lenceria-Femenina-Sexy-Garters-G.jpg",
-      isAvailable: true,
+      isAvailable: false,
+      sizes: ["M", "L", "XL","S"],
     ),
+
+
   ];
 
 
@@ -27,6 +31,11 @@ class ProductProvider extends ChangeNotifier {
   
 
   List<ProductModel> get bellezas => _belleza;
-
+  // Función para seleccionar una talla para un producto específico
+  void selectSize(int index, String size) {
+    if (index >= 0 && index < _belleza.length) {
+      _belleza[index].selectedSize = size;
+    }
+  }
 
 }
