@@ -9,9 +9,13 @@ var uuid = const Uuid();
     final String id;
     final  ProductModel  product;
     int quantity;
+    final String size;
+    String selectedSize;
 
     CartModel({
+      required this.size,
       required this.product,
     required  this.quantity,
+      required this.selectedSize,
     }): id = uuid.v4();
   }
