@@ -11,6 +11,7 @@ var uuid = const Uuid();
   final bool isAvailable;
   final List<String> sizes;
    late final  String selectedSize;
+   String description;
 
  
 
@@ -22,6 +23,7 @@ var uuid = const Uuid();
     required this.image,
     required this.isAvailable,
     required this.sizes,
+    required this.description,
 
     
   }) : id = uuid.v4();
