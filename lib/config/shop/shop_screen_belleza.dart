@@ -28,6 +28,7 @@ class _ShopScreenState extends State<ShopScreen> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+
       body: SingleChildScrollView(
         physics: const ScrollPhysics(),
 
@@ -35,8 +36,17 @@ class _ShopScreenState extends State<ShopScreen> {
 
           padding: const EdgeInsets.all(15.0),
           child: Column(
+
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Colors.purple,
+
+              ),
               SizedBox(
                 height: size.height * 0.0500,
               ),
@@ -72,11 +82,11 @@ class _ShopScreenState extends State<ShopScreen> {
                 ],
               ),
                  SizedBox(
-                height: size.height * 0.020,
+                height: size.height * 0.050,
               ),
 
               SizedBox(
-                height: size.height * 0.030,
+                height: size.height * 0.050,
               ),
               Column(
                 children: [
@@ -89,7 +99,7 @@ class _ShopScreenState extends State<ShopScreen> {
                     '${Provider.of<ProductProvider>(context).bellezas.length}',
                   ),
                   SizedBox(
-                    height: size.height * 0.020,
+                    height: size.height * 0.060,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
