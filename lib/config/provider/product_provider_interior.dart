@@ -9,38 +9,42 @@ class ProductProviderInterior extends ChangeNotifier {
       price: 30.00,
       image:
           "lenceria Interior",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     ProductModel(
       name: "Lenceria Interior",
       price: 26.77,
       image:
           "",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     ProductModel(
       name: "Lencería color negro",
       price: 99.99,
       image:
           "",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     ProductModel(
       name: "Lenceria Interior",
       price: 25.99,
       image:
           "",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     ProductModel(
-      name: "Lenceria Ineterior",
+      name: "Lenceria Interior",
       price: 129,
       image:
           "",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     
   ];
-
+  void selectSize(int index, String size) {
+    if (index >= 0 && index < _interior.length) {
+      _interior[index].selectedSize = size;
+    }
+  }
   List<ProductModel> get interior => _interior;
 }

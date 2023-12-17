@@ -11,15 +11,27 @@ class ProductProvider extends ChangeNotifier {
       price: 45.00,
       image:
           "https://i5.walmartimages.com/seo/Avidlove-Womens-Lingerie-Sets-with-Garters-Wedding-Lingerie-for-Bride-Ropa-Interior-Femenina-WhiteL_8a40a45f-8b4b-4f95-a1f2-31a828b1cb5e.b0f02a7cd3471d79f28226c9d5ade85d.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
-      isAvailable: true,
-      sizes: ["M", "L", "XL","S"],
+      isAvailable: false,
+      sizes: ["M", "S", "L","XL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
+
     ProductModel(
-      name: "lenceria casual",
+      name: "lenceria casual Fenemina Color Amarrilo",
       price:  34.00,
       image: "https://ae01.alicdn.com/kf/Sdf9761d17ca544249b92c698b47fbefcy/Sexy-Clothes-for-Woman-Mini-Lingerie-Mesh-Comfortable-Breathable-Slim-Fit-Lenceria-Femenina-Sexy-Garters-G.jpg",
-      isAvailable: false,
-      sizes: ["M", "L", "XL","S"],
+      isAvailable: true,
+      sizes: ["M", "S", "L","XL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+    ),
+
+    ProductModel(
+      name: "lenceria casual Fenemina  Rojo",
+      price:  45.90,
+      image: "https://www.bing.com/th?id=OIP.JsMFO_99M5OL0pgwsoTdrgHaNK&w=150&h=267&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+      isAvailable: true,
+      sizes: ["M", "S", "L","XL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
 
 

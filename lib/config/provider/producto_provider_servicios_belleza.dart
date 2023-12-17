@@ -14,14 +14,14 @@ class ProductProviderServiciosBelleza  extends ChangeNotifier{
       price: 24.65,
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm8J3mQnyPV5m-iD60dZfCAZm7r37gtMIAlg&usqp=CAU",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     ),
     ProductModel(
       name: "lenceria tipo color negro",
       price: 26.55,
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQm8J3mQnyPV5m-iD60dZfCAZm7r37gtMIAlg&usqp=CAU",
-      isAvailable: true,
+      isAvailable: true, sizes: [], description: '',
     )
   ];
     List<ProductModel> get servicios => _servicio;
