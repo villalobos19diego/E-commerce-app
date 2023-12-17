@@ -26,7 +26,8 @@ class _CartItemState extends State<CartItem> {
         top: 20,
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment:
+        MainAxisAlignment.spaceBetween,
         children: [
           Container(
             width: size.width * 0.30,
@@ -66,6 +67,7 @@ class _CartItemState extends State<CartItem> {
                     fontSize: size.width * 0.035,
                   ),
                 ),
+
                 SizedBox(
                   height: size.width * 0.030,
                 ),
@@ -124,7 +126,18 @@ class _CartItemState extends State<CartItem> {
                           size: 14,
                         ),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      'Talla: ${widget.cartItem.selectedSize}',
+                      style: GoogleFonts.poppins(
+                        fontSize: size.width * 0.040,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -132,27 +145,34 @@ class _CartItemState extends State<CartItem> {
           ),
           GestureDetector(
             onTap: () {
-              context.read<CartProvider>().removeItem(widget.cartItem.id);
-              ScaffoldMessenger.of(context).showSnackBar(
+              context.read
+              <CartProvider>()
+                  .removeItem
+                (widget.cartItem.id);
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(
                 const SnackBar(
-                  backgroundColor: Color.fromARGB(255, 247, 247, 247),
+                  backgroundColor:
+                  Color.fromARGB(255, 247, 247, 247),
                   content: Text(
                     "se elimino el producto",
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black),
                   ),
                 ),
               );
             },
             child: CircleAvatar(
-              backgroundColor: Colors.redAccent.withOpacity(0.07),
-              radius: 18,
+              backgroundColor: Colors.redAccent
+                  .withOpacity(0.07),
+              radius: 20,
               child: const Icon(
                 Iconsax.trash,
                 color: Colors.redAccent,
-                size: 14,
+                size: 18,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
