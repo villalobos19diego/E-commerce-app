@@ -1,9 +1,7 @@
 
 import 'package:e_commerce/config/cart/models/product_model.dart';
 import 'package:e_commerce/config/provider/cart_provider.dart';
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 
@@ -163,7 +161,7 @@ State<ProductDetailsScreen> {
 
                           Wrap(
 
-                            spacing: 8.0,
+                            spacing: 20.0,
                             children: widget.product.sizes.map(
                                     (String size) {
 
@@ -264,10 +262,10 @@ State<ProductDetailsScreen> {
                           children: [
                             const Icon(
                               Iconsax.bag,
-                              size: 14,
+                              size: 10,
                               color: Colors.black,
                             ),
-                             const SizedBox(width:8),
+                             const SizedBox(width:15),
 
                             Center(
                               child: Container(
