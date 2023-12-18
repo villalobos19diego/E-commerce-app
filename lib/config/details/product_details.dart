@@ -30,7 +30,7 @@ State<ProductDetailsScreen> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -127,7 +127,7 @@ State<ProductDetailsScreen> {
                         margin: const EdgeInsets.only(top: 8),
                         child: Text(
                           'Producto:  '
-                              '${widget.product.isAvailable ? '|Disponible|' : '|No disponible|'}',
+                              '${widget.product.isAvailable ? '|Disponible•|' : '|No Disponible•|'}',
                           style: TextStyle(
                             fontSize: 14,
                             color: widget.product.isAvailable ? Colors.green : Colors.red,
@@ -194,15 +194,17 @@ State<ProductDetailsScreen> {
                    ),
                      const SizedBox(height: 10),
                     //Botón para agregar al carrito
+                    widget.product.isAvailable ?
                     GestureDetector(
                       onTap: () async {
                         String? selectedSize = await showDialog<String>(
                           context: context,
-                          builder: (BuildContext context)  {
+                          builder: (BuildContext context)   {
                             return AlertDialog(
                               title: const  Text('Tallas:',
                                   style:
-                              TextStyle(color:Colors.purple,   fontSize: 13, // Ajusta el tamaño del título según tus necesidades
+                              TextStyle(color:Colors.purple,
+                                  fontSize: 13, // Ajusta el tamaño del título según tus necesidades
                                 fontWeight: FontWeight.bold), ),
                               backgroundColor:Colors.white,
                               contentPadding:
@@ -284,8 +286,8 @@ State<ProductDetailsScreen> {
                     ),
                       ),
                     ),
-                    ),
-
+                    ) :
+                    Container(),
                   ],
                 ),
               ),
