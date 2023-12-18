@@ -9,35 +9,42 @@ class ProductProviderInterior extends ChangeNotifier {
       price: 30.00,
       image:
           "lenceria Interior",
-      isAvailable: true, sizes: [], description: '',
+      isAvailable: true, sizes: ["M", "L", "XL","S", "XXL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     ProductModel(
       name: "Lenceria Interior",
       price: 26.77,
       image:
           "",
-      isAvailable: true, sizes: [], description: '',
+      isAvailable: true, sizes: ["M", "L", "XL","S", "XXL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     ProductModel(
       name: "Lencería color negro",
       price: 99.99,
       image:
           "",
-      isAvailable: true, sizes: [], description: '',
+      isAvailable: true, sizes: ["M", "L", "XL","S", "XXL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     ProductModel(
       name: "Lenceria Interior",
       price: 25.99,
       image:
           "",
-      isAvailable: true, sizes: [], description: '',
+      isAvailable: true,
+      sizes: ["M", "L", "XL","S", "XXL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     ProductModel(
       name: "Lenceria Interior",
       price: 129,
       image:
           "",
-      isAvailable: true, sizes: [], description: '',
+      isAvailable: true,
+      sizes: ["M", "L", "XL","S", "XXL"],
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     
   ];

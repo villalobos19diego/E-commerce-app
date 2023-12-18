@@ -20,7 +20,7 @@ class ProductCasualProvider extends  ChangeNotifier{
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUn2CvK76JYJSLFp27DdOLqLhVKOhxhJs7Jg&usqp=CAU",
       isAvailable: true, 
       sizes: ["M", "L", "XL","S", "XXL"],
-      description: '',
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
     ),
     ProductModel(
       name: "SHEIN VCAY Vestido con estampado floral de espalda abierta con nudo fruncido tirantes",
