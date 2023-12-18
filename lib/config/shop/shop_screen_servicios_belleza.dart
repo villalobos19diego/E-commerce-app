@@ -1,4 +1,5 @@
 
+import 'package:e_commerce/config/details/product_details.dart';
 import 'package:e_commerce/config/provider/producto_provider_servicios_belleza.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
@@ -122,11 +123,21 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
                     child: Consumer<ProductProviderServiciosBelleza>(
                       builder: (context, value, child) =>   Column(
                         children:   value.servicios
-                            .map((product) => Padding(padding: const EdgeInsets.all(20),
-                             child: Product(
-                                  product: product,
-                                ),
-                            )
+                            .map((product) =>
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder:( context)
+                                => ProductDetailsScreen(product:product,)
+                                )
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Product(product: product),
+                              ),
+                            ),
+
+
                             
                             )
                             .toList(),

@@ -1,6 +1,7 @@
 
 
 
+import 'package:e_commerce/config/details/product_details.dart';
 import 'package:e_commerce/config/provider/product_provider_interior.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
@@ -110,7 +111,7 @@ class ShopScreenInterior extends StatefulWidget{
                     height: size.height * 0.020,
                   ),
                   CategoryHeader(
-                    title: ' Ropa Interior Fenemino',
+                    title: ' Ropa Interior ',
                     count:
                         '${Provider.of<ProductProviderInterior>(context).interior.length}',
                   ),
@@ -122,11 +123,22 @@ class ShopScreenInterior extends StatefulWidget{
                     child: Consumer<ProductProviderInterior>(
                       builder: (context, value, child) => Column(
                         children: value.interior
-                            .map((product) => Padding(padding: const EdgeInsets.all(20),
-                             child:   Product(
-                                  product: product,
-                                ),
+                            .map((product) => GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                              context,MaterialPageRoute(
+                              builder:(context) => ProductDetailsScreen(product:product)
                             ),
+                            );
+                          },
+                          child:
+                          Padding(padding: const EdgeInsets.all(20),
+                            child:   Product(
+                              product: product,
+                            ),
+                          ),
+                        ),
+
 
 
                           )

@@ -93,7 +93,7 @@ class _CartScreenState extends State<CartScreen> {
                                 height: size.height * 0.020,
                               ),
                               Text(
-                                "Your cart is empty!",
+                                "Es carrito esta vacio",
                                 style: GoogleFonts.poppins(
                                   color: Colors.grey,
                                 ),
