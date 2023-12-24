@@ -12,6 +12,12 @@ class ProductCasualProvider extends  ChangeNotifier{
       isAvailable:  true, 
       sizes: ["M", "L", "XL","S", "XXL" ],
       description: '',
+       quantity: 0,
+        category: 'indefinied', 
+      
+       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+        selectedDeliveryLocation: ' default location',
+
     ),
     ProductModel(
       name: "vestido casual",
@@ -21,6 +27,9 @@ class ProductCasualProvider extends  ChangeNotifier{
       isAvailable: true, 
       sizes: ["M", "L", "XL","S", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+       category: 'indefined', quantity: 0,
+        selectedDeliveryLocation: ' default location',
+        availableDeliveryLocations: [ "Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"]
     ),
     ProductModel(
       name: "SHEIN VCAY Vestido con estampado floral de espalda abierta con nudo fruncido tirantes",
@@ -29,7 +38,9 @@ class ProductCasualProvider extends  ChangeNotifier{
           "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR7PNUQJ3iC9gtal9WDaHdi696WCHRq2AFaC5xDODfbetJraM5PBnb_h0cb2_gA2IBTG7EQzzmTc1BdhRez6DUKg30YRaHViv79m44oYFZKtn6R9SiIzmFHsw&usqp=CAc",
       isAvailable: true,
       sizes: ["M", "L", "XL","S", "XXL"],
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m', category: '', quantity: 0,
+       selectedDeliveryLocation: ' default location',
+       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
     ),
     ProductModel(
       name: "Set Casual ",
@@ -38,7 +49,9 @@ class ProductCasualProvider extends  ChangeNotifier{
           "assets/image/1.png",
       isAvailable: true, sizes:
     ["M", "L", "XL","S","XXL"],
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m', quantity: 0, category: '', 
+      selectedDeliveryLocation: ' default location',
+      availableDeliveryLocations: [ "Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
     ),
 
   ];
@@ -49,4 +62,10 @@ class ProductCasualProvider extends  ChangeNotifier{
       _casual[index].selectedSize = size;
     }
   }
+
+    void updateDeliveryLocation(ProductModel product, String deliveryLocation) {
+  product. selectedDeliveryLocation  = deliveryLocation;
+  notifyListeners();
+}
+
 }
