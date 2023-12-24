@@ -11,11 +11,18 @@ var uuid = const Uuid();
     int quantity;
     final String size;
     String selectedSize;
+    final String selectedDeliveryLocation;
+     final String availableDeliveryLocations;
 
-    CartModel({
-      required this.size,
-      required this.product,
-    required  this.quantity,
-      required this.selectedSize,
+    CartModel(  {
+       required this.size,
+       required this.product,
+        required  this.quantity,
+       required this.selectedSize,
+       required this.selectedDeliveryLocation,
+       required this.availableDeliveryLocations,
+    
     }): id = uuid.v4();
   }
+
+
