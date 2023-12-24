@@ -17,6 +17,11 @@ class ProductProviderServiciosBelleza  extends ChangeNotifier{
       isAvailable: true,
       sizes: ["M", "L", "XL","S", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+    category: '',
+     quantity: 0,
+       selectedDeliveryLocation: 'default location',
+       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+    
     ),
     ProductModel(
       name: "lenceria tipo color negro",
@@ -26,6 +31,10 @@ class ProductProviderServiciosBelleza  extends ChangeNotifier{
       isAvailable: true,
       sizes: ["M", "L", "XL","S", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+   category: '',
+     quantity: 0,
+    selectedDeliveryLocation: 'default location',
+       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
     )
   ];
     List<ProductModel> get servicios => _servicio;

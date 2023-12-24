@@ -13,7 +13,11 @@ class ProductProvider extends ChangeNotifier {
           "https://i5.walmartimages.com/seo/Avidlove-Womens-Lingerie-Sets-with-Garters-Wedding-Lingerie-for-Bride-Ropa-Interior-Femenina-WhiteL_8a40a45f-8b4b-4f95-a1f2-31a828b1cb5e.b0f02a7cd3471d79f28226c9d5ade85d.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF",
       isAvailable: false,
       sizes: ["M", "S", "L","XL", "XXL"],
-      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+      description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m', 
+      quantity: 0,
+      category: '', 
+       selectedDeliveryLocation: ' default location',
+      availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
     ),
 
     ProductModel(
@@ -23,6 +27,11 @@ class ProductProvider extends ChangeNotifier {
       isAvailable: true,
       sizes: ["M", "S", "L","XL", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+     category: '',
+     quantity: 0,
+       selectedDeliveryLocation: ' default location',
+      availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+    
     ),
 
     ProductModel(
@@ -32,6 +41,10 @@ class ProductProvider extends ChangeNotifier {
       isAvailable: true,
       sizes: ["M", "S", "L","XL", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
+       quantity: 0, 
+       category: 'indefinied',
+         selectedDeliveryLocation: ' default location',
+         availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
     ),
 
 
@@ -49,5 +62,10 @@ class ProductProvider extends ChangeNotifier {
       _belleza[index].selectedSize = size;
     }
   }
+  
+  void updateDeliveryLocation(ProductModel product, String deliveryLocation) {
+  product.selectedDeliveryLocation = deliveryLocation;
+  notifyListeners();
+}
 
 }
