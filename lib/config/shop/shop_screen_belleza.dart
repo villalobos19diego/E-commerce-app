@@ -73,12 +73,7 @@ class _ShopScreenState extends State<ShopScreen> {
                       )
                     ],
                   ),
-                   CircleAvatar(
-                    radius: size.width * 0.080,
-                    foregroundImage: const NetworkImage(
-                      "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/cbf7c4cd-fe28-4415-b958-4b098fbd30d4.3987f4fbd59ff83b1a4eb2f1dc9b895d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-                    ),
-                  )
+
                 ],
               ),
                  SizedBox(
@@ -119,7 +114,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                        builder: (context)
                                        =>
                                       ProductDetailsScreen(
-                                        product: product,
+                                        product: product, availableDeliveryLocations: [],
 
                                       ),
                                 ),

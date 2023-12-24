@@ -4,13 +4,18 @@
 
 
 
-import 'package:e_commerce/config/cart/item_card.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 
+
+
 import '../provider/cart_provider.dart';
+import 'item_card.dart';
+
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -25,12 +30,12 @@ class _CartScreenState extends State<CartScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+         // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: size.height * 0.060,
+              height: size.height * 0.030,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,7 +52,7 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
             SizedBox(
-              height: size.height * 0.030,
+              height: size.height * 0.010,
             ),
             Expanded(
               child: SizedBox(
@@ -57,15 +62,10 @@ class _CartScreenState extends State<CartScreen> {
                       ? Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "My Carrito",
-                              style: GoogleFonts.poppins(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
-                            ),
+
                             Consumer<CartProvider>(
-                              builder: (context, value, child) => Column(
+                              builder: (context, value,
+                                  child) => Column(
                                 children: value.shoppingCart
                                     .map(
                                       (cartItem) => CartItem(
@@ -93,7 +93,7 @@ class _CartScreenState extends State<CartScreen> {
                                 height: size.height * 0.020,
                               ),
                               Text(
-                                "Es carrito esta vacio",
+                                "Es Carrito Esta Vacio",
                                 style: GoogleFonts.poppins(
                                   color: Colors.grey,
                                 ),
@@ -141,7 +141,7 @@ class _CartScreenState extends State<CartScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Cargo  de envio",
+                        "Cargo  De Envio",
                         style: GoogleFonts.poppins(),
                       ),
                       Text(
@@ -177,7 +177,12 @@ class _CartScreenState extends State<CartScreen> {
                     width: size.width,
                     height: size.height * 0.055,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async  
+                {
+                    
+
+                   
+                 },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                         elevation: 0,
@@ -202,4 +207,7 @@ class _CartScreenState extends State<CartScreen> {
       ),
     );
   }
+
 }
+
+
