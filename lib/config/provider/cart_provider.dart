@@ -1,4 +1,5 @@
-  import 'package:e_commerce/config/cart/models/cart_model.dart';
+  
+import 'package:e_commerce/config/cart/models/cart_model.dart';
 import 'package:e_commerce/config/cart/models/product_model.dart';
 import 'package:flutter/material.dart';
 
@@ -7,15 +8,23 @@ import 'package:flutter/material.dart';
 class CartProvider extends ChangeNotifier {
   final List<CartModel> _shoppingCart = [];
 
-  void addToCart(ProductModel product, String selectedSize) {
-    var isExist = _shoppingCart.where((element) =>
-    element.product.id == product.id && element.selectedSize == selectedSize);
+  void addToCart(ProductModel product, String selectedSize,
+      String selectedDeliveryLocation) {
+    var isExist = _shoppingCart.where
+      ((element) =>
+    element.product.id == product.id &&
+        element.selectedSize == selectedSize    &&
+        element.selectedDeliveryLocation ==
+            selectedDeliveryLocation);
     if (isExist.isEmpty) {
       _shoppingCart.add(CartModel(
         product: product,
         quantity: 1,
         size: '',
         selectedSize: selectedSize,
+       selectedDeliveryLocation:  selectedDeliveryLocation,
+        availableDeliveryLocations: '',
+        
       ));
     } else {
       isExist.first.quantity += 1;
