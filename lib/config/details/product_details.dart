@@ -27,26 +27,26 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends
 State<ProductDetailsScreen> {
-
-
   late String selectedSize;
-
   String selectedLocation = "Ubicaciones de Entrega";
-
   Future<void> _showLocationDialog() async {
     String? newLocation = await showDialog<String>(
       context: context,
       builder: (BuildContext context) {
-        return SimpleDialog(
-          title: const Text('Seleccionar Ubicación'),
-          children: widget.product.availableDeliveryLocations.map((location) {
-            return SimpleDialogOption(
-              onPressed: () {
-                Navigator.pop(context, location);
-              },
-              child: Text(location),
-            );
-          }).toList(),
+        return Center(
+          child: SimpleDialog(
+            title: const Text('Seleccionar Ubicación'),
+            children: widget.product.availableDeliveryLocations.map((location) {
+              return Center(
+                child: SimpleDialogOption(
+                  onPressed: () {
+                    Navigator.pop(context, location);
+                  },
+                  child: Text(location),
+                ),
+              );
+            }).toList(),
+          ),
         );
       },
     );
@@ -58,14 +58,6 @@ State<ProductDetailsScreen> {
     }
   }
 
-
-
-
-
-
-
-
-
   @override
   void initState() {
     super.initState();
@@ -73,16 +65,10 @@ State<ProductDetailsScreen> {
     selectedSize =
     widget.product.sizes.isNotEmpty ?
     widget.product.sizes[0] : "";
-
-
-
   }
-
-
 
   @override
   Widget build(BuildContext context)  {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
@@ -90,18 +76,13 @@ State<ProductDetailsScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
-
               Stack(
                 alignment: AlignmentDirectional.topStart,
                 children: [
-
-
                   Column(
                     children: [
                       SizedBox(
                         height: 400,
-
                         width: double.infinity,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
@@ -189,12 +170,7 @@ State<ProductDetailsScreen> {
                       ),
                     ),
 
-
-
-
-
                     const SizedBox(height: 8),
-
                     const Text(  'Tallas Disponibles:',
                       style: TextStyle(
                         color:Colors.purple,
@@ -205,7 +181,6 @@ State<ProductDetailsScreen> {
                     ),
 
                     const SizedBox(height: 8),
-
                     // Usar Wrap para mostrar botones redondos con las tallas disponibles
                     Center(
                       child:
@@ -215,7 +190,6 @@ State<ProductDetailsScreen> {
                           children: [
 
                             Wrap(
-
                               spacing: 20.0,
                               children: widget.product.sizes.map(
                                       (String size) {
@@ -227,7 +201,8 @@ State<ProductDetailsScreen> {
                                         });
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        backgroundColor: size == selectedSize ? Colors.purple : Colors.grey, // Color del botón
+                                        backgroundColor: size == selectedSize ?
+                                         Colors.purple : Colors.grey, // Color del botón
                                         shape: RoundedRectangleBorder(
                                           borderRadius: BorderRadius.circular(20.0), // Radio de la esquina del botón
                                         ),
@@ -247,10 +222,6 @@ State<ProductDetailsScreen> {
                       ),
 
                     ),
-
-
-
-
                     const SizedBox(height: 10),
                     //Botón para agregar al carrito
                     widget.product.isAvailable ?
@@ -263,7 +234,7 @@ State<ProductDetailsScreen> {
                               title: const  Text('Tallas:',
                                 style:
                                 TextStyle(color:Colors.purple,
-                                    fontSize: 13, // Ajusta el tamaño del título según tus necesidades
+                                    fontSize: 13, 
                                     fontWeight: FontWeight.bold), ),
                               backgroundColor:Colors.white,
                               contentPadding:
@@ -273,7 +244,7 @@ State<ProductDetailsScreen> {
                                 children: widget.product.sizes.map((size) {
                                   return ListTile(
                                     title: Text(size, style: const  TextStyle(
-                                      fontSize: 16, // Ajusta el tamaño del texto de la lista según tus necesidades
+                                      fontSize: 16, 
                                     ),),
                                     onTap: () {
                                       Navigator.pop(context, size);
@@ -350,109 +321,71 @@ State<ProductDetailsScreen> {
                     ) :
                     Container(),
 
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: ()  async {
-                        // Obtener la información del producto y la talla seleccionada
-                        String productInfo = 'Producto: ${widget.product.name}\n';
-                        productInfo += 'Descripción: ${widget.product.description}\n';
-                        productInfo += 'Precio: \$${widget.product.price.toString()}\n';
-                        productInfo += 'Talla seleccionada: $selectedSize\n';
-                        productInfo += 'Entrega En: $selectedLocation\n';
-
-                        //  ByteData bytes = await rootBundle.load(widget.product.image);
-                        //   List<int> imageData = bytes.buffer.asUint8List();
-
-
-                        //   await Share.file(
-                        //   'Producto: ${widget.product.name}',
-                        //   'product.jpg',
-                        //   imageData,
-                        //   'image/jpeg',
-                        //   text: productInfo,
-                        // );
-
-                        // Lanzar la función para abrir WhatsApp con la información del producto
-                        await _launchWhatsApp(productInfo);
-                      },
-                      child: Center(
-                        child: Padding(
-                          padding:  const EdgeInsets.only(bottom:20),
-                          child:Container(
-                            padding: const EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.purple,
-                              borderRadius: BorderRadius.circular(10),
-
-
-                            ),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.call_made,
-                                  size: 20,
-                                  color: Colors.black,
-                                ),
-                                const SizedBox(width: 15),
-                                Center(
-                                  child:Container(
-                                    margin: const EdgeInsets.only(top: 8),
-                                    child: const Text(
-                                      'Solicitar por WhatsApp',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ],
-
-                            ),
-
-
-
-
-
-                          ),
+                    const SizedBox(height: 10),
+                    Center(
+                      child: ElevatedButton(
+                   
+                        
+                        
+                        onPressed: ()  async {
+                          // Obtener la información del producto y la talla seleccionada
+                          String productInfo = 'Producto: ${widget.product.name}\n';
+                          productInfo += 'Descripción: ${widget.product.description}\n';
+                          productInfo += 'Precio: \$${widget.product.price.toString()}\n';
+                          productInfo += 'Talla seleccionada: $selectedSize\n';
+                          productInfo += 'Entrega En: $selectedLocation\n';
+                    
+                          //  ByteData bytes = await rootBundle.load(widget.product.image);
+                          //   List<int> imageData = bytes.buffer.asUint8List();
+                    
+                    
+                          //   await Share.file(
+                          //   'Producto: ${widget.product.name}',
+                          //   'product.jpg',
+                          //   imageData,
+                          //   'image/jpeg',
+                          //   text: productInfo,
+                          // );
+                    
+                          // Lanzar la función para abrir WhatsApp con la información del producto
+                          await _launchWhatsApp(productInfo);
+                        },
+                        child:  const Text(
+                       'Pedir Por Whatsapp', style: TextStyle
+                       (color: Color.fromARGB(255, 31, 208, 15)),
                         ),
                       ),
                     ),
-
-
-
-
-
-
-
-
-
-
-
                      const SizedBox(height: 8),
-                       const Text(
-                'Puntos Disponibles:',
-                  style: TextStyle(
-                     color: Colors.purple,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                   ),
-                  ),
-                 const SizedBox(height: 8),
-
+                       const Center(
+                         child: Text(
+                                       'Puntos Disponibles:',
+                                         style: TextStyle(
+                                            color: Colors.purple,
+                                         fontSize: 15,
+                                         fontWeight: FontWeight.bold,
+                                          ),
+                                         ),
+                       ),
+                 const SizedBox(height: 10),
               // Muestra las ubicaciones de entrega disponibles
-              GestureDetector(
-                onTap: _showLocationDialog,
-                child: Row(
-                  children: [
-                    const Icon(Icons.location_on),
-                    const SizedBox(width: 8),
-                    Text(selectedLocation),
-                  ],
-                ),
-              ),
-
-
+            Center(
+        child: GestureDetector(
+      onTap: _showLocationDialog,
+        child: Center(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center, // Centra los elementos horizontalmente
+        children: [
+          const Center(child: Icon(Icons.location_on,
+           color: Colors.purple,)),
+          const SizedBox(width: 10),
+          Center(child: Text(selectedLocation, 
+          style: const  TextStyle(color:Colors.purple),)),
+        ],
+      ),
+    ),
+  ),
+),
                   ],
                 ),
               ),
