@@ -2,10 +2,13 @@
 
 
 
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../../password/image/UserProfileImage.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import '../../profile/Screen_username.dart';
 
 
@@ -27,17 +30,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
     _emailController.text = '';
   }
 
-  Widget _buildTopSection() {
-    return const Align(
-      alignment: Alignment.topRight,
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: UserProfileImage(
-          profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iscIvwOLGIff33hveao7z3fexyWW_zfGcg&usqp=CAU',
-        ),
-      ),
-    );
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +38,6 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          _buildTopSection(),
           Center(
             child: Container(
               width: 450,
@@ -54,7 +46,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.5),
+                      color:  const  Color.fromARGB(255, 243, 192, 245).withOpacity(0.9),
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),
@@ -83,8 +75,10 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                         floatingLabelStyle:
                         TextField.materialMisspelledTextStyle,
                         labelText: 'Ingresa Tu Nuevo  Correo',
+                        labelStyle: const TextStyle
+                        (color: Color.fromARGB(216, 107, 45, 117)),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(25),
+                          borderRadius: BorderRadius.circular(20),
                         ),
                         prefixIcon: const Icon(
                           Icons.email,
@@ -100,6 +94,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                             _showPassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
+                                color:  const Color.fromARGB(216, 107, 45, 117),
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
@@ -127,14 +122,17 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                       style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.w500,
-                        fontSize: 13,
+                        fontSize: 10,
                       ),
                     ),
                   ),
                   ElevatedButton(
+                    
+                       
                     onPressed: ()  async {
          final _authService = _AuthServicea();
     await _authService.updateEmailWithVerification(_emailController.text);
+    
 
 
                     },
@@ -144,7 +142,8 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                       backgroundColor:
                       const Color.fromARGB(216, 107, 45, 117),
                     ),
-                    child: const Text('Cambiar Correo'),
+                    child: 
+                    const Text('Enviar Mensaje'),
                   ),
                 ],
               ),
@@ -154,7 +153,9 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
             top: 16,
             left: 16,
             child: IconButton(
-              icon: const Icon(Icons.arrow_back),
+               splashColor: const Color.fromARGB(216, 107, 45, 117),
+              icon: const Icon(Icons.arrow_back, 
+              color: Color.fromARGB(216, 107, 45, 117),),
               onPressed: () {
 
                 Navigator.pushReplacement(
@@ -179,6 +180,7 @@ class _AuthServicea {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> sendVerificationEmail(String emailAddress) async {
+  
     try {
       await _auth.sendPasswordResetEmail(email: emailAddress);
     } catch (e) {
@@ -191,12 +193,16 @@ class _AuthServicea {
   Future<void> updateEmailWithVerification(String newEmail) async {
     try {
       await _auth.currentUser!.verifyBeforeUpdateEmail(newEmail);
+    Fluttertoast.showToast(msg: 'Se Envio Un Mensaje A Tu Bandeja De Entrada');
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
+      Fluttertoast.showToast(msg:'Error al actualizar el email: $e', backgroundColor: Colors.red );
+  if(kDebugMode){
+    print(e);
   }
 }
+    }
+    
+  }
+
 
 
