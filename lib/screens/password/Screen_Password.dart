@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import '../profile/Screen_username.dart';
-import 'image/UserProfileImage.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({super.key});
@@ -24,17 +23,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   }
 
 
-  Widget _buildTopSection() {
-    return const Align(
-      alignment: Alignment.topRight,
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: UserProfileImage(
-          profileImageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2iscIvwOLGIff33hveao7z3fexyWW_zfGcg&usqp=CAU',
-        ),
-      ),
-    );
-  }
+ 
 
 
   @override
@@ -44,7 +33,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       body: Stack(
         children: [
 
-          _buildTopSection(),
+         
           Center(
             child: Container(
               width: 450,
@@ -53,7 +42,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                 borderRadius: BorderRadius.circular(8),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.5),
+                    color:  const  Color.fromARGB(255, 243, 192, 245)
+                    .withOpacity(0.9),
+                
                     spreadRadius: 5,
                     blurRadius: 7,
                     offset: const Offset(0, 3),
@@ -69,12 +60,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: TextField(
                       obscureText: !_showPassword,
                       controller: _emailController,
-                      cursorColor: const Color.fromARGB(216, 107, 45, 117),
+                      cursorColor: const
+                       Color.fromARGB(216, 107, 45, 117),
                       decoration: InputDecoration(
                         isDense: true,
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
-                            color: Color.fromARGB(216, 107, 45, 117),
+                            color:
+                             Color.fromARGB(216, 107, 45, 117),
                           ),
                         ),
                         floatingLabelStyle:
@@ -84,7 +77,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                           borderRadius: BorderRadius.circular(25),
                         ),
                         prefixIcon: const Icon(
-                          Icons.email,
+                          Icons.mark_email_read_outlined,
                           color: Color.fromARGB(216, 107, 45, 117),
                         ),
                         suffixIcon: IconButton(
@@ -97,11 +90,13 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                             _showPassword
                                 ? Icons.visibility
                                 : Icons.visibility_off,
+                                color: const Color.fromARGB(216, 107, 45, 117),
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 20,
                           horizontal: 20,
+                          
                         ),
                       ),
                     ),
@@ -118,14 +113,17 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                       style: TextStyle(
                         color: Colors.black54,
                         fontWeight: FontWeight.w500,
-                        fontSize: 13,
+                        fontSize: 10,
                       ),
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       _authService
                           .sendVerificationEmail(_emailController.text);
+
+
+                      
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 25),
@@ -143,10 +141,14 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
             top: 16,
             left: 16,
             child: IconButton(
-              icon: const Icon(Icons.arrow_back),
+              splashColor: const Color.fromARGB(216, 107, 45, 117),
+              
+              icon: const Icon(Icons.arrow_back, color: 
+               Color.fromARGB(216, 107, 45, 117),),
               onPressed: () {
                 Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => const ScreenProfileUsername()));
+                    context, MaterialPageRoute(builder:
+                     (_) => const ScreenProfileUsername()));
               },
             ),
           ),
@@ -160,10 +162,18 @@ class AuthService {
   Future<void> sendVerificationEmail(String emailAddress) async {
     try {
       await FirebaseAuth.instance.sendPasswordResetEmail(email: emailAddress);
+         Fluttertoast.showToast(msg: 'Se Envio Un Mensaje A Tu Bandeja De Entrada', 
+         backgroundColor: const Color.fromARGB(216, 107, 45, 117));
     } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
+
+     Fluttertoast.showToast(msg:'Error al actualizar el email: $e', backgroundColor: Colors.red );
+      if(kDebugMode){
+    print(e);
+  }
+
+      
     }
   }
+
+
 }

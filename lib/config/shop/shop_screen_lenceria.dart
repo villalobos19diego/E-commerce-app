@@ -3,6 +3,7 @@
 
 
 
+import 'package:e_commerce/config/details/product_details.dart';
 import 'package:e_commerce/config/provider/product_provider_lenceria.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
@@ -58,12 +59,7 @@ class ShopScreenLanceria extends StatefulWidget{
                       )
                     ],
                   ),
-                   CircleAvatar(
-                    radius: size.width * 0.060,
-                    foregroundImage: const NetworkImage(
-                      "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/cbf7c4cd-fe28-4415-b958-4b098fbd30d4.3987f4fbd59ff83b1a4eb2f1dc9b895d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-                    ),
-                  )
+
                 ],
               ),
                SizedBox(
@@ -108,9 +104,9 @@ class ShopScreenLanceria extends StatefulWidget{
               ),
            Column(
 
-      children: [ 
+                   children: [
                   
-  CategoryHeader(
+              CategoryHeader(
                     title: ' Ropa Lenceria',
                     count:
                         '${Provider.of<ProductproviderLenceria>(context).lencerias.length}',
@@ -123,11 +119,21 @@ class ShopScreenLanceria extends StatefulWidget{
                     child: Consumer<ProductproviderLenceria>(
                       builder: (context, value, child) => Column(
                         children: value.lencerias
-                            .map((product) =>  Padding(padding: const EdgeInsets.all(20),
-                              child:   Product(
-                                  product: product,
-                                ),
+                            .map((product) =>  GestureDetector(
+                          onTap:(){
+                            Navigator.push(context, MaterialPageRoute(
+                            builder:(context) => ProductDetailsScreen(
+                            product: product, availableDeliveryLocations: [],
                             ),
+                            ),);
+                          },
+                          child:Padding(padding: const EdgeInsets.all(20),
+                          child: Product(
+                            product:product
+                          ),
+
+                          ),
+                        ),
                              
                             
                           )

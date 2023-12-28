@@ -1,8 +1,11 @@
 
+
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/email/widgets/Screen_Email.dart';
 import 'package:e_commerce/screens/password/Screen_Password.dart';
 import 'package:e_commerce/screens/photo/photo_user.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 
@@ -14,29 +17,44 @@ class ScreenProfileUsername extends StatefulWidget {
 }
 
 class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
-
+   final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
-    // AuthService authService = AuthService();
-    // String username = authService.getEmail() ?? "Email";
+   final User? user = auth.currentUser;
+
 
     PreferredSizeWidget appBar = AppBar(
       backgroundColor:const Color.fromARGB(216, 107, 45, 117),
-      title:   const Row(
+      title:    Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          Icon(
-            Icons.person_rounded,
-            color: Color.fromARGB(199, 255, 255, 255),
-            size: 50.0,
-          ),
-          SizedBox(
-            width: 40,
-          ),
-          Text(
-            'username',
-            style: TextStyle(color: Colors.white, fontSize: 18),
-          ),
+          if(user != null ) ...[
+            Center(
+              child: Text(' ${user.email}',
+              style: const TextStyle(fontSize: 20,
+                   color: Colors.black)
+              ),
+            ),
+            const SizedBox(height: 20),
+            if(user.photoURL != null) ...[
+
+              CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(user.photoURL!),
+                ),
+            ] else ...[
+
+              const Icon(Icons.account_circle_outlined, size: 70),
+
+            ],
+          ] else ...[
+
+            const Text('No hay Usuario Logeado')
+
+          ]
+         
+        
+         
         ],
       ),
       toolbarHeight: 80,
@@ -63,7 +81,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
     Widget elevatedButtonFun(String value) {
       return ElevatedButton(
         onPressed: () async {
-          //await authService.logout();
+       // await authService.logout();
           if (mounted) {
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const Tabbar()));
@@ -94,7 +112,7 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
             ),
           ),
           useMaterial3: true),
-      title: 'Username',
+  
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: appBar,
@@ -113,7 +131,10 @@ class _ScreenProfileUsernameState extends State<ScreenProfileUsername> {
               const SizedBox(
                 height: 30,
               ),
-              filledButtonFun("Change Photo",const PhotoUser()),
+              filledButtonFun("Change Photo",
+              const PhotoUser()
+              
+              ),
               const SizedBox(
                 height: 125,
               ),

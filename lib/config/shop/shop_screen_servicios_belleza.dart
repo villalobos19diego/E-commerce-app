@@ -1,4 +1,5 @@
 
+import 'package:e_commerce/config/details/product_details.dart';
 import 'package:e_commerce/config/provider/producto_provider_servicios_belleza.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
@@ -54,12 +55,7 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
                       )
                     ],
                   ),
-                   CircleAvatar(
-                    radius: size.width * 0.060,
-                    foregroundImage: const NetworkImage(
-                      "https://i5.walmartimages.com.mx/mg/gm/3pp/asr/cbf7c4cd-fe28-4415-b958-4b098fbd30d4.3987f4fbd59ff83b1a4eb2f1dc9b895d.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-                    ),
-                  )
+
                 ],
               ),
                SizedBox(
@@ -118,15 +114,25 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
                     height: size.height * 0.020,
                   ),
                   SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
+                    scrollDirection: Axis.vertical,
                     child: Consumer<ProductProviderServiciosBelleza>(
                       builder: (context, value, child) =>   Column(
                         children:   value.servicios
-                            .map((product) => Padding(padding: const EdgeInsets.all(20),
-                             child: Product(
-                                  product: product,
-                                ),
-                            )
+                            .map((product) =>
+                            GestureDetector(
+                              onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder:( context)
+                                => ProductDetailsScreen(product:product, availableDeliveryLocations: const [],)
+                                )
+                                );
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: Product(product: product),
+                              ),
+                            ),
+
+
                             
                             )
                             .toList(),
