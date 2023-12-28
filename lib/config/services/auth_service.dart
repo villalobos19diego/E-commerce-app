@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
@@ -9,6 +10,79 @@ class AuthService {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   bool isSigned = FirebaseAuth.instance.currentUser != null;
 
+
+  
+
+ Future<void> updateEmailWithVerification(String newEmail ) async {
+    try {
+      // Verifica si el nuevo correo electrónico es válido
+      if (!isValidEmail(newEmail)) {
+        Fluttertoast.showToast(
+          msg: 'Correo electrónico no válido',
+          backgroundColor: Colors.red,
+        );
+        return;
+      }
+
+      // Reautentica al usuario antes de cambiar el correo electrónico
+      await _auth.currentUser!.reauthenticateWithCredential(
+        EmailAuthProvider.credential(email: _auth.currentUser!.email!, password: ''),
+      );
+
+      // Actualiza el correo electrónico
+      await _auth.currentUser!.updateEmail(newEmail);
+
+      // Muestra el mensaje de éxito después de la actualización exitosa
+      Fluttertoast.showToast(
+        msg: 'Se ha enviado un mensaje a tu bandeja de correo para verificar el cambio',
+        backgroundColor: Colors.green,
+      );
+    } on FirebaseAuthException catch (e) {
+      // Muestra mensajes de error específicos según el código de error
+      if (e.code == "requires-recent-login") {
+        Fluttertoast.showToast(
+          msg: 'Esta operación requiere una autenticación reciente. Inicia sesión nuevamente.',
+          backgroundColor: Colors.red,
+        );
+      } else if (e.code == "invalid-email") {
+        Fluttertoast.showToast(
+          msg: 'El correo electrónico proporcionado no es válido.',
+          backgroundColor: Colors.red,
+        );
+      } else if (e.code == "user-mismatch") {
+        Fluttertoast.showToast(
+          msg: 'La reautenticación no coincide con el usuario actual.',
+          backgroundColor: Colors.red,
+        );
+      } else if (e.code == "user-not-found") {
+        Fluttertoast.showToast(
+          msg: 'Usuario no encontrado.',
+          backgroundColor: Colors.red,
+        );
+      } else if (e.code == "wrong-password") {
+        Fluttertoast.showToast(
+          msg: 'La contraseña no es correcta.',
+          backgroundColor: Colors.red,
+        );
+      } else {
+        // Maneja otros códigos de error aquí según sea necesario
+        Fluttertoast.showToast(
+          msg: 'Error al cambiar el correo: ${e.message}',
+          backgroundColor: Colors.red,
+        );
+      }
+
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  bool isValidEmail(String email) {
+    // Agrega aquí tu lógica para validar el formato del correo electrónico
+    // Puedes usar expresiones regulares u otras técnicas según tus requisitos
+    return true; // Ejemplo: siempre válido por ahora
+  }
   Future<bool> loginHandlerEmail(
       BuildContext context, String email, String password) async {
     try {
