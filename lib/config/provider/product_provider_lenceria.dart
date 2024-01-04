@@ -15,6 +15,7 @@ final List<ProductModel> _lenceria = [
      quantity: 0,
        selectedDeliveryLocation: 'njwfbwfbowf',
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+       beautyServices: [], selectedBeautyService: '',
     
     ),
     ProductModel(
@@ -28,6 +29,7 @@ final List<ProductModel> _lenceria = [
      quantity: 0,
  selectedDeliveryLocation: 'default location',
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+       beautyServices: [], selectedBeautyService: '',
     
     ),
 
@@ -43,7 +45,7 @@ final List<ProductModel> _lenceria = [
      quantity: 0,
         selectedDeliveryLocation: 'default location', 
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
-       
+       beautyServices: [], selectedBeautyService: '',
     
     ),
   ];

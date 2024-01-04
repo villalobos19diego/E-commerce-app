@@ -18,6 +18,8 @@ class ProductProvider extends ChangeNotifier {
       category: '', 
        selectedDeliveryLocation: ' default location',
       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+      beautyServices: [], 
+      selectedBeautyService: '',
     ),
 
     ProductModel(
@@ -31,6 +33,8 @@ class ProductProvider extends ChangeNotifier {
      quantity: 0,
        selectedDeliveryLocation: ' default location',
       availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+      beautyServices: [], 
+      selectedBeautyService: '',
     
     ),
 
@@ -45,6 +49,8 @@ class ProductProvider extends ChangeNotifier {
        category: 'indefinied',
          selectedDeliveryLocation: ' default location',
          availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+         beautyServices: [],
+          selectedBeautyService: '',
     ),
 
 
