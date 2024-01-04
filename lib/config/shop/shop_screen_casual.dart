@@ -3,7 +3,6 @@ import 'package:e_commerce/config/provider/product_casual_provider.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ShopScreenCasual extends StatefulWidget{
@@ -20,7 +19,6 @@ class ShopScreenCasual extends StatefulWidget{
      Size size = MediaQuery.of(context).size;
 
   return  Scaffold(
-    
     body: SingleChildScrollView(
        physics: const ScrollPhysics(),
        child: Padding(padding:
@@ -28,10 +26,7 @@ class ShopScreenCasual extends StatefulWidget{
        child: Column(
          crossAxisAlignment:
          CrossAxisAlignment.start,
-         children: [ SizedBox(
-                height: size.height * 0.0500,
-                
-              ),
+         children: [
               
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,65 +34,20 @@ class ShopScreenCasual extends StatefulWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: size.width * 0.030,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.040,
-                        ),
-                      )
+                       IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Colors.purple,
+                splashColor: Colors.purple[400]
+
+              ),
+                     
                     ],
                   ),
 
                 ],
-              ),
-               SizedBox(
-                height: size.height * 0.020,
-              ),
-               SizedBox(
-                width: size.width,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusColor: Colors.black38,
-                    isCollapsed: false,
-                    hintText: "Buscar Productos",
-                    prefixIcon: const Icon(Icons.search),
-                    hintStyle: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: size.width * 0.010,
-                      ),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.01,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide:  const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    
-                  ),
-                ),
-              ),
-                SizedBox(
-                height: size.height * 0.015,
               ),
            Column(
 
@@ -135,28 +85,18 @@ class ShopScreenCasual extends StatefulWidget{
 
                           ),
                         ),
-
-
-
-
                             )
                             .toList(),
                       ),
                     ),
                   ),],
 
-
               ),
               
               ],
-
-
        ),
       ),
-  
     ),
-
-
 
   );
   }

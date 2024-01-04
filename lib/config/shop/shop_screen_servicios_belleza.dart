@@ -1,10 +1,10 @@
 
-import 'package:e_commerce/config/details/product_details.dart';
+
+import 'package:e_commerce/config/details/product_details_servicio.dart';
 import 'package:e_commerce/config/provider/producto_provider_servicios_belleza.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class ShopScreenServiciosBelleza extends StatefulWidget{
@@ -27,10 +27,7 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
        child: Padding(padding: const EdgeInsets.all(15.0),
        child: Column(
          crossAxisAlignment: CrossAxisAlignment.start,
-         children: [ SizedBox(
-                height: size.height * 0.080,
-                
-              ),
+         children: [ 
               
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,77 +35,35 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: size.width * 0.050,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.040,
-                        ),
-                      )
+
+
+                       IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Colors.purple,
+                splashColor: Colors.purple[400]
+
+              ),
+                     
+                     
                     ],
                   ),
 
                 ],
               ),
-               SizedBox(
-                height: size.height * 0.020,
-              ),
-               SizedBox(
-                width: size.width,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusColor: Colors.black38,
-                    isCollapsed: false,
-                    hintText: "Search gadgets",
-                    prefixIcon: const Icon(Icons.search),
-                    hintStyle: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: size.width * 0.040,
-                      ),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.01,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide:  const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    
-                  ),
-                ),
-              ),
-                SizedBox(
-                height: size.height * 0.030,
-              ),
+              
            Column(
 
       children: [ 
-                  
-    SizedBox(
-                    height: size.height * 0.020,
+        SizedBox(
+                    height: size.height * 0.10,
                   ),
                   CategoryHeader(
-                    title: '  Servicios De Belleza',
+                    title: 'Servicios De Belleza',
                     count:
-                        '${Provider.of<ProductProviderServiciosBelleza>(context).servicios.length}',
+                        '${Provider.of<ProductProviderServiciosBelleza>(context).servicios.length}', 
                   ),
                   SizedBox(
                     height: size.height * 0.020,
@@ -122,7 +77,7 @@ class ShopScreenServiciosBelleza extends StatefulWidget{
                             GestureDetector(
                               onTap: (){
                                 Navigator.push(context, MaterialPageRoute(builder:( context)
-                                => ProductDetailsScreen(product:product, availableDeliveryLocations: const [],)
+                                => ProductDetailsService(product:product, availableDeliveryLocations: const [],)
                                 )
                                 );
                               },
