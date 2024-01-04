@@ -54,7 +54,7 @@ class ScreenProfileLogin extends StatelessWidget {
               ),
             ),
           ),
-            SizedBox(height: 100),
+            const SizedBox(height: 100),
 
             // Botón "Log In"
             ElevatedButton(
@@ -77,12 +77,12 @@ class ScreenProfileLogin extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
 
             // Texto "¿No tienes una cuenta?"
-            Text(
+            const Text(
               '¿You do not have an account?',
-              style: const TextStyle(fontSize: 16.0),
+              style: TextStyle(fontSize: 16.0),
             ),
 
             // Enlace para ir a la página de registro

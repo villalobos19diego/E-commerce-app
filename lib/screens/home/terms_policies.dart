@@ -10,9 +10,9 @@ class TermsPolicies extends StatelessWidget {
       appBar: AppBar( 
         backgroundColor: const Color.fromARGB(216, 107, 45, 117),
         title: const Text('Terminos y Condiciones'),
-        titleTextStyle: TextStyle(color: Colors.black,
+        titleTextStyle: const TextStyle(color: Colors.black,
         fontSize: 20),
-        iconTheme: IconThemeData(color: Color.fromARGB(255, 225,190, 231)),
+        iconTheme: const IconThemeData(color: Color.fromARGB(255, 225,190, 231)),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
