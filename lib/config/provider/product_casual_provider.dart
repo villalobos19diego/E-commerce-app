@@ -9,7 +9,7 @@ class ProductCasualProvider extends  ChangeNotifier{
       price: 50.75,
       image:
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRDoEl6vJF_GhmGKpCuZvk7JWCYdiSH8_IsQ&usqp=CAU",
-      isAvailable:  true, 
+      isAvailable:   false, 
       sizes: ["M", "L", "XL","S", "XXL" ],
       description: '',
        quantity: 0,
@@ -17,6 +17,7 @@ class ProductCasualProvider extends  ChangeNotifier{
       
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
         selectedDeliveryLocation: ' default location',
+        beautyServices: [], selectedBeautyService: '',
 
     ),
     ProductModel(
@@ -27,12 +28,14 @@ class ProductCasualProvider extends  ChangeNotifier{
       isAvailable: true, 
       sizes: ["M", "L", "XL","S", "XXL"],
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m',
-       category: 'indefined', quantity: 0,
+       category: 'indefined', 
+       quantity: 0,
         selectedDeliveryLocation: ' default location',
-        availableDeliveryLocations: [ "Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"]
+        availableDeliveryLocations: [ "Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+        beautyServices: [], selectedBeautyService: '',
     ),
     ProductModel(
-      name: "SHEIN VCAY Vestido con estampado floral de espalda abierta con nudo fruncido tirantes",
+      name: "Vestido con estampado floral de espalda abierta con nudo fruncido tirantes",
       price: 22.99,
       image:
           "https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcR7PNUQJ3iC9gtal9WDaHdi696WCHRq2AFaC5xDODfbetJraM5PBnb_h0cb2_gA2IBTG7EQzzmTc1BdhRez6DUKg30YRaHViv79m44oYFZKtn6R9SiIzmFHsw&usqp=CAc",
@@ -41,6 +44,7 @@ class ProductCasualProvider extends  ChangeNotifier{
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m', category: '', quantity: 0,
        selectedDeliveryLocation: ' default location',
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+       beautyServices: [], selectedBeautyService: '',
     ),
     ProductModel(
       name: "Set Casual ",
@@ -52,6 +56,7 @@ class ProductCasualProvider extends  ChangeNotifier{
       description: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius m', quantity: 0, category: '', 
       selectedDeliveryLocation: ' default location',
       availableDeliveryLocations: [ "Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+      beautyServices: [], selectedBeautyService: '',
     ),
 
   ];
