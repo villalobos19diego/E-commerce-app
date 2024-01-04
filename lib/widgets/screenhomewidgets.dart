@@ -4,6 +4,7 @@ import 'package:e_commerce/widgets/barrabusqueda.dart';
 import 'package:e_commerce/widgets/carruseles.dart';
 import 'package:e_commerce/widgets/carruseles2.dart';
 import 'package:e_commerce/widgets/drawer.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ScreenHome extends StatefulWidget {
   const ScreenHome({super.key});
@@ -21,18 +22,14 @@ class _ScreenHomeState extends State<ScreenHome> {
         drawer: const DrawerWidget(),
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Lingerie App',style: TextStyle(color: Color.fromARGB(255, 225,190, 231)),),
+          title: const Text('ParaTiSv',style: TextStyle(color: Color.fromARGB(255, 225,190, 231)),),
           backgroundColor: const Color.fromARGB(216, 107, 45, 117),
           actions: <Widget>[
-            IconButton(
-              icon: const Icon(
-                Icons.shopping_cart,
-                color: Color.fromARGB(255, 225,190, 231),
-              ),
-              onPressed: () {
-                // hara algo
-              },
-            )
+
+
+            
+
+
           ],
         ),
         
@@ -47,7 +44,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 5),
               child: const Text(
-                'Most Popular',
+                'Mas Populares',
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
               ),
             ),
@@ -57,7 +54,7 @@ class _ScreenHomeState extends State<ScreenHome> {
             Container(
               padding: const EdgeInsets.fromLTRB(10, 30, 10, 5),
               child: const Text(
-                'Top Sales',
+                'Liquidaciones',
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
               ),
             ),
@@ -71,7 +68,13 @@ class _ScreenHomeState extends State<ScreenHome> {
         
       );
   }
+
+
+
+
+
 }
+
 
   
 

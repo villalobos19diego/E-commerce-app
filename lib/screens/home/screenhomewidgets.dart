@@ -23,22 +23,16 @@ class _ScreenHomeState extends State<ScreenHome> {
       drawer: const DrawerWidget(),
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('Lingerie App',style: TextStyle(color: Color.fromARGB(255, 225,190, 231)),),
+        title: const Text('ParaTiSv',style: TextStyle(color: Color.fromARGB(255, 240, 63, 199)),),
         backgroundColor: const Color.fromARGB(216, 107, 45, 117),
         iconTheme: const IconThemeData(color: Color.fromARGB(255, 225,190, 231)), // Cambio del color del icono del Drawer aquí
         actions: <Widget>[
-          IconButton(
-            icon: const Icon(
-              Icons.shopping_cart,
-              color: Color.fromARGB(255, 225, 190, 231),
-            ),
-            onPressed: () {
-              // al presionar  la accion manda al carrito de compra
-              Navigator.push(
+          IconButton(onPressed: () { Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const CartScreen() ));
-            },
+                                builder: (context) => const CartScreen())); }, 
+                                icon: const Icon(Icons.shopping_cart ),
+            
           )
         ],
       ),
@@ -52,7 +46,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           Container(
             padding: const EdgeInsets.fromLTRB(10, 30, 10, 5),
             child: const Text(
-              'Most Popular',
+              'Mas  Populares',
               style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
             ),
           ),
@@ -65,7 +59,7 @@ class _ScreenHomeState extends State<ScreenHome> {
           Container(
             padding: const EdgeInsets.fromLTRB(10, 30, 10, 5),
             child: const Text(
-              'Top Sales',
+              'Liquidacion',
               style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20),
             ),
           ),
@@ -84,9 +78,3 @@ class _ScreenHomeState extends State<ScreenHome> {
     );
   }
 }
-
-
-  
-
- 
-  
