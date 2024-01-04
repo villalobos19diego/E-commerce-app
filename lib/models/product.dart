@@ -4,7 +4,7 @@ class Product{
    final String title;
    final String description;
    final double price;
-  // final String size;
+   // final String size;
 
    const Product ({
     required this.id,
@@ -12,7 +12,7 @@ class Product{
     required this.title,
     required this.description,
     required this.price, 
-    //required this.size
+   // required this.size
    });
 
 
