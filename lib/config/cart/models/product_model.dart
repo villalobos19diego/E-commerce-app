@@ -15,12 +15,16 @@ var uuid = const Uuid();
    String description;
     final String category;
      late String selectedDeliveryLocation;
-   List<String> availableDeliveryLocations; 
+   List<String> availableDeliveryLocations;
+
+    final  List<String> beautyServices;
+  String selectedBeautyService;
+   
 
  
 
 
-  ProductModel({
+  ProductModel( {
     this.selectedSize = '',
     required this.name,
     required this.price,
@@ -32,6 +36,9 @@ var uuid = const Uuid();
     required this.category ,
     required this.availableDeliveryLocations,
      required this.selectedDeliveryLocation,
+      required this.beautyServices,
+    required this.selectedBeautyService,
+    
 
     
   
@@ -40,7 +47,16 @@ var uuid = const Uuid();
 
 
     
-  }) : id = uuid.v4();
+  }) : 
+   id = uuid.v4();
+
+  void selectBeautyService(String selectedService) {}
+
+  
+
+
+
+  
      
 
  // Map<String , dynamic> toJson(){

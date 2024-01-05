@@ -6,7 +6,7 @@ import 'package:e_commerce/config/provider/product_provider_interior.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:provider/provider.dart';
 
 class ShopScreenInterior extends StatefulWidget{
@@ -29,10 +29,7 @@ class ShopScreenInterior extends StatefulWidget{
        child: Padding(padding: const EdgeInsets.all(15.0),
        child: Column(
          crossAxisAlignment: CrossAxisAlignment.start,
-         children: [ SizedBox(
-                height: size.height * 0.080,
-                
-              ),
+         children: [ 
               
                Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,75 +37,32 @@ class ShopScreenInterior extends StatefulWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: size.width * 0.050,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.040,
-                        ),
-                      )
+
+
+                       IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Colors.purple,
+                splashColor: Colors.purple[400]
+
+              ), 
                     ],
                   ),
-
                 ],
-              ),
-               SizedBox(
-                height: size.height * 0.020,
-              ),
-               SizedBox(
-                width: size.width,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusColor: Colors.black38,
-                    isCollapsed: false,
-                    hintText: "Buscar Productos",
-                    prefixIcon: const Icon(Icons.search),
-                    hintStyle: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: size.width * 0.040,
-                      ),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.01,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide:  const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    
-                  ),
-                ),
-              ),
-                SizedBox(
-                height: size.height * 0.030,
-              ),
+              ),   
+               
            Column(
-
-      children: [  SizedBox(
-                    height: size.height * 0.020,
+            
+      children: [  
+        SizedBox(
+                    height: size.height * 0.10,
                   ),
                   CategoryHeader(
                     title: ' Ropa Interior ',
                     count:
-                        '${Provider.of<ProductProviderInterior>(context).interior.length}',
+                        '${Provider.of<ProductProviderInterior>(context).interior.length}',  
                   ),
                   SizedBox(
                     height: size.height * 0.040,
@@ -133,29 +87,18 @@ class ShopScreenInterior extends StatefulWidget{
                             ),
                           ),
                         ),
-
-
-
                           )
                             .toList(),
                       ),
                     ),
                   ),
                   ],
-
-
-              ),
-              
+              ), 
               ],
-
-
        ),
       ),
   
     )
-
-
-
   );
   }
 

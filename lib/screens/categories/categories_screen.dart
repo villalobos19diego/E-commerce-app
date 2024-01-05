@@ -12,42 +12,21 @@ class ScreenCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-            // leading: IconButton(
-            //   icon: const Icon(
-            //     Icons.apps,
-            //     size: 50,
-            //     color: Color.fromARGB(255, 225, 190, 231),
-            //   ),
-            //   onPressed: () {},
-            // ),
+           
             title: const Align(
               alignment: Alignment.bottomLeft,
-              child: Text(
-                "Categorias",
-                style: TextStyle(color: Color.fromARGB(255, 225, 190, 231)),
+              child: Center(
+                child: Text(
+                  "Categorias",
+                  style: TextStyle(color: Color.fromARGB(255, 224, 51, 218)),
+                ),
               ),
             ),
             backgroundColor: const Color.fromARGB(216, 107, 45, 117),
           ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.grey[300],
-            ),
-            child: TextField(
-              decoration: const InputDecoration(
-                hintText: 'Buscar',
-                prefixIcon: Icon(Icons.search),
-                border: InputBorder.none,
-              ),
-              onChanged: (value) {
-                // Acción al cambiar el texto de búsqueda
-              },
-            ),
-          ),
+         
           Expanded(
             child: Center(
               child: GridView.count(
@@ -69,7 +48,7 @@ class ScreenCategories extends StatelessWidget {
                     },
                   ),
                   _CustomButton(
-                    imagePath: 'assets/images/28.jpeg',
+                    imagePath: 'assets/images/8.jpg',
                     text: 'belleza',
                     onPressed: () {
                       // Acción al presionar el botón
@@ -80,8 +59,9 @@ class ScreenCategories extends StatelessWidget {
                     },
                   ),
                   _CustomButton(
-                    imagePath: 'assets/images/18.jpeg',
+                    imagePath: 'assets/images/33.jpg',
                     text: 'Ropa Interior',
+                    
                     onPressed: () {
                       // Acción al presionar el botón
                       Navigator.push(
@@ -91,7 +71,7 @@ class ScreenCategories extends StatelessWidget {
                     },
                   ),
                   _CustomButton(
-                    imagePath: 'assets/images/34.jpeg',
+                    imagePath: 'assets/images/7.jpg',
                     text: 'Casual',
                     onPressed: () {
                       // Acción al presionar el botón
@@ -102,15 +82,13 @@ class ScreenCategories extends StatelessWidget {
                     },
                   ),
                   _CustomButton(
-                    imagePath: 'assets/images/1.jpeg',
+                    imagePath: 'assets/images/77.jpg',
                     text: 'Servicios de belleza',
                     onPressed: (){
                             Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const ShopScreenServiciosBelleza()));
-
-
                     }
                     )
                 ],
@@ -148,27 +126,34 @@ class _CustomButton extends StatelessWidget {
           children: [
             Flexible(
               child: Container(
+
+                
+                
                 decoration: BoxDecoration(
+                  
                   borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
-                  border: Border.all(color: Colors.black, width: 1.0), // Agrega un borde
+                  border: Border.all(color: const Color.fromARGB(255, 240, 41, 213), width: 1.0), // Agrega un borde
                 ),
                 child: ClipRRect(
+
                   borderRadius: BorderRadius.circular(borderRadius), // Utiliza la propiedad borderRadius
+
                   child: Image.asset(
                     imagePath,
                     fit: BoxFit.cover,
                     width: 150, // Ajusta el tamaño de la imagen según tus necesidades
-                    height: 250, // Ajusta el tamaño de la imagen según tus necesidades
+                    height: 350, // Ajusta el tamaño de la imagen según tus necesidades
                   ),
+
                 ),
               ),
             ),
             const SizedBox(height: 1),
-             Text(
-              text,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Colors.black,
+             Text(text , style: 
+             const 
+             TextStyle(   fontSize: 16,
+                color: Color.fromARGB(255, 240, 41, 213)
+                
               )
              )
              ]

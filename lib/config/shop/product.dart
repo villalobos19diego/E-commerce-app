@@ -40,7 +40,7 @@ class _ProductState extends State<Product> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     // color: const Color(0xffF2F2F2),
-                    color: Colors.purple,
+                    color: Colors.white,
                     boxShadow: [
                       BoxShadow(
                         color: Colors.white60.withOpacity(1),
@@ -114,7 +114,8 @@ class _ProductState extends State<Product> {
                 widget.product.name,
                 style: GoogleFonts.poppins(
                   fontWeight: FontWeight.w500,
-                  fontSize: size.width * 0.033,
+                  fontSize: size.width * 0.025,
+                  color:Colors.purple
                 ),
               ),
             ),
@@ -175,11 +176,11 @@ class _ProductState extends State<Product> {
             ),
             Center(
               child: Text(
-                "\$ ${widget.product.price}",
+                "\precio:\$${widget.product.price}",
                 style:
                 GoogleFonts.poppins(
-                    color: Colors.amber,
-                    fontSize: size.width * 0.040),
+                    color: Colors.purple,
+                    fontSize: size.width * 0.025),
               ),
             )
           ],

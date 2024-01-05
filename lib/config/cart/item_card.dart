@@ -25,17 +25,21 @@ class _CartItemState extends State<CartItem> {
       width: size.width * 0.30,
       height: size.height * 0.30,
       decoration: BoxDecoration(
-        color: Colors.black,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(14),
       ),
-      child: Center(
-        child: Image.network(
-          widget.cartItem.product.image,
-          width: 180,
-          height: 170,
-          fit: BoxFit.contain,
-        ),
-      ),
+     child: Center(
+  child: ClipRRect(
+    borderRadius: BorderRadius.circular(20.0), // Ajusta el radio según sea necesario
+    child: Image.network(
+      widget.cartItem.product.image,
+      width: 200,
+      height: 200,
+      fit: BoxFit.cover, // Puedes ajustar esto según tus necesidades
+    ),
+  ),
+),
+
     );
   }
 
@@ -48,7 +52,7 @@ class _CartItemState extends State<CartItem> {
           Text(
             widget.cartItem.product.name,
             style: GoogleFonts.poppins(
-              fontSize: size.width * 0.035,
+              fontSize: size.width * 0.030,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -151,15 +155,7 @@ class _CartItemState extends State<CartItem> {
             ),
           ),
         ),
-        // const SizedBox(width: 20),
-        // Text(
-        //   'Talla: ${widget.cartItem.selectedSize}',
-        //   style: GoogleFonts.poppins(
-        //     fontSize: size.width * 0.030,
-        //     color: Colors.black,
-        //     fontWeight: FontWeight.w500,
-        //   ),
-        // ),
+       
       ],
     );
   }
@@ -172,7 +168,7 @@ class _CartItemState extends State<CartItem> {
         context.read<CartProvider>().removeItem(widget.cartItem.id);
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            backgroundColor: Color.fromARGB(255, 247, 247, 247),
+            backgroundColor: Color.fromARGB(255, 240, 49, 224),
             content: Text(
               "Se Eliminó El Producto",
               style: TextStyle(color: Colors.black),

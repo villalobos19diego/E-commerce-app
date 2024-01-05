@@ -15,7 +15,7 @@ class ScreenCategories extends StatelessWidget {
             ),
             SizedBox(width: 10.0),
             Text(
-              'Category',
+              'Categoria',
               style: TextStyle(fontSize: 40),
             ),
           ],
@@ -23,23 +23,7 @@ class ScreenCategories extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20.0),
-              color: Colors.grey[300],
-            ),
-            child: TextField(
-              decoration: const InputDecoration(
-                hintText: 'Buscar',
-                prefixIcon: Icon(Icons.search),
-                border: InputBorder.none,
-              ),
-              onChanged: (value) {
-                // Acción al cambiar el texto de búsqueda
-              },
-            ),
-          ),
+        
           Expanded(
             child: Center(
               child: GridView.count(
@@ -55,6 +39,8 @@ class ScreenCategories extends StatelessWidget {
                     onPressed: () {
                       // Acción al presionar el botón
                     },
+
+                    
                   ),
                   CustomButton(
                     icon: Icons.image,
@@ -113,10 +99,10 @@ class CustomButton extends StatelessWidget {
               size: 40,
               color: Colors.white,
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16,
                 color: Colors.white,
               ),

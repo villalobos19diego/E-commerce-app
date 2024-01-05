@@ -13,7 +13,8 @@ class ContactUs extends StatelessWidget {
         titleTextStyle: TextStyle(color: Colors.black,
         fontSize: 20),
       ),
-      body: const Center(child: Text('Contactos')),
+      body: const Center(child:
+       Text('Contactos')),
     );
   }
 }

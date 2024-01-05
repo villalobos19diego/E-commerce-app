@@ -1,14 +1,8 @@
 
-
-
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../../profile/Screen_username.dart';
 
 
@@ -23,6 +17,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
   final TextEditingController _emailController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   bool _showPassword = false;
+    String? Function(String?)? validator;
 
   @override
   void initState() {
@@ -30,7 +25,14 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
     _emailController.text = '';
   }
 
- 
+  String? validateEmail(String email) {
+    final RegExp regex =
+        RegExp(r'^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$');
+    if (!regex.hasMatch(email)) {
+      return "Ingrese un correo electrónico válido";
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,14 +46,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
               padding: const EdgeInsets.all(20.0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                boxShadow: [
-                  BoxShadow(
-                      color:  const  Color.fromARGB(255, 243, 192, 245).withOpacity(0.9),
-                    spreadRadius: 5,
-                    blurRadius: 7,
-                    offset: const Offset(0, 3),
-                  ),
-                ],
+               
                 //color:Colors.white,
               ),
               child: Column(
@@ -62,6 +57,7 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                     height: size.height * 0.10,
                     width: double.infinity,
                     child: TextField(
+                       
                       obscureText: !_showPassword,
                       controller: _emailController,
                       cursorColor: const Color.fromARGB(216, 107, 45, 117),
@@ -70,11 +66,14 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                         focusedBorder: const OutlineInputBorder(
                           borderSide: BorderSide(
                             color: Color.fromARGB(216, 107, 45, 117),
+
                           ),
                         ),
                         floatingLabelStyle:
                         TextField.materialMisspelledTextStyle,
                         labelText: 'Ingresa Tu Nuevo  Correo',
+                        
+                        
                         labelStyle: const TextStyle
                         (color: Color.fromARGB(216, 107, 45, 117)),
                         border: OutlineInputBorder(
@@ -127,9 +126,24 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
                     ),
                   ),
                   ElevatedButton(
+
+
+
                     
                        
                     onPressed: ()  async {
+
+
+
+                        String? emailValidationResult = validateEmail(_emailController.text);
+                        if(emailValidationResult != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(emailValidationResult),
+                          ),
+                        );
+                        return;
+                        }
          final _authService = _AuthServicea();
     await _authService.updateEmailWithVerification(_emailController.text);
     

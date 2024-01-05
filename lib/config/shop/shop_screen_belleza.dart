@@ -12,9 +12,8 @@ import 'package:e_commerce/config/provider/product_provider_belleza.dart';
 import 'package:e_commerce/config/shop/category_header.dart';
 import 'package:e_commerce/config/shop/product.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
+ 
 class ShopScreen extends StatefulWidget {
   const ShopScreen({super.key});
 
@@ -40,59 +39,35 @@ class _ShopScreenState extends State<ShopScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
-                icon: const Icon(Icons.arrow_back),
+              
+
+                icon: const Icon(Icons.arrow_back, color: Colors.purple ),
+              
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 color: Colors.purple,
+                splashColor: Colors.purple[400]
 
               ),
-              SizedBox(
-                height: size.height * 0.0500,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: size.width * 0.050,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.040,
-                        ),
-                      )
-                    ],
-                  ),
-
-                ],
-              ),
-                 SizedBox(
-                height: size.height * 0.050,
-              ),
-
-              SizedBox(
-                height: size.height * 0.050,
-              ),
+             
               Column(
                 children: [
-                  SizedBox(
-                    height: size.height * 0.040,
-                  ),
+                 
+                    SizedBox(
+                            height: size.height * 0.15,  
+                         ),
+    
                   CategoryHeader(
-                    title: 'Articulos De Belleza',
-                    count:
-                    '${Provider.of<ProductProvider>(context).bellezas.length}',
-                  ),
+                  title: 'Articulos De Belleza',  
+                 count: '${Provider.of<ProductProvider>(context).bellezas.length}:' , 
+
+                
+                 
+                  ), 
+                  
+                       
+
                   SizedBox(
                     height: size.height * 0.060,
                   ),
@@ -114,7 +89,7 @@ class _ShopScreenState extends State<ShopScreen> {
                                        builder: (context)
                                        =>
                                       ProductDetailsScreen(
-                                        product: product, availableDeliveryLocations: [],
+                                        product: product, availableDeliveryLocations: const [],
 
                                       ),
                                 ),

@@ -10,9 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
-
-
-
 import '../provider/cart_provider.dart';
 import 'item_card.dart';
 
@@ -42,10 +39,11 @@ class _CartScreenState extends State<CartScreen> {
               children: [
                 Center(
                   child: Text(
-                    "Detalles de la Orden",
+                    "Detalles Da La Orden",
                     style: GoogleFonts.poppins(
-                      fontSize: size.width * 0.040,
+                      fontSize: size.width * 0.030,
                       fontWeight: FontWeight.w600,
+                      color: Colors.purple,
                     ),
                   ),
                 ),
@@ -87,15 +85,15 @@ class _CartScreenState extends State<CartScreen> {
                               Icon(
                                 Iconsax.bag,
                                 size: size.width * 0.20,
-                                color: Colors.grey,
+                                color: Colors.purple,
                               ),
                               SizedBox(
                                 height: size.height * 0.020,
                               ),
                               Text(
-                                "Es Carrito Esta Vacio",
+                                "El Carrito Esta Vacio",
                                 style: GoogleFonts.poppins(
-                                  color: Colors.grey,
+                                  color: Colors.purple,
                                 ),
                               )
                             ],
@@ -108,14 +106,16 @@ class _CartScreenState extends State<CartScreen> {
               height: size.height * 0.020,
             ),
             SizedBox(
+
               child: context.watch<CartProvider>().shoppingCart.isNotEmpty ? Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Info de la Orden",
+                    "Total:",
                     style: GoogleFonts.poppins(
                       fontWeight: FontWeight.w600,
-                      fontSize: size.width * 0.040,
+                      fontSize: size.width * 0.030,
+                      color: Colors.purple,
                     ),
                   ),
                   SizedBox(
@@ -127,6 +127,10 @@ class _CartScreenState extends State<CartScreen> {
                       Text(
                         "Sub Total",
                         style: GoogleFonts.poppins(),
+                        
+
+                        
+                    
                       ),
                       Text(
                         "\$${context.watch<CartProvider>().cartSubTotal}",
@@ -150,6 +154,30 @@ class _CartScreenState extends State<CartScreen> {
                       )
                     ],
                   ),
+                     const SizedBox(
+                          height: 15.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Impuesto:+13%",
+                              style: GoogleFonts.poppins(),
+                            ),
+                            Text(
+                              "+\$${context.watch<CartProvider>().taxCharge.toStringAsFixed(2)}",
+                              style: GoogleFonts.poppins(),
+                            )
+                          ],
+                        ),   
+
+
+
+
+
+
+
+
                   SizedBox(
                     height: size.height * 0.015,
                   ),
@@ -163,7 +191,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                       Text(
-                        "\$${context.watch<CartProvider>().cartTotal}",
+                      "\$${double.parse(context.watch<CartProvider>().cartTotal.toStringAsFixed(2))}",
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.w500,
                         ),
@@ -184,7 +212,7 @@ class _CartScreenState extends State<CartScreen> {
                    
                  },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
+                        backgroundColor: Colors.grey,
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                           side: BorderSide.none,
@@ -193,7 +221,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       child: Center(
                         child: Text(
-                          "Solicitar Productos(\$${context.watch<CartProvider>().cartTotal})",
+                          "Solicitar Productos(\$${double.parse(context.watch<CartProvider>().cartTotal.toStringAsFixed(2))})",
                           style: GoogleFonts.poppins(),
                         ),
                       ),
@@ -201,6 +229,7 @@ class _CartScreenState extends State<CartScreen> {
                   )
                 ],
               ) : Container()
+              
             )
           ],
         ),

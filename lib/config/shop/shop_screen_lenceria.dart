@@ -42,69 +42,30 @@ class ShopScreenLanceria extends StatefulWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w600,
-                          fontSize: size.width * 0.050,
-                          letterSpacing: 0.5,
-                        ),
-                      ),
-                      Text(
-                        "",
-                        style: GoogleFonts.poppins(
-                          fontWeight: FontWeight.w400,
-                          fontSize: size.width * 0.040,
-                        ),
-                      )
+
+                       IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                color: Colors.purple,
+                splashColor: Colors.purple[400]
+
+              ),
+                     
                     ],
                   ),
 
                 ],
               ),
-               SizedBox(
-                height: size.height * 0.020,
-              ),
-               SizedBox(
-                width: size.width,
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    focusColor: Colors.black38,
-                    isCollapsed: false,
-                    hintText: "Buscar Productos",
-                    prefixIcon: const Icon(Icons.search),
-                    hintStyle: GoogleFonts.poppins(
-                      textStyle: TextStyle(
-                        fontSize: size.width * 0.040,
-                      ),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(
-                      horizontal: size.width * 0.01,
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide: const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(50),
-                      borderSide:  const BorderSide(
-                        color: Colors.black26,
-                        width: 1,
-                      ),
-                    ),
-                    
-                  ),
-                ),
-              ),
-                SizedBox(
-                height: size.height * 0.030,
-              ),
+              
+              
            Column(
 
                    children: [
+                    SizedBox(
+                    height: size.height * 0.10,
+                  ),
                   
               CategoryHeader(
                     title: ' Ropa Lenceria',

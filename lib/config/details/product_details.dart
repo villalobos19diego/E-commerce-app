@@ -6,9 +6,8 @@
 import 'package:e_commerce/config/cart/models/product_model.dart';
 
 import 'package:e_commerce/config/provider/cart_provider.dart';
+import 'package:e_commerce/screens/profile/Screen_Profile.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -35,12 +34,13 @@ State<ProductDetailsScreen> {
       builder: (BuildContext context) {
         return Center(
           child: SimpleDialog(
-            title: const Text('Seleccionar Ubicación'),
+            title: const Center(child: Text('Ubicación')),
             children: widget.product.availableDeliveryLocations.map((location) {
               return Center(
                 child: SimpleDialogOption(
                   onPressed: () {
                     Navigator.pop(context, location);
+                    
                   },
                   child: Text(location),
                 ),
@@ -58,6 +58,68 @@ State<ProductDetailsScreen> {
     }
   }
 
+
+
+
+  void _showSizeDialog() async {
+  String? selectedSize = await showDialog<String>(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text(
+          'Tallas:',
+          style: TextStyle(
+            color: Colors.purple,
+            fontSize: 13,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: widget.product.sizes.map((size) {
+            return ListTile(
+              title: Text(
+                size,
+                style: const TextStyle(
+                  fontSize: 16,
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context, size);
+              },
+            );
+          }).toList(),
+        ),
+      );
+    },
+  );
+
+  if (selectedSize != null) {
+    // Verificar si se ha seleccionado un lugar de entrega
+    if (selectedLocation.isNotEmpty) {
+      // Obtener la información del producto y la talla seleccionada
+      String productInfo = 'Producto: ${widget.product.name}\n';
+      productInfo += 'Descripción: ${widget.product.description}\n';
+      productInfo += 'Precio: \$${widget.product.price.toString()}\n';
+      productInfo += 'Talla seleccionada: $selectedSize\n';
+      productInfo += 'Entrega En: $selectedLocation\n';
+
+      // Lanzar la función para abrir WhatsApp con la información del producto
+      await _launchWhatsApp(productInfo);
+    } else {
+      // Mostrar un mensaje indicando que se debe seleccionar un lugar de entrega
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Por favor, selecciona un lugar de entrega.'),
+        ),
+      );
+    }
+  }
+}
+
+
   @override
   void initState() {
     super.initState();
@@ -72,36 +134,42 @@ State<ProductDetailsScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
-          margin: const EdgeInsets.only(top: 40),
+         margin: const EdgeInsets.only(top: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                alignment: AlignmentDirectional.topStart,
+                alignment: 
+                AlignmentDirectional.topStart,
                 children: [
-                  Column(
-                    children: [
-                      SizedBox(
-                        height: 400,
-                        width: double.infinity,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Image.network(
-                            widget.product.image,
-                            fit: BoxFit.cover,
+                  Center(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 370,
+                          width: 300,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20.0),
+                            child: Image.network(
+                              widget.product.image,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    color: Colors.purple,
-
-                  ),
+                      Padding(
+                       padding: const EdgeInsets.only(right: 20.0),
+                       
+                             child: IconButton(
+                              icon: const Icon(Icons.arrow_back),
+                               onPressed: () {
+                        Navigator.pop(context);
+                                      },
+                           color: Colors.purple,
+                        ),
+                       ),
                 ],
               ),
 
@@ -124,7 +192,7 @@ State<ProductDetailsScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 8, ),
                     const Center(child:
                     Text(  'Descripción:',
                       style: TextStyle(
@@ -138,37 +206,47 @@ State<ProductDetailsScreen> {
                     const SizedBox(height: 8),
                     Center(
 
-                        child:Text(widget.product.description, style:
-                        const TextStyle(fontSize:16, color:Colors.purple))
+                        child:Text(widget.product.description,
+                         style:
+                        const TextStyle(fontSize:10, 
+                        color:Colors.purple))
                     ),
 
-                    const SizedBox(height: 8),
-                    Center(
-                      child:
-                      Container(
-                        margin: const EdgeInsets.only(top: 8),
-                        child: Text(
-                          'Precio: \$${widget.product.price.toString()}',
-                          style: const TextStyle(fontSize: 18, color: Colors.purple),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Center(
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 8),
-                        child: Text(
-                          'Producto:  '
-                              '${widget.product.isAvailable ? 'Disponible•' : 'No Disponible•'}',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: widget.product.isAvailable ? Colors.green : Colors.red,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
+             const SizedBox(height: 8),
+Center(
+  child: Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Container(
+        margin: const EdgeInsets.only(top: 8, right: 20), // Ajusta el margen según sea necesario
+        child: Text(
+          'Precio: \$${widget.product.price.toString()}',
+          style: const TextStyle(fontSize: 14, color: Colors.purple, 
+          
+            fontWeight: FontWeight.bold,),
+         
+        ),
+      ),
+      Container(
+        margin: const EdgeInsets.only(top: 8, left: 20), // Ajusta el margen según sea necesario
+        child: Text(
+          widget.product.isAvailable ? 'Disponible•' : 'No Disponible•',
+          style: TextStyle(
+            fontSize: 14,
+            color: widget.product.isAvailable ?
+             const Color.fromARGB(255, 31, 208, 15):
+         const Color.fromARGB(255, 248, 73, 29),
+            fontWeight: FontWeight.bold,
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ],
+  ),
+),
+
+
+
 
                     const SizedBox(height: 8),
                     const Text(  'Tallas Disponibles:',
@@ -185,7 +263,7 @@ State<ProductDetailsScreen> {
                     Center(
                       child:
                       Container(
-                        margin: const EdgeInsets.only(top: 15),
+                        margin: const EdgeInsets.only(top: 15,),
                         child: Column(
                           children: [
 
@@ -222,170 +300,183 @@ State<ProductDetailsScreen> {
                       ),
 
                     ),
-                    const SizedBox(height: 10),
-                    //Botón para agregar al carrito
-                    widget.product.isAvailable ?
-                    GestureDetector(
-                      onTap: () async {
-                        String? selectedSize = await showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context)   {
-                            return AlertDialog(
-                              title: const  Text('Tallas:',
-                                style:
-                                TextStyle(color:Colors.purple,
-                                    fontSize: 13, 
-                                    fontWeight: FontWeight.bold), ),
-                              backgroundColor:Colors.white,
-                              contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: widget.product.sizes.map((size) {
-                                  return ListTile(
-                                    title: Text(size, style: const  TextStyle(
-                                      fontSize: 16, 
-                                    ),),
-                                    onTap: () {
-                                      Navigator.pop(context, size);
-                                    },
+                   const SizedBox(height: 10),
 
-                                  );
-                                }).toList(),
+// Botón para agregar al carrito
+widget.product.isAvailable
+    ? Center(
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 44),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  String? selectedSize = await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text(
+                          'Tallas:',
+                          style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        backgroundColor: Colors.white,
+                        contentPadding:
+                            const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: widget.product.sizes.map((size) {
+                            return ListTile(
+                              title: Text(
+                                size,
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                ),
                               ),
+                              onTap: () {
+                                Navigator.pop(context, size);
+                              },
                             );
-                          },
-                        );
+                          }).toList(),
+                        ),
+                      );
+                    },
+                  );
 
-                        if (selectedSize != null) {
-                          context.read<CartProvider>().addToCart(
-                            widget.product,
-                            selectedSize,
-                            selectedLocation, // Agregar selectedLocation
-                          );
+                  if (selectedSize != null) {
+  // Verifica si el usuario está logeado antes de agregar al carrito
+  if (context.read<CartProvider>().isUserLoggedIn()) {
+    context.read<CartProvider>().addToCart(
+      widget.product,
+      selectedSize,
+      selectedLocation,
+      context
+    );
 
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              backgroundColor: Colors.purple.withOpacity(0.8),
-                              content: const Text(
-                                "Se Agregó al Carrito",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          );
-                        }
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: const Color.fromARGB(255, 234, 171, 245).withOpacity(0.8),
+        content: const Text(
+          "Se Agregó al Carrito",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    );
+  } else {
+    {ScaffoldMessenger.of(context).showSnackBar(
 
-                      },
-                      child:Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(bottom: 44),
-                          child: Container(
-                            padding: const  EdgeInsets.all(8),
-                            decoration: BoxDecoration(
-                              color: Colors.purple,
-                              borderRadius: BorderRadius.
-                              circular(10),
-                            ),
-                            child:   Row (
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Iconsax.bag,
-                                  size: 10,
-                                  color: Colors.black,
-                                ),
-                                const SizedBox(width:15),
-
-                                Center(
-                                  child: Container(
-                                    margin: const EdgeInsets.only(top: 8),
-                                    child: const Text(
-                                      'Seleccione Talla',
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-
-
-
-
-                              ],
-                            ),
+      SnackBar(content: const Text('Debes iniciar sesion par agergar productos al carrrito.'),
+       action: SnackBarAction(label: 'Iniciar Sesion', onPressed: () {
+        Navigator.push(context , MaterialPageRoute(builder: (context) =>  const  ScreenProfile()));
+         
+       },),
+      )
+   
+   
+   
+    );
+     
+     
+    }
+  }
+}
+                },
+                child: Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.purple,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.shopping_cart,
+                        color: Colors.white,
+                      ),
+                      const SizedBox(width: 8),
+                      Container(
+                       // margin: const EdgeInsets.only(top: 8, right: 25),
+                        child: const Text(
+                          'Agregar ',
+                          style: TextStyle(
+                            color: Colors.white,
                           ),
                         ),
                       ),
-                    ) :
-                    Container(),
+                    ],
+                  ),
+                ),
+              ),
 
-                    const SizedBox(height: 10),
-                    Center(
-                      child: ElevatedButton(
-                   
-                        
-                        
-                        onPressed: ()  async {
-                          // Obtener la información del producto y la talla seleccionada
-                          String productInfo = 'Producto: ${widget.product.name}\n';
-                          productInfo += 'Descripción: ${widget.product.description}\n';
-                          productInfo += 'Precio: \$${widget.product.price.toString()}\n';
-                          productInfo += 'Talla seleccionada: $selectedSize\n';
-                          productInfo += 'Entrega En: $selectedLocation\n';
-                    
-                          //  ByteData bytes = await rootBundle.load(widget.product.image);
-                          //   List<int> imageData = bytes.buffer.asUint8List();
-                    
-                    
-                          //   await Share.file(
-                          //   'Producto: ${widget.product.name}',
-                          //   'product.jpg',
-                          //   imageData,
-                          //   'image/jpeg',
-                          //   text: productInfo,
-                          // );
-                    
-                          // Lanzar la función para abrir WhatsApp con la información del producto
-                          await _launchWhatsApp(productInfo);
-                        },
-                        child:  const Text(
-                       'Pedir Por Whatsapp', style: TextStyle
-                       (color: Color.fromARGB(255, 31, 208, 15)),
-                        ),
-                      ),
-                    ),
-                     const SizedBox(height: 8),
-                       const Center(
-                         child: Text(
-                                       'Puntos Disponibles:',
-                                         style: TextStyle(
-                                            color: Colors.purple,
-                                         fontSize: 15,
-                                         fontWeight: FontWeight.bold,
-                                          ),
-                                         ),
-                       ),
-                 const SizedBox(height: 10),
-              // Muestra las ubicaciones de entrega disponibles
-            Center(
-        child: GestureDetector(
-      onTap: _showLocationDialog,
-        child: Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center, // Centra los elementos horizontalmente
-        children: [
-          const Center(child: Icon(Icons.location_on,
-           color: Colors.purple,)),
-          const SizedBox(width: 10),
-          Center(child: Text(selectedLocation, 
-          style: const  TextStyle(color:Colors.purple),)),
-        ],
+              // Ajusta la separación entre los botones según sea necesario
+            const SizedBox(width: 8),
+
+// Botón para pedir por WhatsApp con icono y texto
+ElevatedButton(
+  onPressed: () async {
+     _showSizeDialog();
+  },
+  style: ElevatedButton.styleFrom(
+    minimumSize: const Size(150, 50),
+  ),
+  child: const Row(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Icon(
+        Icons.shopping_cart_rounded,
+        color: Color.fromARGB(255, 31, 208, 15),
       ),
+      SizedBox(width: 8),
+      Text(
+        ' WhatsApp',
+        style: TextStyle(color: Color.fromARGB(255, 31, 208, 15)),
+      ),
+    ],
+  ),
+),
+
+
+            ],
+          ),
+        ),
+      )
+    : Container(),
+           const SizedBox(height: 8),
+
+// Botón para mostrar las ubicaciones de entrega disponibles
+Center(
+  child: ElevatedButton(
+    onPressed: _showLocationDialog,
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Colors.transparent, // Hace que el botón sea transparente
+      elevation: 0, // Quita la sombra del botón
+      minimumSize: const Size(100, 50), // Ajusta el ancho y alto mínimo del botón
+    ),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(Icons.location_on, color: Colors.purple),
+        const SizedBox(width: 10),
+        Text(
+          selectedLocation,
+          style: const TextStyle(color: Colors.purple),
+        ),
+      ],
     ),
   ),
 ),
+
+
+                 
+                 
+              
                   ],
                 ),
               ),

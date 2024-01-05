@@ -17,6 +17,7 @@ class ProductProviderInterior extends ChangeNotifier {
          availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
          
           selectedDeliveryLocation: 'default location',
+          beautyServices: [], selectedBeautyService: '',
     ),
     ProductModel(
       name: "Lenceria Interior",
@@ -29,6 +30,7 @@ class ProductProviderInterior extends ChangeNotifier {
        category: 'idefinied',
         selectedDeliveryLocation: 'default location',
          availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+         beautyServices: [], selectedBeautyService: '',
     
     
     ),
@@ -46,6 +48,7 @@ class ProductProviderInterior extends ChangeNotifier {
       category: '',
        selectedDeliveryLocation: 'default location',
         availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+        beautyServices: [], selectedBeautyService: '',
 
     ),
     
@@ -63,6 +66,7 @@ class ProductProviderInterior extends ChangeNotifier {
        quantity: 0,
         selectedDeliveryLocation: 'default location',
          availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+         beautyServices: [], selectedBeautyService: '',
 
     ),
     ProductModel(
@@ -78,6 +82,7 @@ class ProductProviderInterior extends ChangeNotifier {
      quantity: 0,
         selectedDeliveryLocation: 'default location',
        availableDeliveryLocations: ["Metrocentro","Plaza Venecia","Plaza Mundo" , "Galerias","Multiplaza"],
+       beautyServices: [], selectedBeautyService: '',
     ),
     
   ];
