@@ -1,5 +1,6 @@
 
-import 'package:e_commerce/config/cart/cart_screen.dart';
+import 'package:e_commerce/cart/cart_screen.dart';
+
 
 
 import 'package:e_commerce/screens/categories/categories_screen.dart';

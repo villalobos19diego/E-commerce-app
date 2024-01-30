@@ -9,6 +9,7 @@ environment:
 dependencies:
   animate_do: ^3.1.2
   animations: ^2.0.8
+  cached_network_image: ^3.3.1
   card_swiper: ^3.0.1
   carousel_slider: ^4.2.1
   cloud_firestore: ^4.12.1
@@ -21,7 +22,8 @@ dependencies:
     
   flutter:
     sdk: flutter
-    
+ 
+
   flutter_launcher_icons: ^0.13.1
   flutter_map: ^6.1.0
   fluttertoast: ^8.2.4
@@ -55,4 +57,5 @@ flutter:
     - assets/images/
     - assets/images/2.png
     - assets/images/w.png
+    - assets/images/loader4.gif
   

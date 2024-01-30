@@ -4,7 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce/config/services/auth_service.dart';
 import 'package:e_commerce/config/services/select_image.dart';
 import 'package:e_commerce/config/services/upload_image.dart';
-import 'package:e_commerce/models/producto.dart';
+
 import 'package:flutter/material.dart';
 
 class CrearProductoPage extends StatefulWidget {
@@ -131,23 +131,23 @@ TextFormField(
                     if (_formKey.currentState!.validate()) {
                       // Creamos el producto
                        _foto = await uploadImageProducto(imagenToUpload!);
-                      Producto producto = Producto(
-                        foto: _foto,
-                        titulo: _titulo,
-                        descripcion: _descripcion,
-                        precio: _precio,
-                        categoria: _categoria,
-                      );                    
+                      // Producto producto = Producto(
+                      //   foto: _foto,
+                      //   titulo: _titulo,
+                      //   descripcion: _descripcion,
+                      //   precio: _precio,
+                      //   categoria: _categoria,
+                      // );                    
                       // Lo guardamos en la base de datos
-                      await FirebaseFirestore.instance
-                          .collection('productos')
-                          .add({
-                        'foto': producto.foto,
-                        'titulo': producto.titulo,
-                        'descripcion': producto.descripcion,
-                        'precio': producto.precio,
-                        'categoria': producto.categoria,
-                      });
+                      // await FirebaseFirestore.instance
+                      //     .collection('productos')
+                      //     .add({
+                      //   'foto': producto.foto,
+                      //   'titulo': producto.titulo,
+                      //   'descripcion': producto.descripcion,
+                      //   'precio': producto.precio,
+                      //   'categoria': producto.categoria,
+                      // });
 
                       // Navegamos a la pantalla de lista
                       Navigator.pop(context);

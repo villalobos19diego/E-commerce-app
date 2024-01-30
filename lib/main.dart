@@ -1,17 +1,10 @@
 
-
-
-import 'package:e_commerce/config/provider/cart_provider.dart';
-import 'package:e_commerce/config/provider/product_casual_provider.dart';
-import 'package:e_commerce/config/provider/product_provider_belleza.dart';
-import 'package:e_commerce/config/provider/product_provider_interior.dart';
-import 'package:e_commerce/config/provider/product_provider_lenceria.dart';
-import 'package:e_commerce/config/provider/producto_provider_servicios_belleza.dart';
+import 'package:e_commerce/cart/cart_provider.dart';
 import 'package:e_commerce/config/services/auth_service.dart';
+ 
 import 'package:e_commerce/firebase_options.dart';
 import 'package:e_commerce/navigations/Tabbar.dart';
 import 'package:e_commerce/screens/admin/admin.dart';
-
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
@@ -22,19 +15,10 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(    MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => CartProvider()),
-  ChangeNotifierProvider(create: (_) => ProductProvider()),
-  ChangeNotifierProvider(create: (_) => ProductProviderInterior()),
-  ChangeNotifierProvider(create: (_) => ProductCasualProvider()),
-    ChangeNotifierProvider(create: (_) => ProductProviderServiciosBelleza()),
-      ChangeNotifierProvider(create: (_) => ProductproviderLenceria()), 
+  
   ]
   , child: const MyApp(),
-  ), 
-
-
-);
-
-}
+  ),);}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -44,6 +28,9 @@ class MyApp extends StatelessWidget {
     AuthService authService = AuthService();
 
     return MaterialApp(
+
+
+           
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,

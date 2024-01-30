@@ -1,8 +1,6 @@
-import 'package:e_commerce/config/shop/shop_screen_belleza.dart';
-import 'package:e_commerce/config/shop/shop_screen_casual.dart';
-import 'package:e_commerce/config/shop/shop_screen_interior.dart';
-import 'package:e_commerce/config/shop/shop_screen_lenceria.dart';
-import 'package:e_commerce/config/shop/shop_screen_servicios_belleza.dart';
+
+import 'package:e_commerce/cart/categories_firestone/casual/product_casual_scren.dart';
+import 'package:e_commerce/cart/categories_firestone/lenceria/product_lenceria_screen.dart';
 import 'package:flutter/material.dart';
 
 class ScreenCategories extends StatelessWidget {
@@ -40,11 +38,11 @@ class ScreenCategories extends StatelessWidget {
                     imagePath: 'assets/images/20.jpeg',
                     text: 'Lenceria',
                     onPressed: () {
-                      // Acción al presionar el botón
+                     // Acción al presionar el botón
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ShopScreenLanceria()));
+                                builder: (context) => const ProductLenceriaScreen()));
                     },
                   ),
                   _CustomButton(
@@ -52,10 +50,10 @@ class ScreenCategories extends StatelessWidget {
                     text: 'belleza',
                     onPressed: () {
                       // Acción al presionar el botón
-                      Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ShopScreen()));
+                      // Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const ShopScreen()));
                     },
                   ),
                   _CustomButton(
@@ -64,10 +62,10 @@ class ScreenCategories extends StatelessWidget {
                     
                     onPressed: () {
                       // Acción al presionar el botón
-                      Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ShopScreenInterior()));
+                      // Navigator.push(
+                      //       context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const ShopScreenInterior()));
                     },
                   ),
                   _CustomButton(
@@ -78,17 +76,18 @@ class ScreenCategories extends StatelessWidget {
                       Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const ShopScreenCasual()));
+                                builder: (context) => const ProductCasualScreen()));
                     },
                   ),
                   _CustomButton(
                     imagePath: 'assets/images/77.jpg',
                     text: 'Servicios de belleza',
                     onPressed: (){
-                            Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const ShopScreenServiciosBelleza()));
+                            // Navigator.push(
+                            // context,
+                            // MaterialPageRoute(
+                            //     builder: (context) => 
+                            //     const ShopScreenServiciosBelleza()));
                     }
                     )
                 ],

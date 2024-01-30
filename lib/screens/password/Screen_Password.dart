@@ -166,7 +166,7 @@ class AuthService {
          backgroundColor: const Color.fromARGB(216, 107, 45, 117));
     } catch (e) {
 
-     Fluttertoast.showToast(msg:'Error al actualizar el email: $e', backgroundColor: Colors.red );
+     Fluttertoast.showToast(msg:'Error al Actualizar el email: $e', backgroundColor: Colors.red );
       if(kDebugMode){
     print(e);
   }

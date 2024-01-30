@@ -1,66 +1,59 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce/cart/categories_firestone/casual/product_details_casual.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:e_commerce/data/data_carousel_top.dart';
-import 'package:e_commerce/models/carouseltop_model.dart';
-import 'package:e_commerce/widgets/show_carousel_top.dart';
+
 
 class CarouselViewTops extends StatelessWidget {
   const CarouselViewTops({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 30,
-        ),
-        CarouselSlider.builder(
-          itemCount: carouselImagesTops.length,
-          itemBuilder: ((context, index, realIndex) {
-            //Dice que no se usa pero si se usa, NO TOCAR
-            final carouselImageTops = carouselImagesTops[index];
-            return CardImages(
-              carouselImages: carouselImagesTops[index],
-            );
-          }),
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance.collection('casual').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        var documentos = snapshot.data!.docs;
+        List<String> urls =
+            documentos.map((doc) => doc['image'] as String).toList();
+
+        return CarouselSlider(
           options: CarouselOptions(
             height: 400.0,
-            autoPlay: true,
-            autoPlayCurve: Curves.easeInOut,
             enlargeCenterPage: true,
-            autoPlayInterval: const Duration(seconds: 4),
-            scrollDirection: Axis.horizontal,
+            autoPlay: true,
+            autoPlayInterval: const Duration(seconds: 2),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            autoPlayCurve: Curves.fastOutSlowIn,
           ),
-        )
-      ],
-    );
-  }
-}
+          items: documentos.map((document) {
+            var productId = document.id; // Aquí asignas el id del documento a productId
 
-class CardImages extends StatelessWidget {
-  final CarouselTops carouselImages;
-  const CardImages({super.key, required this.carouselImages});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: 300,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
-        child: InkWell(
-          onTap: () {
-            carouselImages.copy();
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ShowCarouselTop(carouselImages: carouselImages,)));
-
-          },
-          child: FadeInImage(
-            placeholder: const AssetImage("assets/images/loader4.gif"),
-            image: AssetImage(carouselImages.image),
-            fit: BoxFit.cover,
-          ),
-        ),
-      ),
+            return Builder(
+              builder: (BuildContext context) {
+                return GestureDetector(
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image.network(
+                        document['image'] as String,
+                        fit: BoxFit.cover,
+                        height: 300,
+                        width: 50,
+                      ),
+                    ),
+                  ),
+                );
+              },
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

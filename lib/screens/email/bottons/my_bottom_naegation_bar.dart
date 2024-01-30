@@ -189,12 +189,9 @@ class _UpdateEmailScreenScreenState extends State<UpdateEmailScreen> {
 }
 
 class _AuthServicea {
-
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> sendVerificationEmail(String emailAddress) async {
-  
     try {
       await _auth.sendPasswordResetEmail(email: emailAddress);
     } catch (e) {
@@ -204,19 +201,18 @@ class _AuthServicea {
     }
   }
 
-  Future<void> updateEmailWithVerification(String newEmail) async {
-    try {
-      await _auth.currentUser!.verifyBeforeUpdateEmail(newEmail);
-    Fluttertoast.showToast(msg: 'Se Envio Un Mensaje A Tu Bandeja De Entrada');
-    } catch (e) {
-      Fluttertoast.showToast(msg:'Error al actualizar el email: $e', backgroundColor: Colors.red );
-  if(kDebugMode){
-    print(e);
-  }
-}
-    }
-    
-  }
+      Future<void> updateEmailWithVerification(String newEmail) async {
+           try {
+        await _auth.currentUser!.verifyBeforeUpdateEmail(newEmail);
+         Fluttertoast.showToast(msg: 'Se Envio Un Mensaje A Tu Bandeja De Entrada');
+            } catch (e) {
+           Fluttertoast.showToast(msg:'Error al actualizar el email: $e', );
+              if(kDebugMode){
+       print(e);
+              }
+               }
+                 }
+                 }
 
 
 

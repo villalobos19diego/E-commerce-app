@@ -71,8 +71,8 @@ class _AdminProfileState extends State<AdminProfile> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0))),
                     onPressed: () {
-                       Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) =>  const ListaProductosPage()));
+          //              Navigator.of(context).push(
+          // MaterialPageRoute(builder: (context) =>  c));
                     },
                     child: const Text("Listar productos")),
                 const SizedBox(
